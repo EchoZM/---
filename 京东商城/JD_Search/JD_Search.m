@@ -144,6 +144,7 @@
     NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
     NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
     _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+    NSLog(@"%@",_goodsArray);
     return _goodsArray;
 }
 #pragma mark - SearchBarDelegate
