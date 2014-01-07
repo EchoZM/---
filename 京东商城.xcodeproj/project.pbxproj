@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		109C8288187B88F6000A9975 /* JD_UserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 109C8286187B88F6000A9975 /* JD_UserLogin.m */; };
+		109C8289187B88F6000A9975 /* JD_UserLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109C8287187B88F6000A9975 /* JD_UserLogin.xib */; };
+		109C829A187B8AB0000A9975 /* Login_BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 109C8299187B8AB0000A9975 /* Login_BG.png */; };
+		109C829C187B9167000A9975 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 109C829B187B9167000A9975 /* QuartzCore.framework */; };
+		109C82A0187B9847000A9975 /* JD_Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 109C829E187B9847000A9975 /* JD_Login.m */; };
+		109C82A1187B9847000A9975 /* JD_Login.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109C829F187B9847000A9975 /* JD_Login.xib */; };
+		10EF7F49187A987700762C73 /* Navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EF7F48187A987700762C73 /* Navigation.png */; };
+		10EF7F4B187A9A9700762C73 /* companyLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EF7F4A187A9A9700762C73 /* companyLogo.png */; };
+		10EFCCF718765628009F4AB4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EFCCF618765628009F4AB4 /* UIKit.framework */; };
+		10EFCCF918765628009F4AB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EFCCF818765628009F4AB4 /* Foundation.framework */; };
+		10EFCCFB18765628009F4AB4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EFCCFA18765628009F4AB4 /* CoreGraphics.framework */; };
+		10EFCD0118765628009F4AB4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCCFF18765628009F4AB4 /* InfoPlist.strings */; };
+		10EFCD0318765628009F4AB4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EFCD0218765628009F4AB4 /* main.m */; };
+		10EFCD0718765628009F4AB4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EFCD0618765628009F4AB4 /* AppDelegate.m */; };
+		10EFCD0918765628009F4AB4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD0818765628009F4AB4 /* Default.png */; };
+		10EFCD0B18765628009F4AB4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD0A18765628009F4AB4 /* Default@2x.png */; };
+		10EFCD0D18765628009F4AB4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD0C18765628009F4AB4 /* Default-568h@2x.png */; };
+		10EFCD2618765719009F4AB4 /* JD_Home_Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EFCD2418765719009F4AB4 /* JD_Home_Page.m */; };
+		10EFCD2718765719009F4AB4 /* JD_Home_Page.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD2518765719009F4AB4 /* JD_Home_Page.xib */; };
+		10EFCD4518765A95009F4AB4 /* icon_29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD3E18765A95009F4AB4 /* icon_29x29.png */; };
+		10EFCD4618765A95009F4AB4 /* icon_58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD3F18765A95009F4AB4 /* icon_58x58.png */; };
+		10EFCD4718765A95009F4AB4 /* icon_80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD4018765A95009F4AB4 /* icon_80x80.png */; };
+		10EFCD4818765A95009F4AB4 /* icon_120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD4118765A95009F4AB4 /* icon_120x120.png */; };
+		10EFCD4918765A95009F4AB4 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD4218765A95009F4AB4 /* icon-72.png */; };
+		10EFCD4A18765A95009F4AB4 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD4318765A95009F4AB4 /* icon.png */; };
+		10EFCD4B18765A95009F4AB4 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD4418765A95009F4AB4 /* icon@2x.png */; };
+		10EFCD86187694E4009F4AB4 /* JD_WelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EFCD84187694E4009F4AB4 /* JD_WelcomeView.m */; };
+		10EFCD87187694E4009F4AB4 /* JD_WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD85187694E4009F4AB4 /* JD_WelcomeView.xib */; };
+		10EFCD8E1876965E009F4AB4 /* JD_Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EFCD8C1876965E009F4AB4 /* JD_Search.m */; };
+		10EFCD8F1876965E009F4AB4 /* JD_Search.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD8D1876965E009F4AB4 /* JD_Search.xib */; };
+		10EFCD931876966D009F4AB4 /* JD_ShopCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EFCD911876966D009F4AB4 /* JD_ShopCar.m */; };
+		10EFCD941876966D009F4AB4 /* JD_ShopCar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCD921876966D009F4AB4 /* JD_ShopCar.xib */; };
+		10EFCDAC18769DC7009F4AB4 /* tabBar_item0_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCDAB18769DC7009F4AB4 /* tabBar_item0_1@2x.png */; };
+		10EFCDAE18769DD1009F4AB4 /* tabBar_item1_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCDAD18769DD1009F4AB4 /* tabBar_item1_1@2x.png */; };
+		10EFCDB018769DE1009F4AB4 /* tabBar_item2_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCDAF18769DE1009F4AB4 /* tabBar_item2_1@2x.png */; };
+		10EFCDB218769DED009F4AB4 /* tabBar_item3_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCDB118769DED009F4AB4 /* tabBar_item3_1@2x.png */; };
+		10EFCDB418769DFD009F4AB4 /* tabBar_item4_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EFCDB318769DFD009F4AB4 /* tabBar_item4_1@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		109C8285187B88F6000A9975 /* JD_UserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_UserLogin.h; sourceTree = "<group>"; };
+		109C8286187B88F6000A9975 /* JD_UserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_UserLogin.m; sourceTree = "<group>"; };
+		109C8287187B88F6000A9975 /* JD_UserLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_UserLogin.xib; sourceTree = "<group>"; };
+		109C8299187B8AB0000A9975 /* Login_BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Login_BG.png; sourceTree = "<group>"; };
+		109C829B187B9167000A9975 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		109C829D187B9847000A9975 /* JD_Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Login.h; sourceTree = "<group>"; };
+		109C829E187B9847000A9975 /* JD_Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Login.m; sourceTree = "<group>"; };
+		109C829F187B9847000A9975 /* JD_Login.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Login.xib; sourceTree = "<group>"; };
+		10EF7F48187A987700762C73 /* Navigation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navigation.png; sourceTree = "<group>"; };
+		10EF7F4A187A9A9700762C73 /* companyLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = companyLogo.png; sourceTree = "<group>"; };
+		10EFCCF318765628009F4AB4 /* 京东商城.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "京东商城.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		10EFCCF618765628009F4AB4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		10EFCCF818765628009F4AB4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		10EFCCFA18765628009F4AB4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		10EFCCFE18765628009F4AB4 /* 京东商城-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "京东商城-Info.plist"; sourceTree = "<group>"; };
+		10EFCD0018765628009F4AB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		10EFCD0218765628009F4AB4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		10EFCD0418765628009F4AB4 /* 京东商城-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "京东商城-Prefix.pch"; sourceTree = "<group>"; };
+		10EFCD0518765628009F4AB4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		10EFCD0618765628009F4AB4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		10EFCD0818765628009F4AB4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		10EFCD0A18765628009F4AB4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		10EFCD0C18765628009F4AB4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		10EFCD2318765719009F4AB4 /* JD_Home_Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Home_Page.h; sourceTree = "<group>"; };
+		10EFCD2418765719009F4AB4 /* JD_Home_Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Home_Page.m; sourceTree = "<group>"; };
+		10EFCD2518765719009F4AB4 /* JD_Home_Page.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Home_Page.xib; sourceTree = "<group>"; };
+		10EFCD3E18765A95009F4AB4 /* icon_29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_29x29.png; sourceTree = "<group>"; };
+		10EFCD3F18765A95009F4AB4 /* icon_58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_58x58.png; sourceTree = "<group>"; };
+		10EFCD4018765A95009F4AB4 /* icon_80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_80x80.png; sourceTree = "<group>"; };
+		10EFCD4118765A95009F4AB4 /* icon_120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_120x120.png; sourceTree = "<group>"; };
+		10EFCD4218765A95009F4AB4 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
+		10EFCD4318765A95009F4AB4 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		10EFCD4418765A95009F4AB4 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		10EFCD83187694E4009F4AB4 /* JD_WelcomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_WelcomeView.h; sourceTree = "<group>"; };
+		10EFCD84187694E4009F4AB4 /* JD_WelcomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_WelcomeView.m; sourceTree = "<group>"; };
+		10EFCD85187694E4009F4AB4 /* JD_WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_WelcomeView.xib; sourceTree = "<group>"; };
+		10EFCD8B1876965E009F4AB4 /* JD_Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Search.h; sourceTree = "<group>"; };
+		10EFCD8C1876965E009F4AB4 /* JD_Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Search.m; sourceTree = "<group>"; };
+		10EFCD8D1876965E009F4AB4 /* JD_Search.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Search.xib; sourceTree = "<group>"; };
+		10EFCD901876966D009F4AB4 /* JD_ShopCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_ShopCar.h; sourceTree = "<group>"; };
+		10EFCD911876966D009F4AB4 /* JD_ShopCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_ShopCar.m; sourceTree = "<group>"; };
+		10EFCD921876966D009F4AB4 /* JD_ShopCar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_ShopCar.xib; sourceTree = "<group>"; };
+		10EFCDAB18769DC7009F4AB4 /* tabBar_item0_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBar_item0_1@2x.png"; sourceTree = "<group>"; };
+		10EFCDAD18769DD1009F4AB4 /* tabBar_item1_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBar_item1_1@2x.png"; sourceTree = "<group>"; };
+		10EFCDAF18769DE1009F4AB4 /* tabBar_item2_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBar_item2_1@2x.png"; sourceTree = "<group>"; };
+		10EFCDB118769DED009F4AB4 /* tabBar_item3_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBar_item3_1@2x.png"; sourceTree = "<group>"; };
+		10EFCDB318769DFD009F4AB4 /* tabBar_item4_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBar_item4_1@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		10EFCCF018765628009F4AB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				109C829C187B9167000A9975 /* QuartzCore.framework in Frameworks */,
+				10EFCCF718765628009F4AB4 /* UIKit.framework in Frameworks */,
+				10EFCCF918765628009F4AB4 /* Foundation.framework in Frameworks */,
+				10EFCCFB18765628009F4AB4 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		109C828A187B8A8B000A9975 /* JD__Login_Images */ = {
+			isa = PBXGroup;
+			children = (
+				109C8299187B8AB0000A9975 /* Login_BG.png */,
+			);
+			path = JD__Login_Images;
+			sourceTree = "<group>";
+		};
+		10EF7F47187A986D00762C73 /* JD_NavigationButton */ = {
+			isa = PBXGroup;
+			children = (
+				10EF7F48187A987700762C73 /* Navigation.png */,
+			);
+			path = JD_NavigationButton;
+			sourceTree = "<group>";
+		};
+		10EFCCEA18765628009F4AB4 = {
+			isa = PBXGroup;
+			children = (
+				10EFCCFC18765628009F4AB4 /* 京东商城 */,
+				10EFCCF518765628009F4AB4 /* Frameworks */,
+				10EFCCF418765628009F4AB4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		10EFCCF418765628009F4AB4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10EFCCF318765628009F4AB4 /* 京东商城.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		10EFCCF518765628009F4AB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				109C829B187B9167000A9975 /* QuartzCore.framework */,
+				10EFCCF618765628009F4AB4 /* UIKit.framework */,
+				10EFCCF818765628009F4AB4 /* Foundation.framework */,
+				10EFCCFA18765628009F4AB4 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		10EFCCFC18765628009F4AB4 /* 京东商城 */ = {
+			isa = PBXGroup;
+			children = (
+				10EFCD0518765628009F4AB4 /* AppDelegate.h */,
+				10EFCD0618765628009F4AB4 /* AppDelegate.m */,
+				10EFCD9C18769A21009F4AB4 /* JD_Comm */,
+				10EFCD82187694D1009F4AB4 /* JD_Welcome */,
+				10EFCD1918765680009F4AB4 /* Home_Page */,
+				10EFCD881876957A009F4AB4 /* JD_Search */,
+				10EFCD8918769596009F4AB4 /* JD_ShopCar */,
+				10EFCD1F187656C1009F4AB4 /* JD_UserLogin */,
+				10EFCD3D18765A63009F4AB4 /* JD_ICon_Images */,
+				10EFCCFD18765628009F4AB4 /* Supporting Files */,
+			);
+			path = "京东商城";
+			sourceTree = "<group>";
+		};
+		10EFCCFD18765628009F4AB4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				10EFCCFE18765628009F4AB4 /* 京东商城-Info.plist */,
+				10EFCCFF18765628009F4AB4 /* InfoPlist.strings */,
+				10EFCD0218765628009F4AB4 /* main.m */,
+				10EFCD0418765628009F4AB4 /* 京东商城-Prefix.pch */,
+				10EFCD0818765628009F4AB4 /* Default.png */,
+				10EFCD0A18765628009F4AB4 /* Default@2x.png */,
+				10EFCD0C18765628009F4AB4 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		10EFCD1918765680009F4AB4 /* Home_Page */ = {
+			isa = PBXGroup;
+			children = (
+				10EFCD7B187662D0009F4AB4 /* Home_PageImages */,
+				10EFCD2318765719009F4AB4 /* JD_Home_Page.h */,
+				10EFCD2418765719009F4AB4 /* JD_Home_Page.m */,
+				10EFCD2518765719009F4AB4 /* JD_Home_Page.xib */,
+			);
+			path = Home_Page;
+			sourceTree = "<group>";
+		};
+		10EFCD1F187656C1009F4AB4 /* JD_UserLogin */ = {
+			isa = PBXGroup;
+			children = (
+				109C8285187B88F6000A9975 /* JD_UserLogin.h */,
+				109C8286187B88F6000A9975 /* JD_UserLogin.m */,
+				109C8287187B88F6000A9975 /* JD_UserLogin.xib */,
+				109C829D187B9847000A9975 /* JD_Login.h */,
+				109C829E187B9847000A9975 /* JD_Login.m */,
+				109C829F187B9847000A9975 /* JD_Login.xib */,
+			);
+			path = JD_UserLogin;
+			sourceTree = "<group>";
+		};
+		10EFCD3D18765A63009F4AB4 /* JD_ICon_Images */ = {
+			isa = PBXGroup;
+			children = (
+				10EFCD3E18765A95009F4AB4 /* icon_29x29.png */,
+				10EFCD3F18765A95009F4AB4 /* icon_58x58.png */,
+				10EFCD4018765A95009F4AB4 /* icon_80x80.png */,
+				10EFCD4118765A95009F4AB4 /* icon_120x120.png */,
+				10EFCD4218765A95009F4AB4 /* icon-72.png */,
+				10EFCD4318765A95009F4AB4 /* icon.png */,
+				10EFCD4418765A95009F4AB4 /* icon@2x.png */,
+			);
+			path = JD_ICon_Images;
+			sourceTree = "<group>";
+		};
+		10EFCD7B187662D0009F4AB4 /* Home_PageImages */ = {
+			isa = PBXGroup;
+			children = (
+				10EF7F4A187A9A9700762C73 /* companyLogo.png */,
+			);
+			path = Home_PageImages;
+			sourceTree = "<group>";
+		};
+		10EFCD82187694D1009F4AB4 /* JD_Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				10EFCD83187694E4009F4AB4 /* JD_WelcomeView.h */,
+				10EFCD84187694E4009F4AB4 /* JD_WelcomeView.m */,
+				10EFCD85187694E4009F4AB4 /* JD_WelcomeView.xib */,
+			);
+			path = JD_Welcome;
+			sourceTree = "<group>";
+		};
+		10EFCD881876957A009F4AB4 /* JD_Search */ = {
+			isa = PBXGroup;
+			children = (
+				10EFCD8B1876965E009F4AB4 /* JD_Search.h */,
+				10EFCD8C1876965E009F4AB4 /* JD_Search.m */,
+				10EFCD8D1876965E009F4AB4 /* JD_Search.xib */,
+			);
+			path = JD_Search;
+			sourceTree = "<group>";
+		};
+		10EFCD8918769596009F4AB4 /* JD_ShopCar */ = {
+			isa = PBXGroup;
+			children = (
+				10EFCD901876966D009F4AB4 /* JD_ShopCar.h */,
+				10EFCD911876966D009F4AB4 /* JD_ShopCar.m */,
+				10EFCD921876966D009F4AB4 /* JD_ShopCar.xib */,
+			);
+			path = JD_ShopCar;
+			sourceTree = "<group>";
+		};
+		10EFCD9C18769A21009F4AB4 /* JD_Comm */ = {
+			isa = PBXGroup;
+			children = (
+				10EF7F47187A986D00762C73 /* JD_NavigationButton */,
+				10EFCD9D18769A2C009F4AB4 /* JD_Comm_Images */,
+			);
+			path = JD_Comm;
+			sourceTree = "<group>";
+		};
+		10EFCD9D18769A2C009F4AB4 /* JD_Comm_Images */ = {
+			isa = PBXGroup;
+			children = (
+				109C828A187B8A8B000A9975 /* JD__Login_Images */,
+				10EFCDAA18769D86009F4AB4 /* JD_Tabbar_Images */,
+			);
+			path = JD_Comm_Images;
+			sourceTree = "<group>";
+		};
+		10EFCDAA18769D86009F4AB4 /* JD_Tabbar_Images */ = {
+			isa = PBXGroup;
+			children = (
+				10EFCDB318769DFD009F4AB4 /* tabBar_item4_1@2x.png */,
+				10EFCDAD18769DD1009F4AB4 /* tabBar_item1_1@2x.png */,
+				10EFCDB118769DED009F4AB4 /* tabBar_item3_1@2x.png */,
+				10EFCDAF18769DE1009F4AB4 /* tabBar_item2_1@2x.png */,
+				10EFCDAB18769DC7009F4AB4 /* tabBar_item0_1@2x.png */,
+			);
+			path = JD_Tabbar_Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		10EFCCF218765628009F4AB4 /* 京东商城 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10EFCD1618765628009F4AB4 /* Build configuration list for PBXNativeTarget "京东商城" */;
+			buildPhases = (
+				10EFCCEF18765628009F4AB4 /* Sources */,
+				10EFCCF018765628009F4AB4 /* Frameworks */,
+				10EFCCF118765628009F4AB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "京东商城";
+			productName = "京东商城";
+			productReference = 10EFCCF318765628009F4AB4 /* 京东商城.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		10EFCCEB18765628009F4AB4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "张太松";
+			};
+			buildConfigurationList = 10EFCCEE18765628009F4AB4 /* Build configuration list for PBXProject "京东商城" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 10EFCCEA18765628009F4AB4;
+			productRefGroup = 10EFCCF418765628009F4AB4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				10EFCCF218765628009F4AB4 /* 京东商城 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		10EFCCF118765628009F4AB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10EFCD0118765628009F4AB4 /* InfoPlist.strings in Resources */,
+				10EFCD0918765628009F4AB4 /* Default.png in Resources */,
+				10EFCD0B18765628009F4AB4 /* Default@2x.png in Resources */,
+				10EFCD0D18765628009F4AB4 /* Default-568h@2x.png in Resources */,
+				10EFCD2718765719009F4AB4 /* JD_Home_Page.xib in Resources */,
+				10EFCD4518765A95009F4AB4 /* icon_29x29.png in Resources */,
+				10EFCD4618765A95009F4AB4 /* icon_58x58.png in Resources */,
+				10EFCD4718765A95009F4AB4 /* icon_80x80.png in Resources */,
+				10EFCD4818765A95009F4AB4 /* icon_120x120.png in Resources */,
+				10EFCD4918765A95009F4AB4 /* icon-72.png in Resources */,
+				10EFCD4A18765A95009F4AB4 /* icon.png in Resources */,
+				10EFCD4B18765A95009F4AB4 /* icon@2x.png in Resources */,
+				10EFCD87187694E4009F4AB4 /* JD_WelcomeView.xib in Resources */,
+				10EFCD8F1876965E009F4AB4 /* JD_Search.xib in Resources */,
+				10EFCD941876966D009F4AB4 /* JD_ShopCar.xib in Resources */,
+				10EFCDAC18769DC7009F4AB4 /* tabBar_item0_1@2x.png in Resources */,
+				10EFCDAE18769DD1009F4AB4 /* tabBar_item1_1@2x.png in Resources */,
+				10EFCDB018769DE1009F4AB4 /* tabBar_item2_1@2x.png in Resources */,
+				10EFCDB218769DED009F4AB4 /* tabBar_item3_1@2x.png in Resources */,
+				10EFCDB418769DFD009F4AB4 /* tabBar_item4_1@2x.png in Resources */,
+				10EF7F49187A987700762C73 /* Navigation.png in Resources */,
+				10EF7F4B187A9A9700762C73 /* companyLogo.png in Resources */,
+				109C8289187B88F6000A9975 /* JD_UserLogin.xib in Resources */,
+				109C829A187B8AB0000A9975 /* Login_BG.png in Resources */,
+				109C82A1187B9847000A9975 /* JD_Login.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		10EFCCEF18765628009F4AB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10EFCD0318765628009F4AB4 /* main.m in Sources */,
+				10EFCD0718765628009F4AB4 /* AppDelegate.m in Sources */,
+				10EFCD2618765719009F4AB4 /* JD_Home_Page.m in Sources */,
+				10EFCD86187694E4009F4AB4 /* JD_WelcomeView.m in Sources */,
+				10EFCD8E1876965E009F4AB4 /* JD_Search.m in Sources */,
+				10EFCD931876966D009F4AB4 /* JD_ShopCar.m in Sources */,
+				109C8288187B88F6000A9975 /* JD_UserLogin.m in Sources */,
+				109C82A0187B9847000A9975 /* JD_Login.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		10EFCCFF18765628009F4AB4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				10EFCD0018765628009F4AB4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		10EFCD1418765628009F4AB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		10EFCD1518765628009F4AB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		10EFCD1718765628009F4AB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "京东商城/京东商城-Prefix.pch";
+				INFOPLIST_FILE = "京东商城/京东商城-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		10EFCD1818765628009F4AB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "京东商城/京东商城-Prefix.pch";
+				INFOPLIST_FILE = "京东商城/京东商城-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		10EFCCEE18765628009F4AB4 /* Build configuration list for PBXProject "京东商城" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10EFCD1418765628009F4AB4 /* Debug */,
+				10EFCD1518765628009F4AB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10EFCD1618765628009F4AB4 /* Build configuration list for PBXNativeTarget "京东商城" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10EFCD1718765628009F4AB4 /* Debug */,
+				10EFCD1818765628009F4AB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 10EFCCEB18765628009F4AB4 /* Project object */;
+}
