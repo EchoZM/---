@@ -13,7 +13,6 @@
 		109C829C187B9167000A9975 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 109C829B187B9167000A9975 /* QuartzCore.framework */; };
 		109C82A0187B9847000A9975 /* JD_Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 109C829E187B9847000A9975 /* JD_Login.m */; };
 		109C82A1187B9847000A9975 /* JD_Login.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109C829F187B9847000A9975 /* JD_Login.xib */; };
-		109C82B3187BBC9F000A9975 /* JD_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 109C82B2187BBC9F000A9975 /* JD_Data.m */; };
 		109C82B7187BCBDA000A9975 /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 109C82B5187BCBDA000A9975 /* MoreView.m */; };
 		109C82B8187BCBDA000A9975 /* MoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109C82B6187BCBDA000A9975 /* MoreView.xib */; };
 		109C82BB187BCFAA000A9975 /* more_about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 109C82BA187BCFAA000A9975 /* more_about@2x.png */; };
@@ -67,8 +66,6 @@
 		109C829D187B9847000A9975 /* JD_Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Login.h; sourceTree = "<group>"; };
 		109C829E187B9847000A9975 /* JD_Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Login.m; sourceTree = "<group>"; };
 		109C829F187B9847000A9975 /* JD_Login.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Login.xib; sourceTree = "<group>"; };
-		109C82B1187BBC9F000A9975 /* JD_Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Data.h; sourceTree = "<group>"; };
-		109C82B2187BBC9F000A9975 /* JD_Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Data.m; sourceTree = "<group>"; };
 		109C82B4187BCBDA000A9975 /* MoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
 		109C82B5187BCBDA000A9975 /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
 		109C82B6187BCBDA000A9975 /* MoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreView.xib; sourceTree = "<group>"; };
@@ -151,8 +148,6 @@
 		109C82A2187BBC73000A9975 /* JD__Comm_Data */ = {
 			isa = PBXGroup;
 			children = (
-				109C82B1187BBC9F000A9975 /* JD_Data.h */,
-				109C82B2187BBC9F000A9975 /* JD_Data.m */,
 			);
 			name = JD__Comm_Data;
 			path = ../../../../Desktop/JD__Comm_Data;
@@ -454,7 +449,6 @@
 				10EFCD931876966D009F4AB4 /* JD_ShopCar.m in Sources */,
 				109C8288187B88F6000A9975 /* JD_UserLogin.m in Sources */,
 				109C82A0187B9847000A9975 /* JD_Login.m in Sources */,
-				109C82B3187BBC9F000A9975 /* JD_Data.m in Sources */,
 				109C82B7187BCBDA000A9975 /* MoreView.m in Sources */,
 				109C82CD187BF7A5000A9975 /* JD_Register.m in Sources */,
 			);
