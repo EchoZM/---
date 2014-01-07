@@ -22,6 +22,9 @@
 		109C82C3187BD08F000A9975 /* more_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 109C82BE187BD08E000A9975 /* more_help@2x.png */; };
 		109C82C4187BD08F000A9975 /* more_like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 109C82BF187BD08E000A9975 /* more_like@2x.png */; };
 		109C82C5187BD08F000A9975 /* more_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 109C82C0187BD08E000A9975 /* more_setting@2x.png */; };
+		109C82C7187BE7A5000A9975 /* myjd_head_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 109C82C6187BE7A5000A9975 /* myjd_head_background@2x.png */; };
+		109C82CD187BF7A5000A9975 /* JD_Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 109C82CB187BF7A4000A9975 /* JD_Register.m */; };
+		109C82CE187BF7A5000A9975 /* JD_Register.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109C82CC187BF7A4000A9975 /* JD_Register.xib */; };
 		10EF7F49187A987700762C73 /* Navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EF7F48187A987700762C73 /* Navigation.png */; };
 		10EF7F4B187A9A9700762C73 /* companyLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EF7F4A187A9A9700762C73 /* companyLogo.png */; };
 		10EFCCF718765628009F4AB4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EFCCF618765628009F4AB4 /* UIKit.framework */; };
@@ -75,6 +78,10 @@
 		109C82BE187BD08E000A9975 /* more_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_help@2x.png"; sourceTree = "<group>"; };
 		109C82BF187BD08E000A9975 /* more_like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_like@2x.png"; sourceTree = "<group>"; };
 		109C82C0187BD08E000A9975 /* more_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_setting@2x.png"; sourceTree = "<group>"; };
+		109C82C6187BE7A5000A9975 /* myjd_head_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myjd_head_background@2x.png"; sourceTree = "<group>"; };
+		109C82CA187BF7A4000A9975 /* JD_Register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Register.h; sourceTree = "<group>"; };
+		109C82CB187BF7A4000A9975 /* JD_Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Register.m; sourceTree = "<group>"; };
+		109C82CC187BF7A4000A9975 /* JD_Register.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Register.xib; sourceTree = "<group>"; };
 		10EF7F48187A987700762C73 /* Navigation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navigation.png; sourceTree = "<group>"; };
 		10EF7F4A187A9A9700762C73 /* companyLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = companyLogo.png; sourceTree = "<group>"; };
 		10EFCCF318765628009F4AB4 /* 京东商城.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "京东商城.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +141,7 @@
 		109C828A187B8A8B000A9975 /* JD__Login_Images */ = {
 			isa = PBXGroup;
 			children = (
+				109C82C6187BE7A5000A9975 /* myjd_head_background@2x.png */,
 				109C82B9187BCF93000A9975 /* JD_UserLgin_More_images */,
 				109C8299187B8AB0000A9975 /* Login_BG.png */,
 			);
@@ -253,6 +261,9 @@
 				109C82B4187BCBDA000A9975 /* MoreView.h */,
 				109C82B5187BCBDA000A9975 /* MoreView.m */,
 				109C82B6187BCBDA000A9975 /* MoreView.xib */,
+				109C82CA187BF7A4000A9975 /* JD_Register.h */,
+				109C82CB187BF7A4000A9975 /* JD_Register.m */,
+				109C82CC187BF7A4000A9975 /* JD_Register.xib */,
 			);
 			path = JD_UserLogin;
 			sourceTree = "<group>";
@@ -423,6 +434,8 @@
 				109C82C3187BD08F000A9975 /* more_help@2x.png in Resources */,
 				109C82C4187BD08F000A9975 /* more_like@2x.png in Resources */,
 				109C82C5187BD08F000A9975 /* more_setting@2x.png in Resources */,
+				109C82C7187BE7A5000A9975 /* myjd_head_background@2x.png in Resources */,
+				109C82CE187BF7A5000A9975 /* JD_Register.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +456,7 @@
 				109C82A0187B9847000A9975 /* JD_Login.m in Sources */,
 				109C82B3187BBC9F000A9975 /* JD_Data.m in Sources */,
 				109C82B7187BCBDA000A9975 /* MoreView.m in Sources */,
+				109C82CD187BF7A5000A9975 /* JD_Register.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

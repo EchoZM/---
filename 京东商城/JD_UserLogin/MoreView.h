@@ -10,6 +10,9 @@
 
 @interface MoreView : UIViewController <UITableViewDataSource,UITableViewDelegate> {
     UITableView *TableView;
+    NSArray *TextArray;
+    NSArray *ImageArray;
+//    NSMutableArray *Array;
 }
 
 @end

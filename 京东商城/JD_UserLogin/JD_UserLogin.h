@@ -10,6 +10,7 @@
 
 @interface JD_UserLogin : UIViewController <UITableViewDataSource,UITableViewDelegate> {
     UITableView *TableView;
+    NSMutableArray *Array;
 }
 
 @end

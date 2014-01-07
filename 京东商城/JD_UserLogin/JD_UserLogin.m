@@ -22,6 +22,7 @@
         // Custom initialization
         self.tabBarItem.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tabBar_item4_1@2x" ofType:@"png"]];
         self.view.backgroundColor = [UIColor whiteColor];
+        Array = [[NSMutableArray alloc]initWithArray:nil];
     }
     return self;
 }
@@ -34,19 +35,26 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    if ([self.view.subviews count] != 0) {
+        for (int i = 0; i < [self.view.subviews count]; i++) {
+            [[self.view.subviews objectAtIndex:i] removeFromSuperview];
+        }
+    }
     self.tabBarController.navigationItem.leftBarButtonItems = nil;
     self.tabBarController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]initWithTitle:@"更多" style:UIBarButtonItemStyleDone target:self action:@selector(MoreButton:)]autorelease];
     self.tabBarController.navigationItem.rightBarButtonItem.tintColor= [UIColor redColor];
     self.tabBarController.navigationItem.title = @"我的京东";
     UIView *lView = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 120)]autorelease];
-    [lView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Login_BG.png"]]];
+    [lView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"myjd_head_background@2x.png"]]];
     [self.view addSubview:lView];
     UILabel *lWelcomeText = [[[UILabel alloc]initWithFrame:CGRectMake(0, 30, 320, 25)]autorelease];
     [lWelcomeText setText:@"欢迎来到京东"];
     [lWelcomeText setBackgroundColor:[UIColor clearColor]];
-    [lWelcomeText setTextColor:[UIColor purpleColor]];
+    [lWelcomeText setTextColor:[UIColor whiteColor]];
+    lWelcomeText.layer.shadowColor = [UIColor blackColor].CGColor;
+    lWelcomeText.layer.shadowOffset = CGSizeMake(0, 1);
     [lWelcomeText setTextAlignment:NSTextAlignmentCenter];
-    [lWelcomeText setFont:[UIFont boldSystemFontOfSize:21]];
+    [lWelcomeText setFont:[UIFont boldSystemFontOfSize:26]];
     [lView addSubview:lWelcomeText];
     UIView *lLoginBG = [[[UIView alloc]initWithFrame:CGRectMake(120, 65, 80, 40)]autorelease];
     [lLoginBG setBackgroundColor:[UIColor whiteColor]];
@@ -58,7 +66,7 @@
     [lLogin setBackgroundColor:[UIColor clearColor]];
     [lLogin.titleLabel setFont:[UIFont boldSystemFontOfSize:19]];
     [lLogin.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [lLogin setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    [lLogin setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
     [lLogin setTitle:@"登录" forState:UIControlStateNormal];
     [lLogin addTarget:self action:@selector(LoginButton:) forControlEvents:UIControlEventTouchUpInside];
     [lView addSubview:lLogin];
@@ -67,6 +75,7 @@
     TableView.backgroundColor = [UIColor clearColor];
     TableView.delegate = self;
     TableView.dataSource = self;
+    [TableView reloadData];
     [self.view addSubview:TableView];
 }
 
@@ -86,6 +95,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 25;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return @"dfhfg";
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

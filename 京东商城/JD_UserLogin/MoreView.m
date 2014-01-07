@@ -20,6 +20,8 @@
     if (self) {
         // Custom initialization
         [self.view setBackgroundColor:[UIColor orangeColor]];
+        TextArray = [[NSArray alloc]initWithObjects:@"浏览历史",@"应用推荐",@"设置",@"帮助",@"意见反馈",@"关于",@"监测更新",@"退出", nil];
+        ImageArray = [[NSArray alloc]initWithObjects:@"浏览历史",@"more_commend@2x.png",@"more_setting@2x.png",@"more_help@2x.png",@"more_feed@2x.png",@"more_about@2x.png",@"监测更新",@"退出", nil];
     }
     return self;
 }
@@ -36,9 +38,10 @@
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(CancelButton:)]autorelease];
     self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
     self.navigationItem.rightBarButtonItem = nil;
-    TableView = [[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStylePlain]autorelease];
+    TableView = [[[UITableView alloc]initWithFrame:CGRectMake(10, 15, 300, [TextArray count]*45) style:UITableViewStylePlain]autorelease];
+    NSLog(@"%f",self.view.frame.size.height);
     TableView.backgroundView = nil;
-    TableView.backgroundColor = [UIColor clearColor];
+    TableView.backgroundColor = [UIColor greenColor];
     TableView.delegate = self;
     TableView.dataSource = self;
     [self.view addSubview:TableView];
@@ -49,16 +52,22 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return TextArray.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 45;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cell = @"cell";
     UITableViewCell *lcell = [tableView dequeueReusableCellWithIdentifier:cell];
     if (lcell == nil) {
-        lcell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cell]autorelease];
+        lcell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cell]autorelease];
     }
-    lcell.textLabel.text = @"dfghjghjh";
+    lcell.imageView.image = [UIImage imageNamed:[ImageArray objectAtIndex:[indexPath row]]];
+    lcell.textLabel.text = [TextArray objectAtIndex:[indexPath row]];
+    
     return lcell;
 }
 
