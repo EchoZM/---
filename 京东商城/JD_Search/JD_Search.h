@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JD_Search : UIViewController
+@interface JD_Search : UIViewController<NSURLConnectionDataDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
+{
+    NSMutableData *_data;
+    NSMutableArray *_goodsArray;
+    NSMutableArray *_searchArray;
+    UISearchBar *_searchBar;
+    UITableView *_tableView;
+}
 
 @end
