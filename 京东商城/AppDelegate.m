@@ -12,7 +12,7 @@
 @implementation AppDelegate
 
 - (void)dealloc
-{
+{   //Test
     [_window release];
     [_viewController release];
     [super dealloc];
