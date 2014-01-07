@@ -10,7 +10,6 @@
 #import "JD_Home_Page.h"
 #import "JD_Search.h"
 #import "JD_ShopCar.h"
-#import "JD_Stroll.h"
 #import "JD_UserLogin.h"
 @interface JD_WelcomeView ()
 
