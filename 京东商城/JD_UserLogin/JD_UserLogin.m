@@ -8,6 +8,7 @@
 
 #import "JD_UserLogin.h"
 #import "JD_Login.h"
+#import "MoreView.h"
 @interface JD_UserLogin ()
 
 @end
@@ -72,6 +73,11 @@
 -(void)LoginButton:(UIButton *)sender{
     JD_Login *lJD_Login = [[[JD_Login alloc]init]autorelease];
     [self.navigationController pushViewController:lJD_Login animated:YES];
+}
+
+-(void)MoreButton:(UIBarButtonItem *)sender{
+    MoreView *lJD_MoreView = [[[MoreView alloc]init]autorelease];
+    [self.navigationController pushViewController:lJD_MoreView animated:YES];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
