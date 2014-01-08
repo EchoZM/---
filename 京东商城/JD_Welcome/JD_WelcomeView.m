@@ -71,7 +71,6 @@
     UITabBarController *lTabBarController = [[[UITabBarController alloc]init]autorelease];
     lTabBarController.viewControllers = @[lHome_Page,lJD_Search,lJD_ShopCar,lUserLogin];
     UINavigationController *lNavigation = [[[UINavigationController alloc]initWithRootViewController:lTabBarController]autorelease];
-    
     [self presentViewController:lNavigation animated:YES completion:nil];
 }
 

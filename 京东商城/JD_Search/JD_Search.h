@@ -10,11 +10,11 @@
 
 @interface JD_Search : UIViewController<NSURLConnectionDataDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 {
-    NSMutableData *_data;
     NSMutableArray *_goodsArray;
-    NSMutableArray *_searchArray;
     UISearchBar *_searchBar;
     UITableView *_tableView;
+    UIButton *priceButton;
+    UIButton *salesButton;
 }
 
 @end
