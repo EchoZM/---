@@ -3,7 +3,7 @@
 //  京东商城
 //
 //  Created by TY on 14-1-3.
-//  Copyright (c) 2014年 张太松. All rights reserved.
+//  Copyright (c) 2014年 张闽. All rights reserved.
 //
 
 #import "JD_WelcomeView.h"
