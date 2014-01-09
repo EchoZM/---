@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JD_Goods : UIViewController
+@interface JD_Goods : UIViewController<UIScrollViewDelegate>
 {
     NSDictionary *_goodsInfo;
+    UIScrollView *_scrollView;
 }
 
 @end

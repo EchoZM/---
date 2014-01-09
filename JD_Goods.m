@@ -31,6 +31,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    //ScrollView
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    _scrollView.contentSize =CGSizeMake(self.view.frame.size.width, 789);
+    _scrollView.showsVerticalScrollIndicator = NO;//隐藏滚动条
+    [self.view addSubview:_scrollView];
     //返回按钮
     UIImageView *backButton = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"back"]];
     backButton.frame = CGRectMake(10, 20, 58, 58);
@@ -59,7 +64,7 @@
     //隐藏NavigationBar
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     //请求数据
-    NSURL *goodsURL = [NSURL URLWithString:@"http://192.168.1.137/shop/getgoodsinfo.php"];
+    NSURL *goodsURL = [NSURL URLWithString:@"http://192.168.1.136/shop/getgoodsinfo.php"];
     ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:goodsURL];
     [lRequest setPostValue:[JD_DataManager shareGoodsDataManager].goodsID forKey:@"goodsid"];
     [lRequest startSynchronous];
@@ -72,6 +77,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)dealloc
+{
+    [_scrollView release];
+    [super dealloc];
 }
 #pragma mark - BackButton
 -(void)popToView:(UITapGestureRecognizer *)sender
@@ -86,16 +97,16 @@
 #pragma mark - setGoods
 -(void)setGoodsInfo
 {
-    NSURL *imageURL = [NSURL URLWithString:[@"http://192.168.1.137/shop/goodsimage/" stringByAppendingString:[_goodsInfo objectForKey:@"headerimage"]]];
+    NSURL *imageURL = [NSURL URLWithString:[@"http://192.168.1.136/shop/goodsimage/" stringByAppendingString:[_goodsInfo objectForKey:@"headerimage"]]];
     NSData *lData = [NSData dataWithContentsOfURL:imageURL];
     UIImage *goodsImage = [UIImage imageWithData:lData];
     UIImageView *headerImageView = [[UIImageView alloc]initWithImage:goodsImage];
     headerImageView.frame = CGRectMake(self.view.frame.size.width/2-50, 40, 100, 100);
-    [self.view addSubview:headerImageView];
+    [_scrollView addSubview:headerImageView];
     UIView *goodsInfo = [[UIView alloc]initWithFrame:CGRectMake(10, 160, 300, 150)];
     goodsInfo.backgroundColor = [UIColor clearColor];
     goodsInfo.layer.cornerRadius = 8;
-    [self.view addSubview:goodsInfo];
+    [_scrollView addSubview:goodsInfo];
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     infoButton.frame = CGRectMake(0, 0, 300, 50);
     infoButton.backgroundColor = [UIColor blueColor];

@@ -39,7 +39,7 @@
     _tableView.tag = 101;
     _tableView.backgroundView = nil;
     [_tableView.tableHeaderView removeFromSuperview];
-    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.showsVerticalScrollIndicator = NO;//隐藏滚动条
     [self.view addSubview:_tableView];
     //排序按钮
     UITextField *priceField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/2, 30)];
@@ -116,7 +116,7 @@
 #pragma mark - DownLoadMethod
 -(NSMutableArray *)getAllGoodsPostType:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount
 {
-    NSURL *lURL = [NSURL URLWithString:@"http://192.168.1.137/shop/getgoods.php"];
+    NSURL *lURL = [NSURL URLWithString:@"http://192.168.1.136/shop/getgoods.php"];
     ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:lURL];
     [lRequest setPostValue:type forKey:@"type"];
     [lRequest setPostValue:order forKey:@"order"];
@@ -131,7 +131,7 @@
 
 -(NSMutableArray *)getSearchGoodsPostSearch:(NSString *)search Type:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount
 {
-    NSURL *lURL = [NSURL URLWithString:@"http://192.168.1.137/shop/searchgoods.php"];
+    NSURL *lURL = [NSURL URLWithString:@"http://192.168.1.136/shop/searchgoods.php"];
     ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:lURL];
     [lRequest setPostValue:search forKey:@"search"];
     [lRequest setPostValue:type forKey:@"type"];
@@ -197,7 +197,7 @@
         lCell.selectionStyle = UITableViewCellSelectionStyleNone;
         lCell.backgroundColor = [UIColor clearColor];
     }
-    NSURL *imageURL = [NSURL URLWithString:[@"http://192.168.1.137/shop/goodsimage/" stringByAppendingString:[[_goodsArray objectAtIndex:[indexPath section]] objectForKey:@"headerimage"]]];
+    NSURL *imageURL = [NSURL URLWithString:[@"http://192.168.1.136/shop/goodsimage/" stringByAppendingString:[[_goodsArray objectAtIndex:[indexPath section]] objectForKey:@"headerimage"]]];
     NSData *lData = [NSData dataWithContentsOfURL:imageURL];
     UIImage *goodsImage = [UIImage imageWithData:lData];
     lCell.imageView.image = goodsImage;
