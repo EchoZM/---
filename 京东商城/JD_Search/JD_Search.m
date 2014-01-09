@@ -78,8 +78,8 @@
 {
     [super viewWillAppear:animated];
     [self.tabBarController.navigationController setNavigationBarHidden:NO animated:YES];
-    self.tabBarController.navigationItem.titleView = nil;
-    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    self.tabBarController.navigationItem.rightBarButtonItems = nil;
+    self.tabBarController.navigationItem.title = nil;
     //SearchBar
     _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 310, 44)];
     _searchBar.delegate = self;
@@ -91,7 +91,7 @@
         if ([custom isKindOfClass:[UIButton class]]) {
             UIButton *cancelButton = (UIButton *)custom;
             [cancelButton setTitle:@"取消"  forState:UIControlStateNormal];
-            [cancelButton setBackgroundColor:[UIColor redColor]];
+            [cancelButton setTintColor:[UIColor redColor]];
         }
         if([custom isKindOfClass:[UITextField class]])
         {

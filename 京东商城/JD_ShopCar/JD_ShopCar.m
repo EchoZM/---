@@ -34,7 +34,7 @@
     [super viewWillAppear:animated];
     self.tabBarController.navigationItem.leftBarButtonItems = nil;
     self.tabBarController.navigationItem.title = @"购物车";
-    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    self.tabBarController.navigationItem.rightBarButtonItems = nil;
 }
 
 - (void)didReceiveMemoryWarning
