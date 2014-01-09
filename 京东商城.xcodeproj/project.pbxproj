@@ -275,7 +275,7 @@
 				100A9A46187D3F7B006487D8 /* Reachability */,
 			);
 			name = ASIHttpRequest;
-			path = ../../Documents/ZmProject/ASIHttpRequest/ASIHttpRequestX;
+			path = ../../../../Documents/ZmProject/ASIHttpRequest/ASIHttpRequestX;
 			sourceTree = "<group>";
 		};
 		100A9A43187D3F7B006487D8 /* ASIWebPageRequest */ = {
@@ -339,7 +339,6 @@
 		10EFCCEA18765628009F4AB4 = {
 			isa = PBXGroup;
 			children = (
-				100A9A2E187D3F7B006487D8 /* ASIHttpRequest */,
 				10EFCCFC18765628009F4AB4 /* 京东商城 */,
 				10EFCCF518765628009F4AB4 /* Frameworks */,
 				10EFCCF418765628009F4AB4 /* Products */,
@@ -487,6 +486,7 @@
 		10EFCD9C18769A21009F4AB4 /* JD_Comm */ = {
 			isa = PBXGroup;
 			children = (
+				100A9A2E187D3F7B006487D8 /* ASIHttpRequest */,
 				100A99FA187D247A006487D8 /* back.png */,
 				100A99F7187D2300006487D8 /* car.png */,
 				109C82A2187BBC73000A9975 /* JD__Comm_Data */,
