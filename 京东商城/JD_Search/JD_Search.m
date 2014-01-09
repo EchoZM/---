@@ -77,7 +77,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.tabBarController.navigationController setNavigationBarHidden:NO animated:YES];
+    self.tabBarController.navigationItem.titleView = nil;
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
     //SearchBar
     _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 310, 44)];
     _searchBar.delegate = self;
@@ -222,13 +224,16 @@
     float contentOffset = _tableView.contentSize.height - _tableView.frame.size.height;
     if (_tableView.tag == 101) {
         if (_tableView.contentOffset.y > (contentOffset + self.view.frame.size.height/4)) {
-            NSLog(@"上拉加载");
-            NSMutableArray *tempArray = [[NSMutableArray alloc]initWithArray:_goodsArray];
-            [self getAllGoodsPostType:@"0" Order:@"0" Owncount:@"15"];
-            [tempArray addObjectsFromArray:_goodsArray];
-            [_goodsArray removeAllObjects];
-            [_goodsArray addObjectsFromArray:tempArray];
-            [_tableView reloadData];
+            if (_goodsArray.count%15 == 0) {
+                NSMutableArray *tempArray = [[NSMutableArray alloc]initWithArray:_goodsArray];
+                [self getAllGoodsPostType:@"0" Order:@"0" Owncount:[NSString stringWithFormat:@"%i",_goodsArray.count]];
+                [tempArray addObjectsFromArray:_goodsArray];
+                [_goodsArray removeAllObjects];
+                [_goodsArray addObjectsFromArray:tempArray];
+                [_tableView reloadData];
+            }else{
+                NSLog(@"上拉加载");
+            }
         }
     }
 }

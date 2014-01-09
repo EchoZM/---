@@ -103,6 +103,7 @@
     UIImageView *headerImageView = [[UIImageView alloc]initWithImage:goodsImage];
     headerImageView.frame = CGRectMake(self.view.frame.size.width/2-50, 40, 100, 100);
     [_scrollView addSubview:headerImageView];
+    
     UIView *goodsInfo = [[UIView alloc]initWithFrame:CGRectMake(10, 160, 300, 150)];
     goodsInfo.backgroundColor = [UIColor clearColor];
     goodsInfo.layer.cornerRadius = 8;
@@ -110,13 +111,36 @@
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     infoButton.frame = CGRectMake(0, 0, 300, 50);
     infoButton.backgroundColor = [UIColor blueColor];
+    [infoButton addTarget:self action:@selector(toGoodsInfo:) forControlEvents:UIControlEventTouchUpInside];
     [goodsInfo addSubview:infoButton];
     UIView *goodsOtherInfo = [[UIView alloc]initWithFrame:CGRectMake(0, 50, 300, 100)];
     goodsOtherInfo.backgroundColor = [UIColor purpleColor];
     [goodsInfo addSubview:goodsOtherInfo];
+    
+    UIButton *evaluateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    evaluateButton.frame = CGRectMake(10, 330, 300, 50);
+    evaluateButton.backgroundColor = [UIColor grayColor];
+    [evaluateButton addTarget:self action:@selector(toGoodsEvaluate:) forControlEvents:UIControlEventTouchUpInside];
+    [_scrollView addSubview:evaluateButton];
+    
+    
     [headerImageView release];
     [goodsInfo release];
     [goodsOtherInfo release];
+}
+
+-(void)toGoodsInfo:(UIButton *)sender
+{
+    JD_Goods_Info *lInfo = [[JD_Goods_Info alloc]init];
+    [self.navigationController pushViewController:lInfo animated:YES];
+    [lInfo release];
+}
+
+-(void)toGoodsEvaluate:(UIButton *)sender
+{
+    JD_Goods_Evaluate *lEvaluate = [[JD_Goods_Evaluate alloc]init];
+    [self.navigationController pushViewController:lEvaluate animated:YES];
+    [lEvaluate release];
 }
 
 @end
