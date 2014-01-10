@@ -3,7 +3,7 @@
 //  京东商城
 //
 //  Created by TY on 14-1-7.
-//  Copyright (c) 2014年 张闽. All rights reserved.
+//  Copyright (c) 2014年 张太松. All rights reserved.
 //
 
 #import "MoreView.h"
@@ -19,9 +19,21 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        [self.view setBackgroundColor:[UIColor orangeColor]];
-        TextArray = [[NSArray alloc]initWithObjects:@"浏览历史",@"应用推荐",@"设置",@"帮助",@"意见反馈",@"关于",@"监测更新",@"退出", nil];
-        ImageArray = [[NSArray alloc]initWithObjects:@"浏览历史",@"more_commend@2x.png",@"more_setting@2x.png",@"more_help@2x.png",@"more_feed@2x.png",@"more_about@2x.png",@"监测更新",@"退出", nil];
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"JD_1.png"]]];
+        TextArray = [[NSMutableArray alloc]init];
+        ImageArray = [[NSMutableArray alloc]init];
+        NSArray *lTextFirst = [[[NSArray alloc]initWithObjects:@"设置",@"帮助",@"意见反馈", nil]autorelease];
+        NSArray *lTextSecond = [[[NSArray alloc]initWithObjects:@"检查更新",@"喜欢京东？打分鼓励一下", nil]autorelease];
+        NSArray *lTextThird = [[[NSArray alloc]initWithObjects:@"应用推荐",@"关于", nil]autorelease];
+        NSArray *lImageFirst = [[[NSArray alloc]initWithObjects:@"more_setting@2x.png",@"more_help@2x.png",@"more_feed@2x.png", nil]autorelease];
+        NSArray *lImageSecond = [[[NSArray alloc]initWithObjects:@"more_update@2x.png",@"more_like@2x.png", nil]autorelease];
+        NSArray *lImageThird = [[[NSArray alloc]initWithObjects:@"more_commend@2x.png",@"more_about@2x.png", nil]autorelease];
+        [TextArray addObject:lTextFirst];
+        [TextArray addObject:lTextSecond];
+        [TextArray addObject:lTextThird];
+        [ImageArray addObject:lImageFirst];
+        [ImageArray addObject:lImageSecond];
+        [ImageArray addObject:lImageThird];
     }
     return self;
 }
@@ -38,12 +50,13 @@
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(CancelButton:)]autorelease];
     self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
     self.navigationItem.rightBarButtonItem = nil;
-    TableView = [[[UITableView alloc]initWithFrame:CGRectMake(10, 15, 300, [TextArray count]*45) style:UITableViewStylePlain]autorelease];
-    NSLog(@"%f",self.view.frame.size.height);
+    TableView = [[[UITableView alloc]initWithFrame:CGRectMake(20, 0, 280, 416) style:UITableViewStyleGrouped]autorelease];
     TableView.backgroundView = nil;
-    TableView.backgroundColor = [UIColor greenColor];
+    TableView.backgroundColor = [UIColor clearColor];
     TableView.delegate = self;
     TableView.dataSource = self;
+    TableView.scrollEnabled = NO;
+    [TableView reloadData];
     [self.view addSubview:TableView];
 }
 
@@ -52,11 +65,15 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return TextArray.count;
+    return [[TextArray objectAtIndex:section] count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 45;
+    return 50;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return [TextArray count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -65,9 +82,12 @@
     if (lcell == nil) {
         lcell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cell]autorelease];
     }
-    lcell.imageView.image = [UIImage imageNamed:[ImageArray objectAtIndex:[indexPath row]]];
-    lcell.textLabel.text = [TextArray objectAtIndex:[indexPath row]];
-    
+    lcell.backgroundView = nil;
+    lcell.backgroundColor = [UIColor clearColor];
+    lcell.imageView.image = [UIImage imageNamed:[[ImageArray objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]]];
+    lcell.textLabel.text = [[TextArray objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]];
+    lcell.textLabel.font = [UIFont boldSystemFontOfSize:12];
+    lcell.accessoryType = UITableViewCellAccessoryNone;
     return lcell;
 }
 

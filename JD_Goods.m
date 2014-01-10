@@ -268,7 +268,7 @@
 
 -(void)addToShopCar:(UIButton *)sender
 {
-    NSURL *shopcarURL = [NSURL URLWithString:@"http://192.168.1.136/shop/addcart.php"];
+    NSURL *shopcarURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/shop/addcart.php",IP]];
     ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:shopcarURL];
     //goodsid=15&customerid=3&goodscount=1
     [lRequest setPostValue:[JD_DataManager shareGoodsDataManager].goodsID forKey:@"goodsid"];
