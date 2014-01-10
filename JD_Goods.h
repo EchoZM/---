@@ -11,7 +11,10 @@
 @interface JD_Goods : UIViewController<UIScrollViewDelegate>
 {
     NSDictionary *_goodsInfo;
-    UIScrollView *_scrollView;
+    UIView *_backgroundView;
+    int goodsNumber;
+    UITextField *numberLabel;
+    UILabel *priceView;
 }
 
 @end

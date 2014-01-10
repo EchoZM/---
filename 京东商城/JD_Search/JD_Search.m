@@ -118,13 +118,8 @@
 #pragma mark - DownLoadMethod
 -(NSMutableArray *)getAllGoodsPostType:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount
 {
-    NSURL *lURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/shop/getgoods.php",IP]];
-    ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:lURL];
-    [lRequest setPostValue:type forKey:@"type"];
-    [lRequest setPostValue:order forKey:@"order"];
-    [lRequest setPostValue:owncount forKey:@"owncount"];
-    [lRequest startSynchronous];
-    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[lRequest responseData] options:NSJSONReadingAllowFragments error:nil];
+    NSString *bodyString = [NSString stringWithFormat:@"type=%@&order=%@&owncount=%@",type,order,owncount];
+    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"getgoods.php"] options:NSJSONReadingAllowFragments error:nil];
     NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
     NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
     _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
@@ -133,14 +128,8 @@
 
 -(NSMutableArray *)getSearchGoodsPostSearch:(NSString *)search Type:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount
 {
-    NSURL *lURL = [NSURL URLWithString:@"http://192.168.1.136/shop/searchgoods.php"];
-    ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:lURL];
-    [lRequest setPostValue:search forKey:@"search"];
-    [lRequest setPostValue:type forKey:@"type"];
-    [lRequest setPostValue:order forKey:@"order"];
-    [lRequest setPostValue:owncount forKey:@"owncount"];
-    [lRequest startSynchronous];
-    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[lRequest responseData] options:NSJSONReadingAllowFragments error:nil];
+    NSString *bodyString = [NSString stringWithFormat:@"search=%@&type=%@&order=%@&owncount=%@",search,type,order,owncount];
+    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"searchgoods.php"] options:NSJSONReadingAllowFragments error:nil];
     NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
     NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
     _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
@@ -200,10 +189,7 @@
         lCell.selectionStyle = UITableViewCellSelectionStyleNone;
         lCell.backgroundColor = [UIColor clearColor];
     }
-    NSURL *imageURL = [NSURL URLWithString:[@"http://192.168.1.136/shop/goodsimage/" stringByAppendingString:[[_goodsArray objectAtIndex:[indexPath section]] objectForKey:@"headerimage"]]];
-    NSData *lData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage *goodsImage = [UIImage imageWithData:lData];
-    lCell.imageView.image = goodsImage;
+    lCell.imageView.image = [[JD_DataManager shareGoodsDataManager] getgoodsImage:[[_goodsArray objectAtIndex:[indexPath section]] objectForKey:@"headerimage"]];
     lCell.textLabel.text = [[_goodsArray objectAtIndex:[indexPath section]] objectForKey:@"name"];
     lCell.textLabel.font = [UIFont systemFontOfSize:20];
     lCell.detailTextLabel.text = [@"单价:" stringByAppendingString:[[[_goodsArray objectAtIndex:[indexPath section]] objectForKey:@"price"] stringByAppendingString:@"元"]];

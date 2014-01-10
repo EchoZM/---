@@ -23,7 +23,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"self"]];
     }
     return self;
 }
@@ -32,11 +31,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    //ScrollView
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+44)];
-    _scrollView.contentSize =CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+45);
-    _scrollView.showsVerticalScrollIndicator = NO;//隐藏滚动条
-    [self.view addSubview:_scrollView];
+    _backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+44)];
+    _backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"self"]];
+    [self.view addSubview:_backgroundView];
     //返回按钮
     UIImageView *backButton = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"back"]];
     backButton.frame = CGRectMake(10, 10, 40, 40);
@@ -65,12 +62,13 @@
     //隐藏NavigationBar
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     //请求数据
-    NSURL *goodsURL = [NSURL URLWithString:@"http://192.168.1.136/shop/getgoodsinfo.php"];
-    ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:goodsURL];
-    [lRequest setPostValue:[JD_DataManager shareGoodsDataManager].goodsID forKey:@"goodsid"];
-    [lRequest startSynchronous];
-    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[lRequest responseData] options:NSJSONReadingAllowFragments error:nil];
+    NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@",[JD_DataManager shareGoodsDataManager].goodsID];
+    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"getgoodsinfo.php"] options:NSJSONReadingAllowFragments error:nil];
     _goodsInfo = [lDictionary objectForKey:@"msg"];
+    goodsNumber = 1;
+    float f = [[_goodsInfo objectForKey:@"price"] floatValue]*goodsNumber;
+    NSString *fS = [NSString stringWithFormat:@"%.2f",f];
+    NSLog(@"%@",fS);
     [self setGoodsInfo];
 }
 
@@ -82,7 +80,6 @@
 
 -(void)dealloc
 {
-    [_scrollView release];
     [super dealloc];
 }
 #pragma mark - BackButton
@@ -99,20 +96,17 @@
 -(void)setGoodsInfo
 {
     //商品图片
-    NSURL *imageURL = [NSURL URLWithString:[@"http://192.168.1.136/shop/goodsimage/" stringByAppendingString:[_goodsInfo objectForKey:@"headerimage"]]];
-    NSData *lData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage *goodsImage = [UIImage imageWithData:lData];
-    UIImageView *headerImageView = [[UIImageView alloc]initWithImage:goodsImage];
+    UIImageView *headerImageView = [[UIImageView alloc]initWithImage:[[JD_DataManager shareGoodsDataManager] getgoodsImage:[_goodsInfo objectForKey:@"headerimage"]]];
     headerImageView.frame = CGRectMake(self.view.frame.size.width/2-50, 30, 100, 100);
     UIView *backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 160)];
     backgroundView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:backgroundView];
+    [_backgroundView addSubview:backgroundView];
     [backgroundView addSubview:headerImageView];
     //商品信息
     UIView *informationView = [[UIView alloc]initWithFrame:CGRectMake(5, 165, 310, 151)];
     informationView.backgroundColor = [UIColor whiteColor];
     informationView.layer.cornerRadius = 8;
-    [_scrollView addSubview:informationView];
+    [_backgroundView addSubview:informationView];
     UILabel *infoLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 0, 284, 50)];
     infoLabel.backgroundColor = [UIColor whiteColor];
     infoLabel.layer.cornerRadius = 8;
@@ -151,7 +145,7 @@
     UIView *evaluateView = [[UIView alloc]initWithFrame:CGRectMake(5, 320, 310, 50)];
     evaluateView.backgroundColor = [UIColor whiteColor];
     evaluateView.layer.cornerRadius = 8;
-    [_scrollView addSubview:evaluateView];
+    [_backgroundView addSubview:evaluateView];
     UILabel *evaluateLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 0, 129, 50)];
     evaluateLabel.backgroundColor = [UIColor whiteColor];
     evaluateLabel.layer.cornerRadius = 8;
@@ -182,7 +176,7 @@
     UIView *modelView = [[UIView alloc]initWithFrame:CGRectMake(5, 375, 310, 101)];
     modelView.backgroundColor = [UIColor whiteColor];
     modelView.layer.cornerRadius = 8;
-    [_scrollView addSubview:modelView];
+    [_backgroundView addSubview:modelView];
     UILabel *modelLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 0, 300, 50)];
     modelLabel.backgroundColor = [UIColor whiteColor];
     modelLabel.layer.cornerRadius = 8;
@@ -201,7 +195,6 @@
     colorLabel.textColor = [UIColor blackColor];
     [modelView addSubview:colorLabel];
     //商品描述
-    
     //加入购物车及欲购买商品的信息
     UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
     addButton.backgroundColor = [UIColor redColor];
@@ -210,34 +203,37 @@
     [addButton setTitle:@"加入购物车" forState:UIControlStateNormal];
     [addButton addTarget:self action:@selector(addToShopCar:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addButton];
-    UILabel *priceView = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width-200, self.view.frame.size.height-16, 80, 50)];
-    priceView.backgroundColor = [UIColor whiteColor];
-    priceView.text = [[@"价格" stringByAppendingString:[_goodsInfo objectForKey:@"price"]] stringByAppendingString:@"元"];
-    priceView.textColor = [UIColor blackColor];
-    priceView.font = [UIFont systemFontOfSize:18];
-    priceView.textAlignment = NSTextAlignmentCenter;
-    priceView.layer.cornerRadius = 8;
-    priceView.lineBreakMode = NSLineBreakByWordWrapping;
-    priceView.numberOfLines = 2;
-    [self.view addSubview:priceView];
-    UIView *numberView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-110, self.view.frame.size.height-16, 100, 50)];
+    UIView *numberView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-200, self.view.frame.size.height-16, 100, 50)];
     numberView.backgroundColor = [UIColor whiteColor];
     numberView.layer.cornerRadius = 8;
     [self.view addSubview:numberView];
     UIButton *subtractButton = [UIButton buttonWithType:UIButtonTypeCustom];
     subtractButton.frame = CGRectMake(5, 15, 20, 20);
     subtractButton.layer.cornerRadius = 10;
-    subtractButton.backgroundColor = [UIColor redColor];
+    [subtractButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+    [subtractButton addTarget:self action:@selector(subtractGoods:) forControlEvents:UIControlEventTouchUpInside];
     [numberView addSubview:subtractButton];
     UIButton *plusButton = [UIButton buttonWithType:UIButtonTypeCustom];
     plusButton.frame = CGRectMake(75, 15, 20, 20);
     plusButton.layer.cornerRadius = 10;
-    plusButton.backgroundColor = [UIColor redColor];
+    [plusButton setImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
+    [plusButton addTarget:self action:@selector(plusGoods:) forControlEvents:UIControlEventTouchUpInside];
     [numberView addSubview:plusButton];
-    UILabel *numberLabel = [UIButton buttonWithType:UIButtonTypeCustom];
-    numberLabel.frame = CGRectMake(25, 15, 50, 20);
-    numberLabel.backgroundColor = [UIColor redColor];
+    numberLabel = [[UITextField alloc]initWithFrame:CGRectMake(25, 15, 50, 20)];
+    [numberLabel setBorderStyle:UITextBorderStyleLine];
+    numberLabel.textAlignment = NSTextAlignmentCenter;
+    numberLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
     [numberView addSubview:numberLabel];
+    priceView = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width-90, self.view.frame.size.height-16, 80, 50)];
+    priceView.backgroundColor = [UIColor whiteColor];
+    priceView.text = [[@"总价" stringByAppendingString:[_goodsInfo objectForKey:@"price"]] stringByAppendingString:@"元"];
+    priceView.textColor = [UIColor blackColor];
+    priceView.font = [UIFont systemFontOfSize:18];
+    priceView.textAlignment = NSTextAlignmentCenter;
+    priceView.layer.cornerRadius = 8;
+    priceView.lineBreakMode = NSLineBreakByWordWrapping;//自动换行
+    priceView.numberOfLines = 2;//行数
+    [self.view addSubview:priceView];
     //释放
     [headerImageView release];
     [backgroundView release];
@@ -248,6 +244,7 @@
     [modelLabel release];
     [lineView2 release];
     [colorLabel release];
+    [numberLabel release];
     [priceView release];
     [numberView release];
 }
@@ -268,22 +265,34 @@
 
 -(void)addToShopCar:(UIButton *)sender
 {
-    NSURL *shopcarURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/shop/addcart.php",IP]];
-    ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:shopcarURL];
-    //goodsid=15&customerid=3&goodscount=1
-    [lRequest setPostValue:[JD_DataManager shareGoodsDataManager].goodsID forKey:@"goodsid"];
-    [lRequest setPostValue:@"20" forKey:@"customerid"];
-    [lRequest setPostValue:@"1" forKey:@"goodscount"];
-    [lRequest startSynchronous];
-    NSDictionary *goodsInfo = [NSJSONSerialization JSONObjectWithData:[lRequest responseData] options:NSJSONReadingAllowFragments error:nil];
+    [JD_DataManager shareGoodsDataManager].userID = @"20";
+    NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@&customerid=%@&goodscount=%i",[JD_DataManager shareGoodsDataManager].goodsID,[JD_DataManager shareGoodsDataManager].userID,goodsNumber];
+    NSDictionary *goodsInfo = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"addcart.php"] options:NSJSONReadingAllowFragments error:nil];
     NSLog(@"%@",goodsInfo);
-//    if ([[goodsInfo objectForKey:@"error"] isEqualToString:@"0"]) {
-//        NSLog(@"success");
-//    }else{
-//        UIAlertView *lAlertView = [[UIAlertView alloc]initWithTitle:@"提醒" message:@"添加失败请重新添加" delegate:self cancelButtonTitle:@"返回" otherButtonTitles: nil];
-//        [lAlertView show];
-//        [lAlertView release];
-//    }
+    //    if ([[goodsInfo objectForKey:@"error"] isEqualToString:@"0"]) {
+    //        NSLog(@"success");
+    //    }else{
+    //        UIAlertView *lAlertView = [[UIAlertView alloc]initWithTitle:@"提醒" message:@"添加失败请重新添加" delegate:self cancelButtonTitle:@"返回" otherButtonTitles: nil];
+    //        [lAlertView show];
+    //        [lAlertView release];
+    //    }
+}
+
+-(void)plusGoods:(UIButton *)sender
+{
+    goodsNumber++;
+    numberLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
+}
+
+-(void)subtractGoods:(UIButton *)sender
+{
+    if (goodsNumber == 1) {
+        goodsNumber = 1;
+        numberLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
+    }else{
+        goodsNumber--;
+        numberLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
+    }
 }
 
 @end
