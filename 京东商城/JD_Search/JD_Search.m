@@ -118,7 +118,7 @@
 #pragma mark - DownLoadMethod
 -(NSMutableArray *)getAllGoodsPostType:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount
 {
-    NSURL *lURL = [NSURL URLWithString:@"http://192.168.1.136/shop/getgoods.php"];
+    NSURL *lURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/shop/getgoods.php",IP]];
     ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:lURL];
     [lRequest setPostValue:type forKey:@"type"];
     [lRequest setPostValue:order forKey:@"order"];

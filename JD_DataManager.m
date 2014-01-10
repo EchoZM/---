@@ -3,7 +3,7 @@
 //  京东商城
 //
 //  Created by TY on 14-1-8.
-//  Copyright (c) 2014年 张闽. All rights reserved.
+//  Copyright (c) 2014年 张太松. All rights reserved.
 //
 
 #import "JD_DataManager.h"
@@ -25,8 +25,15 @@ static JD_DataManager *shareGoodsDataManager = nil;
     if (self) {
         self=[super init];
         _goodsID = [[NSString alloc]init];
+        UserManage = [[NSMutableArray alloc]init];
     }
     return self;
+    
 }
-
+//用户信息
+-(NSMutableArray *)UserManage{
+    
+    
+    return UserManage;
+}
 @end
