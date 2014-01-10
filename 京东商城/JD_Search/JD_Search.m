@@ -177,7 +177,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 110;
+    return 50;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -188,10 +188,16 @@
         lCell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID]autorelease];
         lCell.selectionStyle = UITableViewCellSelectionStyleNone;
         lCell.backgroundColor = [UIColor clearColor];
+        UIImageView *logoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
+        logoImageView.tag = 110;
+        [lCell addSubview:logoImageView];
+        [logoImageView release];
     }
-    lCell.imageView.image = [[JD_DataManager shareGoodsDataManager] getgoodsImage:[[_goodsArray objectAtIndex:[indexPath section]] objectForKey:@"headerimage"]];
+    UIImageView *logoView = (UIImageView *)[lCell viewWithTag:110];
+    logoView.image = [[JD_DataManager shareGoodsDataManager] getgoodsImage:[[_goodsArray objectAtIndex:[indexPath section]] objectForKey:@"headerimage"]];
+    lCell.imageView.image = [UIImage imageNamed:@"white"];
     lCell.textLabel.text = [[_goodsArray objectAtIndex:[indexPath section]] objectForKey:@"name"];
-    lCell.textLabel.font = [UIFont systemFontOfSize:20];
+    lCell.textLabel.font = [UIFont systemFontOfSize:16];
     lCell.detailTextLabel.text = [@"单价:" stringByAppendingString:[[[_goodsArray objectAtIndex:[indexPath section]] objectForKey:@"price"] stringByAppendingString:@"元"]];
     lCell.detailTextLabel.font = [UIFont systemFontOfSize:14];
     lCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

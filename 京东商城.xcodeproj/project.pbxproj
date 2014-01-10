@@ -22,6 +22,7 @@
 		100A9A2B187D3B78006487D8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100A9A2A187D3B78006487D8 /* SystemConfiguration.framework */; };
 		100A9A2D187D3B7E006487D8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100A9A2C187D3B7E006487D8 /* CFNetwork.framework */; };
 		1026237B187E710B00116DB2 /* into.png in Resources */ = {isa = PBXBuildFile; fileRef = 1026237A187E710B00116DB2 /* into.png */; };
+		10432360187FD55A0095C3FD /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 1043235E187FD55A0095C3FD /* white.png */; };
 		1065D8D4187E30F40068D9B7 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1065D8BB187E30F40068D9B7 /* ASIAuthenticationDialog.m */; };
 		1065D8D5187E30F40068D9B7 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1065D8BE187E30F40068D9B7 /* ASIDataCompressor.m */; };
 		1065D8D6187E30F40068D9B7 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1065D8C0187E30F40068D9B7 /* ASIDataDecompressor.m */; };
@@ -129,6 +130,7 @@
 		100A9A2A187D3B78006487D8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		100A9A2C187D3B7E006487D8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1026237A187E710B00116DB2 /* into.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = into.png; sourceTree = "<group>"; };
+		1043235E187FD55A0095C3FD /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
 		1065D8BA187E30F40068D9B7 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		1065D8BB187E30F40068D9B7 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		1065D8BC187E30F40068D9B7 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 				107FA173187E940400286CF8 /* self.png */,
 				107FA175187E9E4600286CF8 /* title_back.png */,
 				107FA176187E9E4600286CF8 /* title_back@2x.png */,
+				1043235E187FD55A0095C3FD /* white.png */,
 				109C82A2187BBC73000A9975 /* JD__Comm_Data */,
 				10EF7F47187A986D00762C73 /* JD_NavigationButton */,
 				10EFCD9D18769A2C009F4AB4 /* JD_Comm_Images */,
@@ -727,6 +730,7 @@
 				1099C97F187F8A90005A2B81 /* radiobox_0@2x.png in Resources */,
 				1099C980187F8A90005A2B81 /* Register.png in Resources */,
 				1099C988187F94A5005A2B81 /* JD_UserLogin.xib in Resources */,
+				10432360187FD55A0095C3FD /* white.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

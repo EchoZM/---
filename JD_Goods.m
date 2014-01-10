@@ -31,6 +31,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    _goodsInfo = [[NSDictionary alloc]init];
     _backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+44)];
     _backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"self"]];
     [self.view addSubview:_backgroundView];
@@ -46,9 +47,18 @@
     UIImageView *carButton = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"car"]];
     carButton.frame = CGRectMake(self.view.frame.size.width-50, 10, 40, 40);
     carButton.userInteractionEnabled = YES;
+    carButton.tag = 44;
     UITapGestureRecognizer *lTap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(popToShopCar:)];
     [carButton addGestureRecognizer:lTap2];
     [self.view addSubview:carButton];
+    goodsCount = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 20, 10)];
+    goodsCount.layer.cornerRadius = 3;
+    goodsCount.textAlignment = NSTextAlignmentCenter;
+    goodsCount.textColor = [UIColor whiteColor];
+    goodsCount.font = [UIFont systemFontOfSize:10];
+    goodsCount.backgroundColor = [UIColor redColor];
+    goodsCount.text = @"1";
+    [carButton addSubview:goodsCount];
     //释放
     [backButton release];
     [carButton release];
@@ -66,9 +76,7 @@
     NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"getgoodsinfo.php"] options:NSJSONReadingAllowFragments error:nil];
     _goodsInfo = [lDictionary objectForKey:@"msg"];
     goodsNumber = 1;
-    float f = [[_goodsInfo objectForKey:@"price"] floatValue]*goodsNumber;
-    NSString *fS = [NSString stringWithFormat:@"%.2f",f];
-    NSLog(@"%@",fS);
+    goodsPrice = [_goodsInfo objectForKey:@"price"];
     [self setGoodsInfo];
 }
 
@@ -201,6 +209,7 @@
     addButton.layer.cornerRadius = 8;
     addButton.frame = CGRectMake(10, self.view.frame.size.height-16, 100, 50);
     [addButton setTitle:@"加入购物车" forState:UIControlStateNormal];
+    addButton.titleLabel.backgroundColor = [UIColor redColor];
     [addButton addTarget:self action:@selector(addToShopCar:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addButton];
     UIView *numberView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-200, self.view.frame.size.height-16, 100, 50)];
@@ -226,7 +235,7 @@
     [numberView addSubview:numberLabel];
     priceView = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width-90, self.view.frame.size.height-16, 80, 50)];
     priceView.backgroundColor = [UIColor whiteColor];
-    priceView.text = [[@"总价" stringByAppendingString:[_goodsInfo objectForKey:@"price"]] stringByAppendingString:@"元"];
+    priceView.text = [[@"总价" stringByAppendingString:goodsPrice] stringByAppendingString:@"元"];
     priceView.textColor = [UIColor blackColor];
     priceView.font = [UIFont systemFontOfSize:18];
     priceView.textAlignment = NSTextAlignmentCenter;
@@ -248,7 +257,7 @@
     [priceView release];
     [numberView release];
 }
-
+#pragma mark - OtherViewController
 -(void)toGoodsInfo:(UIButton *)sender
 {
     JD_Goods_Info *lInfo = [[JD_Goods_Info alloc]init];
@@ -262,22 +271,68 @@
     [self.navigationController pushViewController:lEvaluate animated:YES];
     [lEvaluate release];
 }
-
+#pragma mark - addCart
 -(void)addToShopCar:(UIButton *)sender
 {
-    [JD_DataManager shareGoodsDataManager].userID = @"20";
-    NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@&customerid=%@&goodscount=%i",[JD_DataManager shareGoodsDataManager].goodsID,[JD_DataManager shareGoodsDataManager].userID,goodsNumber];
-    NSDictionary *goodsInfo = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"addcart.php"] options:NSJSONReadingAllowFragments error:nil];
-    NSLog(@"%@",goodsInfo);
-    //    if ([[goodsInfo objectForKey:@"error"] isEqualToString:@"0"]) {
-    //        NSLog(@"success");
-    //    }else{
-    //        UIAlertView *lAlertView = [[UIAlertView alloc]initWithTitle:@"提醒" message:@"添加失败请重新添加" delegate:self cancelButtonTitle:@"返回" otherButtonTitles: nil];
-    //        [lAlertView show];
-    //        [lAlertView release];
-    //    }
+    [JD_DataManager shareGoodsDataManager].UserState = YES;
+    if ([JD_DataManager shareGoodsDataManager].UserState) {
+        [JD_DataManager shareGoodsDataManager].userID = @"20";
+        NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@&customerid=%@&goodscount=%i",[JD_DataManager shareGoodsDataManager].goodsID,[JD_DataManager shareGoodsDataManager].userID,goodsNumber];
+        NSDictionary *goodsInfo = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"addcart.php"] options:NSJSONReadingAllowFragments error:nil];
+        NSLog(@"%@",[goodsInfo objectForKey:@"error"]);
+        //    if ([[goodsInfo objectForKey:@"error"] isEqualToString:@"0"]) {
+        //        NSLog(@"success");
+        //    }else{
+        //        UIAlertView *lAlertView = [[UIAlertView alloc]initWithTitle:@"提醒" message:@"添加失败请重新添加" delegate:self cancelButtonTitle:@"返回" otherButtonTitles: nil];
+        //        [lAlertView show];
+        //        [lAlertView release];
+        //    }
+        //加入购物车动画效果
+        UIButton *shopCarBt = (UIButton*)[self.view viewWithTag:44];
+        CALayer *transitionLayer = [[CALayer alloc] init];
+        [CATransaction begin];
+        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+        transitionLayer.opacity = 1.0;
+        transitionLayer.contents = (id)sender.titleLabel.layer.contents;
+        transitionLayer.frame = CGRectMake(10, self.view.frame.size.height-16, 10, 10);
+        [[UIApplication sharedApplication].keyWindow.layer addSublayer:transitionLayer];
+        [CATransaction commit];
+        //路径曲线
+        UIBezierPath *movePath = [UIBezierPath bezierPath];
+        [movePath moveToPoint:transitionLayer.position];
+        CGPoint toPoint = CGPointMake(shopCarBt.center.x, shopCarBt.center.y+20);
+        [movePath addQuadCurveToPoint:toPoint controlPoint:CGPointMake(shopCarBt.center.x,transitionLayer.position.y-120)];
+        //关键帧
+        CAKeyframeAnimation *positionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+        positionAnimation.path = movePath.CGPath;
+        positionAnimation.removedOnCompletion = YES;
+        
+        CAAnimationGroup *group = [CAAnimationGroup animation];
+        group.beginTime = CACurrentMediaTime();
+        group.duration = 0.7;
+        group.animations = [NSArray arrayWithObjects:positionAnimation,nil];
+        group.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+        group.delegate = self;
+        group.fillMode = kCAFillModeForwards;
+        group.removedOnCompletion = YES;
+        group.autoreverses= NO;
+        
+        [transitionLayer addAnimation:group forKey:@"opacity"];
+        [self performSelector:@selector(addShopFinished:) withObject:transitionLayer afterDelay:0.65f];
+        [transitionLayer release];
+    }else{
+        NSLog(@"you are not login!");
+    }
 }
 
+- (void)addShopFinished:(CALayer*)transitionLayer{
+    [transitionLayer removeFromSuperlayer];
+    NSString *bodyString = [NSString stringWithFormat:@"customerid=%@",[JD_DataManager shareGoodsDataManager].userID];
+    NSDictionary *cartInfo = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"getcart.php"] options:NSJSONReadingAllowFragments error:nil];
+    NSDictionary *lDic = [cartInfo objectForKey:@"msg"];
+    goodsCount.text = [NSString stringWithFormat:@"%@",[lDic objectForKey:@"count"]];
+}
+#pragma mark - GoodsCount
 -(void)plusGoods:(UIButton *)sender
 {
     goodsNumber++;

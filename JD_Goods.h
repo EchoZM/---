@@ -12,7 +12,9 @@
 {
     NSDictionary *_goodsInfo;
     UIView *_backgroundView;
+    UILabel *goodsCount;
     int goodsNumber;
+    NSString *goodsPrice;
     UITextField *numberLabel;
     UILabel *priceView;
 }
