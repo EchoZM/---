@@ -93,7 +93,6 @@
     [self.view addSubview:lShowPasswordLable];
 }
 
-
 -(void)CancelButton:(UIBarButtonItem *)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -116,12 +115,8 @@
         UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"恭喜您，注册成功!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
         [lErrorAlertView show];
         [JD_DataManager shareGoodsDataManager].UserRegisterState = YES;
-        //        JD_Login *lJD_Login = [[[JD_Login alloc]init]autorelease];
-        //        [self.navigationController popViewControllerAnimated:YES];
-        //        lJD_Login.UserText.text = UserText.text;
-        //        lJD_Login.PasswordText.text = PasswordText.text;
-        
         NSLog(@"%@",[lRequestForm responseString]);
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
     
@@ -146,40 +141,18 @@
 }
 
 - (IBAction)View:(UIControl *)sender {
-    if ([UserText resignFirstResponder]) {
+    if ([UserText resignFirstResponder] || [PasswordText resignFirstResponder] || [RePasswordText resignFirstResponder] ||
+        [EmailText resignFirstResponder] || [TelephoneText resignFirstResponder]) {
         if (UserText.text.length  < 6 || UserText.text.length > 16) {
-            UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户名请输入6至16位" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
-            [lErrorAlertView show];
+            if (UserText.text.length  < 6 || UserText.text.length > 16) {
+                UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户名请输入6至16位" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
+                [lErrorAlertView show];
+            }
         }
-//        else{
-//            NSString *lBodyString = [NSString stringWithFormat:@"name=%@",UserText.text];
-//            NSURL *lURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/shop/checkname.php",IP]];
-//            ASIHTTPRequest *lRequest = [ASIHTTPRequest requestWithURL:lURL];
-//            [lRequest setRequestMethod:@"get"];
-////            lRequest set
-//            [lRequest startSynchronous];
-//            NSError *error = [lRequest error];
-//            if (!error) {
-//                NSString *str = [lRequest responseString];
-//            }
-//        }
-    }
-    if([PasswordText resignFirstResponder]){
-        if (PasswordText.text.length  < 6 || PasswordText.text.length > 16) {
-            UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"密码请输入6至16位" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
-            [lErrorAlertView show];
-        }
-    }
-    if ([RePasswordText resignFirstResponder]){
-        if (![PasswordText.text isEqualToString:RePasswordText.text]) {
-            UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"两次密码输入不一致!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
-            [lErrorAlertView show];
-        }
-    }
     [EmailText resignFirstResponder];
     [TelephoneText resignFirstResponder];
 }
-
+}
 -(void)dealloc{
     [UserText release];
     [PasswordText release];

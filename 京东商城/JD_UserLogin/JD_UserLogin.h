@@ -12,6 +12,7 @@
     UITableView *TableView;
     NSMutableArray *TextArray;
     NSMutableArray *ImageArray;
+    NSMutableArray *ViewArray;
 }
 
 @end

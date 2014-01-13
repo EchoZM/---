@@ -8,7 +8,7 @@
 
 #import "JD_DataManager.h"
 static JD_DataManager *shareGoodsDataManager = nil;
-#define ip @"http://192.168.1.135/shop/"
+#define ip @"http://192.168.1.138/shop/"
 
 @implementation JD_DataManager
 +(JD_DataManager *)shareGoodsDataManager
@@ -55,8 +55,6 @@ static JD_DataManager *shareGoodsDataManager = nil;
 
 //用户信息
 -(NSMutableArray *)UserManage{
-    
-    
     return UserManage;
 }
 @end
