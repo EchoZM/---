@@ -9,6 +9,9 @@
 #import "JD_UserLogin.h"
 #import "MoreView.h"
 #import "JD_Login.h"
+#import "JD_GoodsSingle.h"
+#import "JD_DataManager.h"
+#import "JD_Login.h"
 @interface JD_UserLogin ()
 
 @end
@@ -40,6 +43,7 @@
     [TextArray addObject:lTextOrder];
     [TextArray addObject:lTextMessage];
     [TextArray addObject:lTextCommodityRelated];
+    NSLog(@"%@",TextArray);
     [ImageArray addObject:lImageOrder];
     [ImageArray addObject:lImageMessage];
     [ImageArray addObject:lImageCommodityRelated];
@@ -109,6 +113,7 @@
     [self.navigationController pushViewController:lJD_Login animated:YES];
 }
 
+#pragma tableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [[TextArray objectAtIndex:section] count];
 }
@@ -127,8 +132,6 @@
     if (lcell == nil) {
         lcell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cell]autorelease];
     }
-    NSLog(@"%@",[TextArray objectAtIndex:0]);
-    //    lcell.backgroundView = nil;
     lcell.backgroundColor = [UIColor clearColor];
     lcell.imageView.image = [UIImage imageNamed:[[ImageArray objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]]];
     lcell.textLabel.text = [[TextArray objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]];
@@ -138,7 +141,20 @@
     return lcell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if ([JD_DataManager shareGoodsDataManager].UserState==YES) {
+        JD_GoodsSingle *lJD_GoodsSingle = [[[JD_GoodsSingle alloc]init]autorelease];
+        NSString *lString=[[TextArray objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]];
+        lJD_GoodsSingle.textString=lString;
+        lJD_GoodsSingle.saveArray=TextArray;
+        [self.tabBarController.navigationController pushViewController:lJD_GoodsSingle animated:YES];
+//    }else{
+//        JD_Login *login=[[JD_Login alloc]init];
+//        [self.tabBarController.navigationController pushViewController:login animated:YES];
+//        [login release];
+//    }
+    
+}
 
 
 - (void)didReceiveMemoryWarning
