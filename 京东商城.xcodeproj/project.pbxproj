@@ -23,6 +23,10 @@
 		100A9A29187D3B70006487D8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100A9A28187D3B70006487D8 /* MobileCoreServices.framework */; };
 		100A9A2B187D3B78006487D8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100A9A2A187D3B78006487D8 /* SystemConfiguration.framework */; };
 		100A9A2D187D3B7E006487D8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100A9A2C187D3B7E006487D8 /* CFNetwork.framework */; };
+		101B188F1883E89C00D47DF8 /* rect_check1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 101B188B1883E89C00D47DF8 /* rect_check1@2x.png */; };
+		101B18901883E89C00D47DF8 /* rect_check2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 101B188C1883E89C00D47DF8 /* rect_check2@2x.png */; };
+		101B18911883E89C00D47DF8 /* round_check1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 101B188D1883E89C00D47DF8 /* round_check1@2x.png */; };
+		101B18921883E89C00D47DF8 /* round_check2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 101B188E1883E89C00D47DF8 /* round_check2@2x.png */; };
 		1026237B187E710B00116DB2 /* into.png in Resources */ = {isa = PBXBuildFile; fileRef = 1026237A187E710B00116DB2 /* into.png */; };
 		10432360187FD55A0095C3FD /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 1043235E187FD55A0095C3FD /* white.png */; };
 		1065D8D4187E30F40068D9B7 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1065D8BB187E30F40068D9B7 /* ASIAuthenticationDialog.m */; };
@@ -134,6 +138,10 @@
 		100A9A28187D3B70006487D8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		100A9A2A187D3B78006487D8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		100A9A2C187D3B7E006487D8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		101B188B1883E89C00D47DF8 /* rect_check1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rect_check1@2x.png"; sourceTree = "<group>"; };
+		101B188C1883E89C00D47DF8 /* rect_check2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rect_check2@2x.png"; sourceTree = "<group>"; };
+		101B188D1883E89C00D47DF8 /* round_check1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_check1@2x.png"; sourceTree = "<group>"; };
+		101B188E1883E89C00D47DF8 /* round_check2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_check2@2x.png"; sourceTree = "<group>"; };
 		1026237A187E710B00116DB2 /* into.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = into.png; sourceTree = "<group>"; };
 		1043235E187FD55A0095C3FD /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
 		1065D8BA187E30F40068D9B7 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -573,6 +581,10 @@
 		10EFCD8918769596009F4AB4 /* JD_ShopCar */ = {
 			isa = PBXGroup;
 			children = (
+				101B188B1883E89C00D47DF8 /* rect_check1@2x.png */,
+				101B188C1883E89C00D47DF8 /* rect_check2@2x.png */,
+				101B188D1883E89C00D47DF8 /* round_check1@2x.png */,
+				101B188E1883E89C00D47DF8 /* round_check2@2x.png */,
 				10EFCD901876966D009F4AB4 /* JD_ShopCar.h */,
 				10EFCD911876966D009F4AB4 /* JD_ShopCar.m */,
 				10EFCD921876966D009F4AB4 /* JD_ShopCar.xib */,
@@ -740,6 +752,10 @@
 				1099C988187F94A5005A2B81 /* JD_UserLogin.xib in Resources */,
 				10432360187FD55A0095C3FD /* white.png in Resources */,
 				1009C3191883E76800DF4FD0 /* JD_GoodsSingle.xib in Resources */,
+				101B188F1883E89C00D47DF8 /* rect_check1@2x.png in Resources */,
+				101B18901883E89C00D47DF8 /* rect_check2@2x.png in Resources */,
+				101B18911883E89C00D47DF8 /* round_check1@2x.png in Resources */,
+				101B18921883E89C00D47DF8 /* round_check2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
