@@ -33,7 +33,7 @@
     //请求数据
     [self getAllGoodsPostType:@"0" Order:@"0" Owncount:@"0"];
     //TableView
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 31, self.view.frame.size.width, self.view.frame.size.height-31) style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 65, self.view.frame.size.width, self.view.frame.size.height-65) style:UITableViewStyleGrouped];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.tag = 101;
@@ -42,36 +42,93 @@
     _tableView.showsVerticalScrollIndicator = NO;//隐藏滚动条
     [self.view addSubview:_tableView];
     //排序按钮
-    UITextField *priceField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/2, 30)];
+    UITextField *priceField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/2-0.5, 30)];
     priceField.backgroundColor = [UIColor whiteColor];
     priceField.text = @"价格";
     priceField.textColor = [UIColor grayColor];
     priceField.font = [UIFont systemFontOfSize:20];
-    priceField.textAlignment = NSTextAlignmentLeft;
-    [priceField setBorderStyle:UITextBorderStyleLine];
-    UITextField *salesField = [[UITextField alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, 30)];
+    priceField.textAlignment = NSTextAlignmentCenter;
+    priceField.userInteractionEnabled = NO;
+    [self.view addSubview:priceField];
+    UITextField *salesField = [[UITextField alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+0.5, 0, self.view.frame.size.width/2-0.5, 30)];
     salesField.backgroundColor = [UIColor whiteColor];
     salesField.text = @"销量";
     salesField.textColor = [UIColor grayColor];
     salesField.font = [UIFont systemFontOfSize:20];
-    salesField.textAlignment = NSTextAlignmentLeft;
-    [salesField setBorderStyle:UITextBorderStyleLine];
-    priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    priceButton.tag = 10;
-    priceButton.frame = CGRectMake(0, 0, self.view.frame.size.width/2, 30);
-    priceButton.backgroundColor = [UIColor clearColor];
-    [priceButton addTarget:self action:@selector(priceButton:) forControlEvents:UIControlEventTouchUpInside];
-    salesButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    salesButton.tag = 20;
-    salesButton.frame = CGRectMake(0, 0, self.view.frame.size.width/2, 30);
-    salesButton.backgroundColor = [UIColor clearColor];
-    [salesButton addTarget:self action:@selector(salesButton:) forControlEvents:UIControlEventTouchUpInside];
-    [priceField addSubview:priceButton];
-    [salesField addSubview:salesButton];
-    [self.view addSubview:priceField];
+    salesField.textAlignment = NSTextAlignmentCenter;
+    salesField.userInteractionEnabled = NO;
     [self.view addSubview:salesField];
+    UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(5, 30, self.view.frame.size.width/2-10, 1)];
+    lineView1.backgroundColor = [UIColor grayColor];
+    UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+5, 30, self.view.frame.size.width/2-10, 1)];
+    lineView2.backgroundColor = [UIColor grayColor];
+    UIView *lineView3 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-0.5, 5, 1, 50)];
+    lineView3.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:lineView1];
+    [self.view addSubview:lineView2];
+    [self.view addSubview:lineView3];
+    UILabel *priceUplabel = [[UILabel alloc]initWithFrame:CGRectMake(0.5, 31, 79.5, 29.5)];
+    priceUplabel.backgroundColor = [UIColor whiteColor];
+    priceUplabel.text = @"升序";
+    priceUplabel.textColor = [UIColor grayColor];
+    priceUplabel.font = [UIFont systemFontOfSize:14];
+    priceUplabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:priceUplabel];
+    UILabel *priceDownlabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 31, 79.5, 29.5)];
+    priceDownlabel.backgroundColor = [UIColor whiteColor];
+    priceDownlabel.text = @"降序";
+    priceDownlabel.textColor = [UIColor grayColor];
+    priceDownlabel.font = [UIFont systemFontOfSize:14];
+    priceDownlabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:priceDownlabel];
+    UILabel *salesUplabel = [[UILabel alloc]initWithFrame:CGRectMake(161, 31, 79.5, 29.5)];
+    salesUplabel.backgroundColor = [UIColor whiteColor];
+    salesUplabel.text = @"升序";
+    salesUplabel.textColor = [UIColor grayColor];
+    salesUplabel.font = [UIFont systemFontOfSize:14];
+    salesUplabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:salesUplabel];
+    UILabel *salesDownlabel = [[UILabel alloc]initWithFrame:CGRectMake(240.5, 31, 79.5, 29.5)];
+    salesDownlabel.backgroundColor = [UIColor whiteColor];
+    salesDownlabel.text = @"降序";
+    salesDownlabel.textColor = [UIColor grayColor];
+    salesDownlabel.font = [UIFont systemFontOfSize:14];
+    salesDownlabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:salesDownlabel];
+    UIButton *priceUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    priceUpButton.frame = CGRectMake(0.5, 31, 79.5, 29.5);
+    priceUpButton.backgroundColor = [UIColor clearColor];
+    [priceUpButton addTarget:self action:@selector(priceUpButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:priceUpButton];
+    UIButton *priceDownButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    priceDownButton.frame = CGRectMake(80, 31, 79.5, 29.5);
+    priceDownButton.backgroundColor = [UIColor clearColor];
+    [priceDownButton addTarget:self action:@selector(priceDownButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:priceDownButton];
+    UIButton *salesUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    salesUpButton.frame = CGRectMake(161, 31, 79.5, 29.5);
+    salesUpButton.backgroundColor = [UIColor clearColor];
+    [salesUpButton addTarget:self action:@selector(salesUpButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:salesUpButton];
+    UIButton *salesDownButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    salesDownButton.frame = CGRectMake(240.5, 31, 79.5, 29.5);
+    salesDownButton.backgroundColor = [UIColor clearColor];
+    [salesDownButton addTarget:self action:@selector(salesDownButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:salesDownButton];
+    lineView = [[UIView alloc]init];
+    lineView.frame = CGRectMake(5.5, 61, 69.5, 2);
+    lineView.backgroundColor = [UIColor redColor];
+    lineView.tag = 10;
+    [self.view addSubview:lineView];
     [priceField release];
     [salesField release];
+    [lineView1 release];
+    [lineView2 release];
+    [lineView3 release];
+    [priceUplabel release];
+    [priceDownlabel release];
+    [salesUplabel release];
+    [salesDownlabel release];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -84,7 +141,7 @@
     _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 310, 44)];
     _searchBar.delegate = self;
     _searchBar.showsCancelButton = YES;
-    [_searchBar setPlaceholder:@"搜索京东商品"];
+    [_searchBar setPlaceholder:@"搜索商品"];
     [[_searchBar.subviews objectAtIndex:0] removeFromSuperview];
     [_searchBar setBackgroundColor:[UIColor clearColor]];
     for (id custom in [_searchBar subviews]) {
@@ -113,6 +170,7 @@
     [_goodsArray release];
     [_searchBar release];
     [_tableView release];
+    [lineView release];
     [super dealloc];
 }
 #pragma mark - DownLoadMethod
@@ -219,7 +277,18 @@
         if (_tableView.contentOffset.y > (contentOffset + self.view.frame.size.height/4)) {
             if (_goodsArray.count%15 == 0) {
                 NSMutableArray *tempArray = [[NSMutableArray alloc]initWithArray:_goodsArray];
-                [self getAllGoodsPostType:@"0" Order:@"0" Owncount:[NSString stringWithFormat:@"%i",_goodsArray.count]];
+                if (lineView.tag == 10) {
+                    [self getAllGoodsPostType:@"0" Order:@"0" Owncount:[NSString stringWithFormat:@"%i",_goodsArray.count]];
+                }
+                if (lineView.tag == 11) {
+                    [self getAllGoodsPostType:@"0" Order:@"1" Owncount:[NSString stringWithFormat:@"%i",_goodsArray.count]];
+                }
+                if (lineView.tag == 20) {
+                    [self getAllGoodsPostType:@"1" Order:@"0" Owncount:[NSString stringWithFormat:@"%i",_goodsArray.count]];
+                }
+                if (lineView.tag == 21) {
+                    [self getAllGoodsPostType:@"1" Order:@"1" Owncount:[NSString stringWithFormat:@"%i",_goodsArray.count]];
+                }
                 [tempArray addObjectsFromArray:_goodsArray];
                 [_goodsArray removeAllObjects];
                 [_goodsArray addObjectsFromArray:tempArray];
@@ -231,57 +300,71 @@
     }
 }
 #pragma mark - ButtonEvent
--(void)priceButton:(UIButton *)sender//按商品价格排序
+-(void)priceUpButton:(UIButton *)sender//按商品价格升序
 {
-    if (sender.tag == 10) {
-        sender.tag = 11;
-        if (_tableView.tag == 101) {
-            [self getAllGoodsPostType:@"0" Order:@"1" Owncount:@"0"];
-            _tableView.contentOffset = CGPointMake(0, 0);
-            [_tableView reloadData];
-        }else{
-            [self getSearchGoodsPostSearch:_searchBar.text Type:@"0" Order:@"1" Owncount:@"0"];
-            _tableView.contentOffset = CGPointMake(0, 0);
-            [_tableView reloadData];
-        }
+    lineView.tag = 10;
+    [UIView beginAnimations:@"animation" context:nil];
+    lineView.frame = CGRectMake(5.5, 61, 69.5, 2);
+    [UIView commitAnimations];
+    if (_tableView.tag == 101) {
+        [self getAllGoodsPostType:@"0" Order:@"0" Owncount:@"0"];
+        _tableView.contentOffset = CGPointMake(0, 0);
+        [_tableView reloadData];
     }else{
-        sender.tag = 10;
-        if (_tableView.tag == 101) {
-            [self getAllGoodsPostType:@"0" Order:@"0" Owncount:@"0"];
-            _tableView.contentOffset = CGPointMake(0, 0);
-            [_tableView reloadData];
-        }else{
-            [self getSearchGoodsPostSearch:_searchBar.text Type:@"0" Order:@"0" Owncount:@"0"];
-            _tableView.contentOffset = CGPointMake(0, 0);
-            [_tableView reloadData];
-        }
+        [self getSearchGoodsPostSearch:_searchBar.text Type:@"0" Order:@"0" Owncount:@"0"];
+        _tableView.contentOffset = CGPointMake(0, 0);
+        [_tableView reloadData];
     }
 }
 
--(void)salesButton:(UIButton *)sender//按商品销量排序
+-(void)priceDownButton:(UIButton *)sender//按商品价格降序
 {
-    if (sender.tag == 20) {
-        sender.tag = 21;
-        if (_tableView.tag == 101) {
-            [self getAllGoodsPostType:@"1" Order:@"1" Owncount:@"0"];
-            _tableView.contentOffset = CGPointMake(0, 0);
-            [_tableView reloadData];
-        }else{
-            [self getSearchGoodsPostSearch:_searchBar.text Type:@"1" Order:@"1" Owncount:@"0"];
-            _tableView.contentOffset = CGPointMake(0, 0);
-            [_tableView reloadData];
-        }
+    lineView.tag = 11;
+    [UIView beginAnimations:@"animation" context:nil];
+    lineView.frame = CGRectMake(85, 61, 69.5, 2);
+    [UIView commitAnimations];
+    if (_tableView.tag == 101) {
+        [self getAllGoodsPostType:@"0" Order:@"1" Owncount:@"0"];
+        _tableView.contentOffset = CGPointMake(0, 0);
+        [_tableView reloadData];
     }else{
-        sender.tag = 20;
-        if (_tableView.tag == 101) {
-            [self getAllGoodsPostType:@"1" Order:@"0" Owncount:@"0"];
-            _tableView.contentOffset = CGPointMake(0, 0);
-            [_tableView reloadData];
-        }else{
-            [self getSearchGoodsPostSearch:_searchBar.text Type:@"1" Order:@"0" Owncount:@"0"];
-            _tableView.contentOffset = CGPointMake(0, 0);
-            [_tableView reloadData];
-        }
+        [self getSearchGoodsPostSearch:_searchBar.text Type:@"0" Order:@"1" Owncount:@"0"];
+        _tableView.contentOffset = CGPointMake(0, 0);
+        [_tableView reloadData];
+    }
+}
+
+-(void)salesUpButton:(UIButton *)sender//按商品销量升序
+{
+    lineView.tag = 20;
+    [UIView beginAnimations:@"animation" context:nil];
+    lineView.frame = CGRectMake(166, 61, 69.5, 2);
+    [UIView commitAnimations];
+    if (_tableView.tag == 101) {
+        [self getAllGoodsPostType:@"1" Order:@"0" Owncount:@"0"];
+        _tableView.contentOffset = CGPointMake(0, 0);
+        [_tableView reloadData];
+    }else{
+        [self getSearchGoodsPostSearch:_searchBar.text Type:@"1" Order:@"0" Owncount:@"0"];
+        _tableView.contentOffset = CGPointMake(0, 0);
+        [_tableView reloadData];
+    }
+}
+
+-(void)salesDownButton:(UIButton *)sender//按商品销量降序
+{
+    lineView.tag = 21;
+    [UIView beginAnimations:@"animation" context:nil];
+    lineView.frame = CGRectMake(245.5, 61, 69.5, 2);
+    [UIView commitAnimations];
+    if (_tableView.tag == 101) {
+        [self getAllGoodsPostType:@"1" Order:@"1" Owncount:@"0"];
+        _tableView.contentOffset = CGPointMake(0, 0);
+        [_tableView reloadData];
+    }else{
+        [self getSearchGoodsPostSearch:_searchBar.text Type:@"1" Order:@"1" Owncount:@"0"];
+        _tableView.contentOffset = CGPointMake(0, 0);
+        [_tableView reloadData];
     }
 }
 

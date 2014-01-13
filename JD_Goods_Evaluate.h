@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface JD_Goods_Evaluate : UIViewController
+{
+    NSDictionary *_goodsInfo;
+}
 
 @end

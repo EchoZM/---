@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JD_Goods : UIViewController<UIScrollViewDelegate>
+@interface JD_Goods : UIViewController
 {
     NSDictionary *_goodsInfo;
     UIView *_backgroundView;

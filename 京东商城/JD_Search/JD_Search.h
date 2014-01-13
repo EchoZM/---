@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JD_Search : UIViewController<NSURLConnectionDataDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface JD_Search : UIViewController<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *_goodsArray;
     UISearchBar *_searchBar;
     UITableView *_tableView;
-    UIButton *priceButton;
-    UIButton *salesButton;
+    UIView *lineView;
 }
 
 @end

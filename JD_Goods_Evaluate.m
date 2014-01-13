@@ -27,7 +27,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,6 +37,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(0, 0, 40, 40);
     [backButton setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
@@ -46,11 +47,27 @@
     self.navigationItem.leftBarButtonItem = leftBarButton;
     [leftBarButton release];
     self.navigationItem.title = @"商品评价";
+    //请求数据
+    NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@",[JD_DataManager shareGoodsDataManager].goodsID];
+    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"getgoodsinfo.php"] options:NSJSONReadingAllowFragments error:nil];
+    _goodsInfo = [[lDictionary objectForKey:@"msg"]retain];
+    [self setGoodsInfo];
+}
+
+-(void)dealloc
+{
+    [_goodsInfo release];
+    [super dealloc];
 }
 
 -(void)backToGoods:(UIButton *)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)setGoodsInfo
+{
+    
 }
 
 @end
