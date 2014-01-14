@@ -9,6 +9,7 @@
 #import "JD_Login.h"
 #import "JD_Register.h"
 #import "JD_Login.h"
+#import "RetrievePassword.h"
 @interface JD_Login ()
 
 @end
@@ -20,7 +21,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        Data = [[NSMutableData alloc]init];
     }
     return self;
 }
@@ -53,11 +53,16 @@
     [lLogin addSubview:lPasswordLable];
     _UserText = [[UITextField alloc]initWithFrame:CGRectMake(90, 5, 170, 40)];
     [_UserText setBackgroundColor:[UIColor clearColor]];
+    [_UserText setPlaceholder:@"请输入帐户名"];
+    [_UserText setKeyboardType:UIKeyboardTypeNamePhonePad];
     _UserText.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _UserText.font = [UIFont boldSystemFontOfSize:21];
     [lLogin addSubview:_UserText];
     _PasswordText = [[UITextField alloc]initWithFrame:CGRectMake(90, 65, 170, 40)];
     [_PasswordText setBackgroundColor:[UIColor clearColor]];
+    [_PasswordText setPlaceholder:@"请输入密码"];
+    [_PasswordText setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+    [_PasswordText setSecureTextEntry:YES];
     _PasswordText.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _PasswordText.font = [UIFont boldSystemFontOfSize:21];
     [lLogin addSubview:_PasswordText];
@@ -99,8 +104,13 @@
     [self.view addSubview:lFreeRegister];
 }
 
--(void)CancelButton:(UIButton *)sender{
+-(void)CancelButton:(UIBarButtonItem *)sender{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)RetrievePassword:(UIButton *)sender{
+    RetrievePassword *lRetrievePassword = [[[RetrievePassword alloc]init]autorelease];
+    [self.navigationController pushViewController:lRetrievePassword animated:YES];
 }
 
 -(void)FreeRegister:(UIButton *)sender{
@@ -110,34 +120,20 @@
 
 -(void)LoginButton:(UIButton *)sender{
     NSString *lBodyString = [NSString stringWithFormat:@"name=%@&password=%@",_UserText.text,_PasswordText.text];
-    NSURL *lURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/shop/login.php",IP]];
-    NSMutableURLRequest *lMutableURLRequest = [NSMutableURLRequest requestWithURL:lURL];
-    [lMutableURLRequest setHTTPMethod:@"post"];
-    [lMutableURLRequest setHTTPBody:[lBodyString dataUsingEncoding:NSUTF8StringEncoding]];
-    NSURLConnection *lURLConnection = [NSURLConnection connectionWithRequest:lMutableURLRequest delegate:self];
-    [lURLConnection start];
-}
-
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-    [Data setLength:0];
-}
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-    [Data appendData:data];
-}
--(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:Data options:NSJSONReadingAllowFragments error:nil];
-    NSNumber *lNumber = [[NSJSONSerialization JSONObjectWithData:Data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"error"];
+    ;
+    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager]  downloadDataWithBody:lBodyString URL:@"login.php"] options:NSJSONReadingAllowFragments error:nil];
+    NSNumber *lNumber = [[NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager]  downloadDataWithBody:lBodyString URL:@"login.php"] options:NSJSONReadingAllowFragments error:nil] objectForKey:@"error"];
     if ([lNumber isEqualToNumber:[NSNumber numberWithInt:1]]) {
-        UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户名或密码错误" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
-        [lErrorAlertView show];
-    }else if ([lNumber isEqualToNumber:[NSNumber numberWithInt:0]]){
-        UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"登录成功!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
-        [lErrorAlertView show];
-        NSArray *UserArray = @[[[lDictionary objectForKey:@"msg"] objectForKey:@"name"],[[lDictionary objectForKey:@"msg"] objectForKey:@"email"],[[lDictionary objectForKey:@"msg"] objectForKey:@"telephone"]];
-        [[[JD_DataManager shareGoodsDataManager] UserManage] addObject:UserArray];
+            UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户名或密码错误" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
+            [lErrorAlertView show];
+        }else if ([lNumber isEqualToNumber:[NSNumber numberWithInt:0]]){
+            NSArray *UserArray = @[[[lDictionary objectForKey:@"msg"] objectForKey:@"name"],[[lDictionary objectForKey:@"msg"] objectForKey:@"email"],[[lDictionary objectForKey:@"msg"] objectForKey:@"telephone"]];
+            NSLog(@"%@",UserArray);
+            [[[JD_DataManager shareGoodsDataManager] UserManage] addObjectsFromArray:UserArray];
         [JD_DataManager shareGoodsDataManager].UserState = YES;
-        NSLog(@"%@,%@",[[lDictionary objectForKey:@"msg"] objectForKey:@"customerid"],[[JD_DataManager shareGoodsDataManager] UserManage]);
-    }
+            [JD_DataManager shareGoodsDataManager].userID = [[lDictionary objectForKey:@"msg"] objectForKey:@"customerid"];
+        [self.navigationController popViewControllerAnimated:YES];
+        }
 }
 
 - (IBAction)View:(UIControl *)sender {
@@ -154,7 +150,6 @@
 -(void)dealloc{
     [_UserText release];
     [_PasswordText release];
-    [Data release];
     [super dealloc];
 }
 

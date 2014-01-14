@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JD_Login : UIViewController{
-    NSMutableData *Data;
-}
+@interface JD_Login : UIViewController
 @property (nonatomic,retain)UITextField *UserText;
 @property (nonatomic,retain)UITextField *PasswordText;
 - (IBAction)View:(UIControl *)sender;

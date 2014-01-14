@@ -19,7 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"JD_1.png"]]];
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"JD_BG.png"]]];
         TextArray = [[NSMutableArray alloc]init];
         ImageArray = [[NSMutableArray alloc]init];
         NSArray *lTextFirst = [[[NSArray alloc]initWithObjects:@"设置",@"帮助",@"意见反馈", nil]autorelease];
