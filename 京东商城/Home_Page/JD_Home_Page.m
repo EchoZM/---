@@ -150,9 +150,12 @@
 //    [lRequest setHTTPBody:[lBodyString dataUsingEncoding:NSUTF8StringEncoding]];
 //    NSURLConnection *lConnection=[NSURLConnection connectionWithRequest:lRequest delegate:self];
 //    [lConnection start];
-    NSDictionary *lDictionary=[NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:lBodyString URL:@"hotgoods.php"] options:NSJSONReadingAllowFragments error:nil];
+    NSData *lData=[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:lBodyString URL:@"hotgoods.php"];
+    NSLog(@"%@",[[NSString alloc]initWithData:lData encoding:NSUTF8StringEncoding]);
+    NSDictionary *lDictionary=[NSJSONSerialization JSONObjectWithData:lData options:NSJSONReadingAllowFragments error:nil];
     lArray=[[lDictionary objectForKey:@"msg"]retain];
-    [justTableView reloadData];}
+    [justTableView reloadData];
+}
 -(void)timerChang:(NSTimer *)sender{
     
 
@@ -201,7 +204,7 @@
     if (tableView.tag==99) {
         NSInteger row=[indexPath row];
         NSDictionary *dictionary=[lArray objectAtIndex:row];
-        NSURL *lURL=[NSURL URLWithString:[@"http://192.168.1.138/shop/goodsimage/" stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
+        NSURL *lURL=[NSURL URLWithString:[@"http://192.168.1.141/shop/goodsimage/" stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
         NSData *lData=[NSData dataWithContentsOfURL:lURL];
         UIImage *lImage=[UIImage imageWithData:lData];
         lCell.textLabel.text=[dictionary objectForKey:@"name"];
@@ -211,7 +214,7 @@
     }
     NSInteger row=[indexPath row];
     NSDictionary *dictionary=[searchGoodsArray objectAtIndex:row];
-    NSURL *lURL=[NSURL URLWithString:[@"http://192.168.1.138/shop/goodsimage/" stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
+    NSURL *lURL=[NSURL URLWithString:[@"http://192.168.1.141/shop/goodsimage/" stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
     NSData *lData=[NSData dataWithContentsOfURL:lURL];
     UIImage *lImage=[UIImage imageWithData:lData];
     lCell.backgroundColor = [UIColor clearColor];
