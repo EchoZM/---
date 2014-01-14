@@ -8,7 +8,7 @@
 
 #import "JD_DataManager.h"
 static JD_DataManager *shareGoodsDataManager = nil;
-#define ip @"http://192.168.1.138/shop/"
+#define ip @"http://192.168.1.141/shop/"
 
 @implementation JD_DataManager
 +(JD_DataManager *)shareGoodsDataManager
@@ -48,7 +48,9 @@ static JD_DataManager *shareGoodsDataManager = nil;
     NSURLRequest *lRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     return lRequest;
 }
-
+//-(void)downloadSuccess:(void (^)(void))success AndFailed:(void (^)(void))failed{
+//    success();
+//}
 -(NSData *)downloadDataWithBody:(NSString *)body URL:(NSString *)urlString
 {
     //风火轮效果
