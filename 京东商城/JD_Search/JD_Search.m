@@ -174,25 +174,32 @@
     [super dealloc];
 }
 #pragma mark - DownLoadMethod
--(NSMutableArray *)getAllGoodsPostType:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount
+-(void)getAllGoodsPostType:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount
 {
     NSString *bodyString = [NSString stringWithFormat:@"type=%@&order=%@&owncount=%@",type,order,owncount];
-    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"getgoods.php"] options:NSJSONReadingAllowFragments error:nil];
-    NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
-    NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
-    _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
-    return _goodsArray;
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoods.php" AndSuccess:^(NSData *data){
+        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
+        NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
+        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+        [_tableView reloadData];
+    }AndFailed:^{
+        
+    }];
 }
 
--(NSMutableArray *)getSearchGoodsPostSearch:(NSString *)search Type:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount
+-(void)getSearchGoodsPostSearch:(NSString *)search Type:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount
 {
     NSString *bodyString = [NSString stringWithFormat:@"search=%@&type=%@&order=%@&owncount=%@",search,type,order,owncount];
-    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"searchgoods.php"] options:NSJSONReadingAllowFragments error:nil];
-    NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
-    NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
-    _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
-    NSLog(@"%@",_goodsArray);
-    return _goodsArray;
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"searchgoods.php" AndSuccess:^(NSData *data){
+        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
+        NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
+        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+        [_tableView reloadData];
+    }AndFailed:^{
+        
+    }];
 }
 #pragma mark - SearchBarDelegate
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText

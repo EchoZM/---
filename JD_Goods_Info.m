@@ -49,9 +49,13 @@
     self.navigationItem.title = @"商品信息";
     //请求数据
     NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@",[JD_DataManager shareGoodsDataManager].goodsID];
-    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"getgoodsinfo.php"] options:NSJSONReadingAllowFragments error:nil];
-    _goodsInfo = [[lDictionary objectForKey:@"msg"]retain];
-    [self setGoodsInfo];
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoodsinfo.php" AndSuccess:^(NSData *data){
+        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        _goodsInfo = [[lDictionary objectForKey:@"msg"]retain];
+        [self setGoodsInfo];
+    }AndFailed:^{
+        
+    }];
 }
 
 -(void)dealloc

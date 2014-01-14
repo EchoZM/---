@@ -48,33 +48,42 @@ static JD_DataManager *shareGoodsDataManager = nil;
     NSURLRequest *lRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     return lRequest;
 }
-//-(void)downloadSuccess:(void (^)(void))success AndFailed:(void (^)(void))failed{
-//    success();
+
+//-(NSData *)downloadDataWithBody:(NSString *)body URL:(NSString *)urlString
+//{
+//    //风火轮效果
+////    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(110, 200, 100, 100)];
+////    [activityView setBackgroundColor:[UIColor whiteColor]];
+////    activityView.color = [UIColor blackColor];
+////    [view addSubview:activityView];
+////    [activityView startAnimating];
+//    //请求数据
+//    NSURL *lURL = [NSURL URLWithString:[ip stringByAppendingString:urlString]];
+//    NSMutableURLRequest *lRequest = [NSMutableURLRequest requestWithURL:lURL];
+//    [lRequest setHTTPMethod:@"post"];
+//    [lRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+//    NSData *lData = [NSURLConnection sendSynchronousRequest:lRequest returningResponse:nil error:nil];
+//    return lData;
 //}
--(NSData *)downloadDataWithBody:(NSString *)body URL:(NSString *)urlString
+
+-(void)downloadDataWithBodyString:(NSString *)bodystring WithURLString:(NSString *)urlstring AndSuccess:(void (^)(NSData *))success AndFailed:(void (^)(void))failed
 {
-    //风火轮效果
-//    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(110, 200, 100, 100)];
-//    [activityView setBackgroundColor:[UIColor whiteColor]];
-//    activityView.color = [UIColor blackColor];
-//    [view addSubview:activityView];
-//    [activityView startAnimating];
-    //请求数据
-    NSURL *lURL = [NSURL URLWithString:[ip stringByAppendingString:urlString]];
-    NSMutableURLRequest *lRequest = [NSMutableURLRequest requestWithURL:lURL];
-    [lRequest setHTTPMethod:@"post"];
-    [lRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-//    NSMutableData *_data = [[NSMutableData alloc]init];
-//    NSOperationQueue *operationQueue = [[NSOperationQueue alloc]init];
-//    [NSURLConnection sendAsynchronousRequest:lRequest queue:operationQueue completionHandler:^(NSURLResponse *urlResponce, NSData *data, NSError *error){
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [_data setLength:0];
-//            [_data appendData:data];
-//        });
-//    }];
-//    return _data;
-    NSData *lData = [NSURLConnection sendSynchronousRequest:lRequest returningResponse:nil error:nil];
-    return lData;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+        NSURL *lURL = [NSURL URLWithString:[ip stringByAppendingString:urlstring]];
+        NSMutableURLRequest *lRequest = [NSMutableURLRequest requestWithURL:lURL];
+        [lRequest setHTTPMethod:@"post"];
+        [lRequest setHTTPBody:[bodystring dataUsingEncoding:NSUTF8StringEncoding]];
+        NSData *lData = [NSURLConnection sendSynchronousRequest:lRequest returningResponse:nil error:nil];
+        if (lData == nil) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                failed();
+            });
+            return ;
+        }
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            success(lData);
+        });
+    }); 
 }
 
 //用户信息

@@ -20,9 +20,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+//        // Custom initialization
         self.tabBarItem.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tabBar_item0_1@2x" ofType:@"png"]];
-         _data=[[NSMutableData alloc]init];
+//         _data=[[NSMutableData alloc]init];
     }
     return self;
 }
@@ -142,7 +142,7 @@
     [lView1 addGestureRecognizer:tap];
     
     //网络请求数据
-    NSString *lBodyString=[NSString stringWithFormat:@"goodscount=0"];//请求内容
+//    NSString *lBodyString=[NSString stringWithFormat:@"goodscount=0"];//请求内容
     
 //    NSURL *lURL=[NSURL URLWithString:@"http://192.168.1.138/shop/hotgoods.php "];//ip地址
 //    NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:lURL];//请求初始化
@@ -150,29 +150,29 @@
 //    [lRequest setHTTPBody:[lBodyString dataUsingEncoding:NSUTF8StringEncoding]];
 //    NSURLConnection *lConnection=[NSURLConnection connectionWithRequest:lRequest delegate:self];
 //    [lConnection start];
-    NSData *lData=[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:lBodyString URL:@"hotgoods.php"];
-    NSLog(@"%@",[[NSString alloc]initWithData:lData encoding:NSUTF8StringEncoding]);
-    NSDictionary *lDictionary=[NSJSONSerialization JSONObjectWithData:lData options:NSJSONReadingAllowFragments error:nil];
-    lArray=[[lDictionary objectForKey:@"msg"]retain];
-    [justTableView reloadData];
+//    NSData *lData=[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:lBodyString URL:@"hotgoods.php"];
+//    NSLog(@"%@",[[NSString alloc]initWithData:lData encoding:NSUTF8StringEncoding]);
+//    NSDictionary *lDictionary=[NSJSONSerialization JSONObjectWithData:lData options:NSJSONReadingAllowFragments error:nil];
+//    lArray=[[lDictionary objectForKey:@"msg"]retain];
+//    [justTableView reloadData];
 }
 -(void)timerChang:(NSTimer *)sender{
     
 
 }
 #pragma downloadData
-//-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-//    [_data setLength:0];
-//}//开始接收
-//-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-//    [_data appendData:data];
-//}//保存到缓存data里面
-//-(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-//    NSDictionary *lDictionary=[NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
-//    lArray=[[lDictionary objectForKey:@"msg"]retain];
-//    [justTableView reloadData];
-//    
-//}
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+    [_data setLength:0];
+}//开始接收
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+    [_data appendData:data];
+}//保存到缓存data里面
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+    NSDictionary *lDictionary=[NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
+    lArray=[[lDictionary objectForKey:@"msg"]retain];
+    [justTableView reloadData];
+    
+}
 #pragma scrollViewMethod
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat pageWidth=_scroll.frame.size.width;
@@ -182,11 +182,11 @@
 }
 -(void)pageControlChanged:(id)sender{
     //更新scroll view到正确的页面
-    CGRect frame;
-    frame.origin.x=_scroll.frame.size.width*_pageController.currentPage;
-    frame.origin.y=0;
-    frame.size=_scroll.frame.size;
-    [_scroll scrollRectToVisible:frame animated:YES];
+//    CGRect frame;
+//    frame.origin.x=_scroll.frame.size.width*_pageController.currentPage;
+//    frame.origin.y=0;
+//    frame.size=_scroll.frame.size;
+//    [_scroll scrollRectToVisible:frame animated:YES];
 }
 #pragma TableViewMethod
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -202,25 +202,25 @@
         lCell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
     if (tableView.tag==99) {
-        NSInteger row=[indexPath row];
-        NSDictionary *dictionary=[lArray objectAtIndex:row];
-        NSURL *lURL=[NSURL URLWithString:[@"http://192.168.1.141/shop/goodsimage/" stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
-        NSData *lData=[NSData dataWithContentsOfURL:lURL];
-        UIImage *lImage=[UIImage imageWithData:lData];
-        lCell.textLabel.text=[dictionary objectForKey:@"name"];
-        lCell.imageView.image=lImage;
-        lCell.detailTextLabel.text=[[@"价格:" stringByAppendingString:[dictionary objectForKey:@"price"]] stringByAppendingString:@"元"];
+//        NSInteger row=[indexPath row];
+//        NSDictionary *dictionary=[lArray objectAtIndex:row];
+//        NSURL *lURL=[NSURL URLWithString:[@"http://192.168.1.141/shop/goodsimage/" stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
+//        NSData *lData=[NSData dataWithContentsOfURL:lURL];
+//        UIImage *lImage=[UIImage imageWithData:lData];
+//        lCell.textLabel.text=[dictionary objectForKey:@"name"];
+//        lCell.imageView.image=lImage;
+//        lCell.detailTextLabel.text=[[@"价格:" stringByAppendingString:[dictionary objectForKey:@"price"]] stringByAppendingString:@"元"];
         return  lCell;
     }
-    NSInteger row=[indexPath row];
-    NSDictionary *dictionary=[searchGoodsArray objectAtIndex:row];
-    NSURL *lURL=[NSURL URLWithString:[@"http://192.168.1.141/shop/goodsimage/" stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
-    NSData *lData=[NSData dataWithContentsOfURL:lURL];
-    UIImage *lImage=[UIImage imageWithData:lData];
-    lCell.backgroundColor = [UIColor clearColor];
-    lCell.textLabel.text=[dictionary objectForKey:@"name"];
-    lCell.imageView.image=lImage;
-    lCell.detailTextLabel.text=[[@"价格:" stringByAppendingString:[dictionary objectForKey:@"price"]] stringByAppendingString:@"元"];;
+//    NSInteger row=[indexPath row];
+//    NSDictionary *dictionary=[searchGoodsArray objectAtIndex:row];
+//    NSURL *lURL=[NSURL URLWithString:[@"http://192.168.1.141/shop/goodsimage/" stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
+//    NSData *lData=[NSData dataWithContentsOfURL:lURL];
+//    UIImage *lImage=[UIImage imageWithData:lData];
+//    lCell.backgroundColor = [UIColor clearColor];
+//    lCell.textLabel.text=[dictionary objectForKey:@"name"];
+//    lCell.imageView.image=lImage;
+//    lCell.detailTextLabel.text=[[@"价格:" stringByAppendingString:[dictionary objectForKey:@"price"]] stringByAppendingString:@"元"];;
     return lCell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -235,7 +235,7 @@
         [self.navigationController pushViewController:goodsViewController animated:YES];
         [goodsViewController release];
     }else{
-        NSLog(@"%@",searchGoodsArray);
+//        NSLog(@"%@",searchGoodsArray);
         NSDictionary *dictionary=[searchGoodsArray objectAtIndex:row];
         [JD_DataManager shareGoodsDataManager].goodsID=[dictionary objectForKey:@"goodsid"];
         JD_Goods *goodsViewController=[[JD_Goods alloc]init];
@@ -249,7 +249,7 @@
     if (![searchText isEqualToString:@""]) {
         lScrollView.hidden=YES;
         lTableView.hidden=NO;
-        [self downloadData:searchText Type:@"0" Order:@"0" Owncount:@"0"];
+//        [self downloadData:searchText Type:@"0" Order:@"0" Owncount:@"0"];
         [lTableView reloadData];
     }else{
         lScrollView.hidden=NO;
@@ -262,7 +262,7 @@
 }
 #pragma downloadData
 -(NSMutableArray *)downloadData:(NSString *)search Type:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount{
-    NSURL *lURL = [NSURL URLWithString:@"http://192.168.1.138/shop/searchgoods.php"];
+    NSURL *lURL = [NSURL URLWithString:@"http://192.168.1.141/shop/searchgoods.php"];
     ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:lURL];
     [lRequest setPostValue:search forKey:@"search"];
     [lRequest setPostValue:type forKey:@"type"];
@@ -273,11 +273,11 @@
     NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
     NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
     searchGoodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
-    NSLog(@"%@",searchGoodsArray);
+//    NSLog(@"%@",searchGoodsArray);
     return searchGoodsArray;
 }
 -(void)viewTapped:(UITapGestureRecognizer *)sender{
-    [lSearchBar resignFirstResponder];
+//    [lSearchBar resignFirstResponder];
 }
 -(void)dealloc{
     [lSearchBar release];

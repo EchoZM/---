@@ -19,10 +19,10 @@
 @property(nonatomic,retain)NSString *addressID;//地址id
 @property(nonatomic,assign)BOOL UserState;//用户状态
 @property(nonatomic,assign)BOOL UserRegisterState;//用户注册状态
-//@property(nonatomic,retain)NSMutableData *data;
 +(JD_DataManager *)shareGoodsDataManager;
 -(UIImage *)getgoodsImage:(NSString *)imageString;//商品图片
--(NSData *)downloadDataWithBody:(NSString *)body URL:(NSString *)urlString;//数据请求  URL只需传http://192.168.1.135/shop/之后的
+//-(NSData *)downloadDataWithBody:(NSString *)body URL:(NSString *)urlString;//同步请求  URL只需传http://192.168.1.135/shop/之后的
+-(void)downloadDataWithBodyString:(NSString *)bodystring WithURLString:(NSString *)urlstring AndSuccess:(void (^)(NSData *))success AndFailed:(void (^)(void))failed;//异步请求  URL只需传http://192.168.1.135/shop/之后的
 -(NSURLRequest *)requestWithURLString:(NSString *)string;
 -(NSMutableArray *)UserManage;
 @end
