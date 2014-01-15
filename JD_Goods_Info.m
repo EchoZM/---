@@ -111,28 +111,28 @@
     introductionButton.frame = CGRectMake(5, 125, 76.75, 40);
     introductionButton.backgroundColor = [UIColor whiteColor];
     [introductionButton setTitle:@"商品介绍" forState:UIControlStateNormal];
-    introductionButton.titleLabel.textColor = [UIColor blackColor];
+    [introductionButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [introductionButton addTarget:self action:@selector(introduction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:introductionButton];
     UIButton *specificationsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     specificationsButton.frame = CGRectMake(82.75, 125, 76.75, 40);
     specificationsButton.backgroundColor = [UIColor whiteColor];
     [specificationsButton setTitle:@"详细参数" forState:UIControlStateNormal];
-    specificationsButton.titleLabel.textColor = [UIColor blackColor];
+    [specificationsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [specificationsButton addTarget:self action:@selector(specifications:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:specificationsButton];
     UIButton *packinglistButton = [UIButton buttonWithType:UIButtonTypeCustom];
     packinglistButton.frame = CGRectMake(160.5, 125, 76.75, 40);
     packinglistButton.backgroundColor = [UIColor whiteColor];
     [packinglistButton setTitle:@"包装清单" forState:UIControlStateNormal];
-    packinglistButton.titleLabel.textColor = [UIColor blackColor];
+    [packinglistButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [packinglistButton addTarget:self action:@selector(packinglist:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:packinglistButton];
     UIButton *serviceButton = [UIButton buttonWithType:UIButtonTypeCustom];
     serviceButton.frame = CGRectMake(238.25, 125, 76.75, 40);
     serviceButton.backgroundColor = [UIColor whiteColor];
     [serviceButton setTitle:@"售后服务" forState:UIControlStateNormal];
-    serviceButton.titleLabel.textColor = [UIColor blackColor];
+    [serviceButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [serviceButton addTarget:self action:@selector(service:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:serviceButton];
     selectImageView = [[UIImageView alloc]initWithFrame:CGRectMake(introductionButton.center.x-6, 165, 12, 8)];
@@ -142,7 +142,7 @@
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(5, 174, 310, self.view.frame.size.height-174)];
     [self.view addSubview:_webView];
     [self setWebView];
-    
+    //释放
     [headerImageView release];
     [nameLabel release];
     [priceLabel release];

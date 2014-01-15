@@ -11,6 +11,7 @@
 #import "JD_Goods_Evaluate.h"
 #import "JD_ShopCar.h"
 #import "JD_Login.h"
+#import "CustomView.h"
 
 @interface JD_Goods ()
 
@@ -104,8 +105,11 @@
     [_goodsInfo release];
     [_backgroundView release];
     [goodsCount release];
+    [goodsPrice release];
     [numberLabel release];
     [priceView release];
+    [_customView release];
+    [numLabel release];
     [super dealloc];
 }
 #pragma mark - BackButton
@@ -155,8 +159,8 @@
     [informationView addSubview:lineView];
     UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 51, 300, 50)];
     nameLabel.backgroundColor = [UIColor whiteColor];
-    nameLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    nameLabel.numberOfLines = 2;
+    nameLabel.lineBreakMode = NSLineBreakByWordWrapping;//自动换行
+    nameLabel.numberOfLines = 2;//行数
     nameLabel.text = [@"名称：" stringByAppendingString:[_goodsInfo objectForKey:@"name"]];
     nameLabel.textColor = [UIColor blackColor];
     nameLabel.textAlignment = NSTextAlignmentLeft;
@@ -179,9 +183,13 @@
     evaluateLabel.textAlignment = NSTextAlignmentLeft;
     evaluateLabel.textColor = [UIColor blackColor];
     [evaluateView addSubview:evaluateLabel];
-    UIImageView *starImageView = [[UIImageView alloc]initWithFrame:CGRectMake(130, 50, 100, 50)];
-    [evaluateView addSubview:starImageView];
-    UILabel *reviewcountLabel = [[UILabel alloc]initWithFrame:CGRectMake(230, 0, 50, 50)];
+    _customView = [[CustomView alloc]initWithHeight:20 AndStar:0];
+    _customView.frame = CGRectMake(100, 15, 150, 20);
+    NSString *lString=[_goodsInfo objectForKey:@"star"];
+    double value=[lString doubleValue];
+    [_customView setStarValue:value];
+    [evaluateView addSubview:_customView];
+    UILabel *reviewcountLabel = [[UILabel alloc]initWithFrame:CGRectMake(240, 0, 40, 50)];
     reviewcountLabel.backgroundColor = [UIColor whiteColor];
     reviewcountLabel.layer.cornerRadius = 8;
     reviewcountLabel.text = [NSString stringWithFormat:@"(%@)",[_goodsInfo objectForKey:@"reviewcount"]];
@@ -247,15 +255,18 @@
     [plusButton addTarget:self action:@selector(plusGoods:) forControlEvents:UIControlEventTouchUpInside];
     [numberView addSubview:plusButton];
     numberLabel = [[UITextField alloc]initWithFrame:CGRectMake(25, 15, 50, 20)];
+    numberLabel.delegate = self;
     [numberLabel setBorderStyle:UITextBorderStyleLine];
     numberLabel.textAlignment = NSTextAlignmentCenter;
     numberLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
+    numberLabel.keyboardType = UIKeyboardTypeNumberPad;
     [numberView addSubview:numberLabel];
     priceView = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width-90, self.view.frame.size.height-16-44, 80, 50)];
     priceView.backgroundColor = [UIColor whiteColor];
-    priceView.text = [[@"总价" stringByAppendingString:goodsPrice] stringByAppendingString:@"元"];
+    NSString *priceString = [NSString stringWithFormat:@"%.2f",[goodsPrice floatValue]*goodsNumber];
+    priceView.text = [@"总价" stringByAppendingString:priceString];
     priceView.textColor = [UIColor blackColor];
-    priceView.font = [UIFont systemFontOfSize:10];
+    priceView.font = [UIFont systemFontOfSize:16];
     priceView.textAlignment = NSTextAlignmentCenter;
     priceView.layer.cornerRadius = 8;
     priceView.lineBreakMode = NSLineBreakByWordWrapping;//自动换行
@@ -266,13 +277,75 @@
     [backgroundView release];
     [informationView release];
     [infoLabel release];
+    [intoImageView release];
     [lineView release];
+    [nameLabel release];
+    [priceLabel release];
+    [evaluateView release];
+    [evaluateLabel release];
+    [reviewcountLabel release];
+    [intooImageView release];
     [modelView release];
     [modelLabel release];
     [lineView2 release];
     [colorLabel release];
     [numberView release];
 }
+#pragma mark - textFieldDelegate
+-(void)textFieldDidBeginEditing:(UITextField *)textField//当输入框获得焦点时，执行该方法
+{
+    UIView *alphaView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    alphaView.tag = 91;
+    alphaView.backgroundColor = [UIColor blackColor];
+    alphaView.alpha = 0.5;
+    [self.view addSubview:alphaView];
+    [alphaView release];
+    UIView *numberView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-200, 150, 100, 80)];
+    numberView.tag = 92;
+    numberView.backgroundColor = [UIColor whiteColor];
+    numberView.layer.cornerRadius = 8;
+    [self.view addSubview:numberView];
+    [numberView release];
+    UIButton *subtractButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    subtractButton.frame = CGRectMake(5, 15, 20, 20);
+    subtractButton.layer.cornerRadius = 10;
+    [subtractButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+    [subtractButton addTarget:self action:@selector(subtractGoods:) forControlEvents:UIControlEventTouchUpInside];
+    [numberView addSubview:subtractButton];
+    UIButton *plusButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    plusButton.frame = CGRectMake(75, 15, 20, 20);
+    plusButton.layer.cornerRadius = 10;
+    [plusButton setImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
+    [plusButton addTarget:self action:@selector(plusGoods:) forControlEvents:UIControlEventTouchUpInside];
+    [numberView addSubview:plusButton];
+    numLabel = [[UITextField alloc]initWithFrame:CGRectMake(25, 15, 50, 20)];
+    [numLabel setBorderStyle:UITextBorderStyleLine];
+    numLabel.textAlignment = NSTextAlignmentCenter;
+    numLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
+    numLabel.keyboardType = UIKeyboardTypeNumberPad;
+    [numberView addSubview:numLabel];
+    UIButton *finishButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    finishButton.frame = CGRectMake(25, 45, 50, 20);
+    finishButton.layer.cornerRadius = 8;
+    finishButton.backgroundColor = [UIColor brownColor];
+    [finishButton setTitle:@"完成" forState:UIControlStateNormal];
+    [finishButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [finishButton addTarget:self action:@selector(finishButton:) forControlEvents:UIControlEventTouchUpInside];
+    [numberView addSubview:finishButton];
+}
+
+-(void)finishButton:(UIButton *)sender
+{
+    UIView *alphaView = (UIView *)[self.view viewWithTag:91];
+    UIView *numberView = (UIView *)[self.view viewWithTag:92];
+    [alphaView removeFromSuperview];
+    [numberView removeFromSuperview];
+    goodsNumber = [numLabel.text intValue];
+    numberLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
+    [self getNewAllPrice];
+    [numberLabel resignFirstResponder];
+}
+
 #pragma mark - OtherViewController
 -(void)toGoodsInfo:(UIButton *)sender
 {
@@ -357,13 +430,27 @@
         
     }];
 }
-#pragma mark - GoodsCount
+#pragma mark - GoodsCountAndAllPrice
+-(void)getNewAllPrice
+{
+    NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@",[JD_DataManager shareGoodsDataManager].goodsID];
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoodsinfo.php" AndSuccess:^(NSData *data){
+        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        _goodsInfo = [[lDictionary objectForKey:@"msg"]retain];
+        goodsPrice = [NSString stringWithFormat:@"%@",[_goodsInfo objectForKey:@"price"]];
+        NSString *priceString = [NSString stringWithFormat:@"%.2f",[goodsPrice floatValue] * goodsNumber];
+        priceView.text = [@"总价" stringByAppendingString:priceString];
+    }AndFailed:^{
+        
+    }];
+}
+
 -(void)plusGoods:(UIButton *)sender
 {
     goodsNumber++;
     numberLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
-//    NSString *priceString = [NSString stringWithFormat:@"%.2f",[goodsPrice floatValue]*goodsNumber];
-//    priceView.text = [priceString stringByAppendingString:@"元"];
+    numLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
+    [self getNewAllPrice];
 }
 
 -(void)subtractGoods:(UIButton *)sender
@@ -371,13 +458,13 @@
     if (goodsNumber == 1) {
         goodsNumber = 1;
         numberLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
-//        NSString *priceString = [NSString stringWithFormat:@"%.2f",[goodsPrice floatValue]*goodsNumber];
-//        priceView.text = [priceString stringByAppendingString:@"元"];
+        numLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
+        [self getNewAllPrice];
     }else{
         goodsNumber--;
         numberLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
-//        NSString *priceString = [NSString stringWithFormat:@"%.2f",[goodsPrice floatValue]*goodsNumber];
-//        priceView.text = [priceString stringByAppendingString:@"元"];
+        numLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
+        [self getNewAllPrice];
     }
 }
 

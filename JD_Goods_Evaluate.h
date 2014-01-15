@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomView.h"
 
-@interface JD_Goods_Evaluate : UIViewController
+@interface JD_Goods_Evaluate : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     NSDictionary *_goodsInfo;
+    NSDictionary *_reviewInfo;
+    CustomView *_customView;
+    UITableView *_tableView;
 }
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomView.h"
 
-@interface JD_Goods : UIViewController
+@interface JD_Goods : UIViewController<UITextFieldDelegate>
 {
     NSDictionary *_goodsInfo;
     UIView *_backgroundView;
@@ -17,6 +18,8 @@
     NSString *goodsPrice;
     UITextField *numberLabel;
     UILabel *priceView;
+    CustomView *_customView;
+    UITextField *numLabel;
 }
 
 @end

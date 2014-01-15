@@ -3,7 +3,7 @@
 //  京东商城
 //
 //  Created by TY on 14-1-8.
-//  Copyright (c) 2014年 张太松. All rights reserved.
+//  Copyright (c) 2014年 张闽. All rights reserved.
 //
 
 #import "JD_DataManager.h"
@@ -48,23 +48,6 @@ static JD_DataManager *shareGoodsDataManager = nil;
     NSURLRequest *lRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     return lRequest;
 }
-
-//-(NSData *)downloadDataWithBody:(NSString *)body URL:(NSString *)urlString
-//{
-//    //风火轮效果
-////    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(110, 200, 100, 100)];
-////    [activityView setBackgroundColor:[UIColor whiteColor]];
-////    activityView.color = [UIColor blackColor];
-////    [view addSubview:activityView];
-////    [activityView startAnimating];
-//    //请求数据
-//    NSURL *lURL = [NSURL URLWithString:[ip stringByAppendingString:urlString]];
-//    NSMutableURLRequest *lRequest = [NSMutableURLRequest requestWithURL:lURL];
-//    [lRequest setHTTPMethod:@"post"];
-//    [lRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-//    NSData *lData = [NSURLConnection sendSynchronousRequest:lRequest returningResponse:nil error:nil];
-//    return lData;
-//}
 
 -(void)downloadDataWithBodyString:(NSString *)bodystring WithURLString:(NSString *)urlstring AndSuccess:(void (^)(NSData *))success AndFailed:(void (^)(void))failed
 {

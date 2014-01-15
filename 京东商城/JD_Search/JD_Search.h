@@ -15,6 +15,5 @@
     UITableView *_tableView;
     UIView *lineView;
 }
-//@property(nonatomic,retain)NSMutableArray *goodsArray;
 
 @end
