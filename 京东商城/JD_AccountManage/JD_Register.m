@@ -1,13 +1,13 @@
 //
 //  JD_Register.m
-//  京东商城
+//  JD_MALL
 //
-//  Created by TY on 14-1-7.
+//  Created by TY on 14-1-14.
 //  Copyright (c) 2014年 张太松. All rights reserved.
 //
 
 #import "JD_Register.h"
-#import "JD_Login.h"
+
 @interface JD_Register ()
 
 @end
@@ -43,7 +43,7 @@
     [self.view addSubview:lView];
     UserText = [[UITextField alloc]initWithFrame:CGRectMake(20, 0, 170, 35)];
     [UserText setBackgroundColor:[UIColor clearColor]];
-    [UserText setPlaceholder:@"请输入用户名"];
+    [UserText setPlaceholder:@"请输入帐户名"];
     [UserText setKeyboardType:UIKeyboardTypeNamePhonePad];
     UserText.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     UserText.font = [UIFont boldSystemFontOfSize:21];
@@ -93,38 +93,28 @@
     [self.view addSubview:lShowPasswordLable];
 }
 
-
 -(void)CancelButton:(UIBarButtonItem *)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)RegisterButton:(UIBarButtonItem *)sender{
-    NSURL *lURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/shop/register.php",IP]];
-    ASIFormDataRequest *lRequestForm = [[[ASIFormDataRequest alloc]initWithURL:lURL]autorelease];
-    [lRequestForm setPostValue:UserText.text forKey:@"name"];
-    [lRequestForm setPostValue:PasswordText.text forKey:@"password"];
-    [lRequestForm setPostValue:EmailText.text forKey:@"email"];
-    [lRequestForm setPostValue:TelephoneText.text forKey:@"telephone"];
-    [lRequestForm startSynchronous];
-    NSData *data = [[lRequestForm responseString] dataUsingEncoding:NSUTF8StringEncoding];
-    NSNumber *lNumber = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"error"];
-    [lRequestForm responseString];
-    if ([lNumber isEqualToNumber:[NSNumber numberWithInt:1]]) {
-        UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户名重复" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
-        [lErrorAlertView show];
-    }else if ([lNumber isEqualToNumber:[NSNumber numberWithInt:0]]){
-        UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"恭喜您，注册成功!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
-        [lErrorAlertView show];
-        [JD_DataManager shareGoodsDataManager].UserRegisterState = YES;
-        //        JD_Login *lJD_Login = [[[JD_Login alloc]init]autorelease];
-        //        [self.navigationController popViewControllerAnimated:YES];
-        //        lJD_Login.UserText.text = UserText.text;
-        //        lJD_Login.PasswordText.text = PasswordText.text;
+    NSString *lBodyString = [NSString stringWithFormat:@"name=%@&password=%@&email=%@&telephone=%@",UserText.text,PasswordText.text,EmailText.text,TelephoneText.text];
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:lBodyString WithURLString:@"register.php" AndSuccess:^(NSData *data){
+        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSLog(@"%@",lDictionary);
+        NSNumber *lNumber = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"error"];
+        if ([lNumber isEqualToNumber:[NSNumber numberWithInt:0]] && [lDictionary objectForKey:@"msg"] != nil){
+            [JD_DataManager shareGoodsDataManager].UserRegisterState = YES;
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户名或密码错误" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
+            [lErrorAlertView show];
+        }
+    }AndFailed:^{
         
-        NSLog(@"%@",[lRequestForm responseString]);
-    }
+    }];
 }
-    
+
 -(void)ShowPassword:(UIButton *)sender{
     if (sender.tag == 10000) {
         [ShowPassword setImage:[UIImage imageNamed:@"checkbox_1@2x.png"] forState:UIControlStateNormal];
@@ -139,45 +129,24 @@
     }
 }
 
+- (IBAction)View:(UIControl *)sender {
+
+    if ([UserText resignFirstResponder] || [PasswordText resignFirstResponder] || [RePasswordText resignFirstResponder] ||
+        [EmailText resignFirstResponder] || [TelephoneText resignFirstResponder]) {
+        if ((UserText.text.length  < 6 || UserText.text.length > 16) ) {
+            if (UserText.text.length  < 6 || UserText.text.length > 16) {
+                UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户名请输入6至16位" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
+                [lErrorAlertView show];
+            }
+        }
+        [EmailText resignFirstResponder];
+        [TelephoneText resignFirstResponder];
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)View:(UIControl *)sender {
-    if ([UserText resignFirstResponder]) {
-        if (UserText.text.length  < 6 || UserText.text.length > 16) {
-            UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户名请输入6至16位" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
-            [lErrorAlertView show];
-        }
-//        else{
-//            NSString *lBodyString = [NSString stringWithFormat:@"name=%@",UserText.text];
-//            NSURL *lURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/shop/checkname.php",IP]];
-//            ASIHTTPRequest *lRequest = [ASIHTTPRequest requestWithURL:lURL];
-//            [lRequest setRequestMethod:@"get"];
-////            lRequest set
-//            [lRequest startSynchronous];
-//            NSError *error = [lRequest error];
-//            if (!error) {
-//                NSString *str = [lRequest responseString];
-//            }
-//        }
-    }
-    if([PasswordText resignFirstResponder]){
-        if (PasswordText.text.length  < 6 || PasswordText.text.length > 16) {
-            UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"密码请输入6至16位" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
-            [lErrorAlertView show];
-        }
-    }
-    if ([RePasswordText resignFirstResponder]){
-        if (![PasswordText.text isEqualToString:RePasswordText.text]) {
-            UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"两次密码输入不一致!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
-            [lErrorAlertView show];
-        }
-    }
-    [EmailText resignFirstResponder];
-    [TelephoneText resignFirstResponder];
 }
 
 -(void)dealloc{
@@ -190,7 +159,5 @@
     [Data release];
     [super dealloc];
 }
-
+    
 @end
-
-

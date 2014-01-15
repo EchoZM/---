@@ -7,7 +7,7 @@
 //
 
 #import "JD_ShopCar.h"
-#import  "JD_UserLogin.h"
+#import  "JD_AccountManage.h"
 #import "JD_Home_Page.h"
 @interface JD_ShopCar ()
 
@@ -105,7 +105,7 @@
 {
     [loginButton setBackgroundColor:[UIColor redColor]];
     loginButton.alpha=1;
-    JD_UserLogin *loginView=[[JD_UserLogin alloc]init];
+    JD_AccountManage *loginView=[[JD_AccountManage alloc]init];
     [self.navigationController pushViewController:loginView animated:YES];
     [loginView release];
 }

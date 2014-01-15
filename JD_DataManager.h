@@ -18,6 +18,7 @@
 @property(nonatomic,retain)NSString *orderID;//订单id
 @property(nonatomic,retain)NSString *addressID;//地址id
 @property(nonatomic,assign)BOOL UserState;//用户状态
+@property(nonatomic,assign)BOOL IsExistenceNetwork;//网络状态
 @property(nonatomic,assign)BOOL UserRegisterState;//用户注册状态
 +(JD_DataManager *)shareGoodsDataManager;
 -(UIImage *)getgoodsImage:(NSString *)imageString;//商品图片

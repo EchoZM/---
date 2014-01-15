@@ -1,8 +1,8 @@
 //
 //  MoreView.m
-//  京东商城
+//  JD_MALL
 //
-//  Created by TY on 14-1-7.
+//  Created by TY on 14-1-14.
 //  Copyright (c) 2014年 张太松. All rights reserved.
 //
 
@@ -20,20 +20,7 @@
     if (self) {
         // Custom initialization
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"JD_1.png"]]];
-        TextArray = [[NSMutableArray alloc]init];
-        ImageArray = [[NSMutableArray alloc]init];
-        NSArray *lTextFirst = [[[NSArray alloc]initWithObjects:@"设置",@"帮助",@"意见反馈", nil]autorelease];
-        NSArray *lTextSecond = [[[NSArray alloc]initWithObjects:@"检查更新",@"喜欢京东？打分鼓励一下", nil]autorelease];
-        NSArray *lTextThird = [[[NSArray alloc]initWithObjects:@"应用推荐",@"关于", nil]autorelease];
-        NSArray *lImageFirst = [[[NSArray alloc]initWithObjects:@"more_setting@2x.png",@"more_help@2x.png",@"more_feed@2x.png", nil]autorelease];
-        NSArray *lImageSecond = [[[NSArray alloc]initWithObjects:@"more_update@2x.png",@"more_like@2x.png", nil]autorelease];
-        NSArray *lImageThird = [[[NSArray alloc]initWithObjects:@"more_commend@2x.png",@"more_about@2x.png", nil]autorelease];
-        [TextArray addObject:lTextFirst];
-        [TextArray addObject:lTextSecond];
-        [TextArray addObject:lTextThird];
-        [ImageArray addObject:lImageFirst];
-        [ImageArray addObject:lImageSecond];
-        [ImageArray addObject:lImageThird];
+        
     }
     return self;
 }
@@ -41,6 +28,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    TextArray = [[NSMutableArray alloc]init];
+    ImageArray = [[NSMutableArray alloc]init];
+    NSArray *lTextFirst = [[[NSArray alloc]initWithObjects:@"设置",@"帮助",@"意见反馈", nil]autorelease];
+    NSArray *lTextSecond = [[[NSArray alloc]initWithObjects:@"检查更新",@"喜欢京东？打分鼓励一下", nil]autorelease];
+    NSArray *lTextThird = [[[NSArray alloc]initWithObjects:@"应用推荐",@"关于", nil]autorelease];
+    NSArray *lImageFirst = [[[NSArray alloc]initWithObjects:@"more_setting@2x.png",@"more_help@2x.png",@"more_feed@2x.png", nil]autorelease];
+    NSArray *lImageSecond = [[[NSArray alloc]initWithObjects:@"more_update@2x.png",@"more_like@2x.png", nil]autorelease];
+    NSArray *lImageThird = [[[NSArray alloc]initWithObjects:@"more_commend@2x.png",@"more_about@2x.png", nil]autorelease];
+    [TextArray addObject:lTextFirst];
+    [TextArray addObject:lTextSecond];
+    [TextArray addObject:lTextThird];
+    [ImageArray addObject:lImageFirst];
+    [ImageArray addObject:lImageSecond];
+    [ImageArray addObject:lImageThird];
     // Do any additional setup after loading the view from its nib.
 }
 

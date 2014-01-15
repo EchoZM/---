@@ -6,17 +6,22 @@
 //  Copyright (c) 2014年 张太松. All rights reserved.
 //
 
-#import "JD_UserLogin.h"
+#import "JD_AccountManage.h"
 #import "MoreView.h"
 #import "JD_Login.h"
-#import "JD_GoodsSingle.h"
-#import "JD_DataManager.h"
-#import "JD_Login.h"
-@interface JD_UserLogin ()
+#import "OrderFromStateQuery.h"
+#import "ObligationQuery.h"
+#import "AllOrderFrom.h"
+#import "GoodsEvaluationOrSingleOrder.h"
+#import "ReturnGoods.h"
+#import "subscribeTelServices.h"
+#import "TakeDeliveryAddressManage.h"
+#import "AccountSafety.h"
+@interface JD_AccountManage ()
 
 @end
 
-@implementation JD_UserLogin
+@implementation JD_AccountManage
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,19 +39,31 @@
     [super viewDidLoad];
     TextArray = [[NSMutableArray alloc]initWithArray:nil];
     ImageArray = [[NSMutableArray alloc]initWithArray:nil];
+    ViewArray = [[NSMutableArray alloc]initWithArray:nil];
+    OrderFromStateQuery *lOrderFromStateQuery = [[[OrderFromStateQuery alloc]init]autorelease];
+    ObligationQuery *lObligationQuery = [[[ObligationQuery alloc]init]autorelease];
+    AllOrderFrom *lAllOrderFrom = [[[AllOrderFrom alloc]init]autorelease];
+    GoodsEvaluationOrSingleOrder *lGoodsEvaluationOrSingleOrder = [[[GoodsEvaluationOrSingleOrder alloc]init]autorelease];
+    ReturnGoods *lReturnGoods = [[[ReturnGoods alloc]init]autorelease];
+    subscribeTelServices *lsubscribeTelServices = [[[subscribeTelServices alloc]init]autorelease];
+    TakeDeliveryAddressManage *lTakeDeliveryAddressManage = [[[TakeDeliveryAddressManage alloc]init]autorelease];
+    AccountSafety *lAccountSafety = [[[AccountSafety alloc]init]autorelease];
     NSArray *lTextOrder = [[[NSArray alloc]initWithObjects:@"订单状态速查",@"待付款订单",@"全部订单", nil]autorelease];
-    NSArray *lTextMessage = [[[NSArray alloc]initWithObjects:@"消息中心",@"我的关注",@"浏览纪录", nil]autorelease];
+    //    NSArray *lTextMessage = [[[NSArray alloc]initWithObjects:@"消息中心",@"我的关注",@"浏览纪录", nil]autorelease];
     NSArray *lTextCommodityRelated = [[[NSArray alloc]initWithObjects:@"商品评价/晒单",@"返修/退换货",@"预约电话服务",@"收货地址管理",@"账户安全", nil]autorelease];
     NSArray *lImageOrder = [[[NSArray alloc]initWithObjects:@"myjd_orderStat@2x.png",@"myjd_waitOrder@2x.png",@"myjd_allOrder@2x.png", nil]autorelease];
-    NSArray *lImageMessage = [[[NSArray alloc]initWithObjects:@"myjd_message@2x.png",@"myStow-icon@2x.png",@"myjd_warehistory@2x.png", nil]autorelease];
+    //    NSArray *lImageMessage = [[[NSArray alloc]initWithObjects:@"myjd_message@2x.png",@"myStow-icon@2x.png",@"myjd_warehistory@2x.png", nil]autorelease];
     NSArray *lImageCommodityRelated = [[[NSArray alloc]initWithObjects:@"myjd_share@2x.png",@"myjd_returnWare@2x.png",@"myjd_tbis@2x.png",@"myjd_adress@2x.png",@"myjd_accountSafe@2x.png", nil]autorelease];
+    NSArray *lViewOrder = [[[NSArray alloc]initWithObjects:lOrderFromStateQuery,lObligationQuery,lAllOrderFrom, nil]autorelease];
+    NSArray *lViewCommodityRelated = [[[NSArray alloc]initWithObjects:lGoodsEvaluationOrSingleOrder,lReturnGoods,lsubscribeTelServices,lTakeDeliveryAddressManage,lAccountSafety, nil]autorelease];
     [TextArray addObject:lTextOrder];
-    [TextArray addObject:lTextMessage];
+    //    [TextArray addObject:lTextMessage];
     [TextArray addObject:lTextCommodityRelated];
-    NSLog(@"%@",TextArray);
     [ImageArray addObject:lImageOrder];
-    [ImageArray addObject:lImageMessage];
+    //    [ImageArray addObject:lImageMessage];
     [ImageArray addObject:lImageCommodityRelated];
+    [ViewArray addObject:lViewOrder];
+    [ViewArray addObject:lViewCommodityRelated];
     TableView = [[[UITableView alloc]initWithFrame:CGRectMake(0, 115, 320, 262) style:UITableViewStyleGrouped]autorelease];
     TableView.backgroundView = nil;
     TableView.backgroundColor = [UIColor clearColor];
@@ -58,14 +75,19 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.tabBarController.navigationItem.leftBarButtonItems = nil;
+    [self SignOut];
+}
+
+-(void)SignOut{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [TableView reloadData];
     self.tabBarController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]initWithTitle:@"更多" style:UIBarButtonItemStyleDone target:self action:@selector(MoreButton:)]autorelease];
     self.tabBarController.navigationItem.rightBarButtonItem.tintColor= [UIColor redColor];
     self.tabBarController.navigationItem.title = @"我的京东";
     UIView *lView = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 115)]autorelease];
     [lView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"myjd_head_background.png"]]];
     if ([JD_DataManager shareGoodsDataManager].UserState == NO) {
-        
+        self.tabBarController.navigationItem.leftBarButtonItems = nil;
         UILabel *lWelcomeText = [[[UILabel alloc]initWithFrame:CGRectMake(0, 25, 320, 25)]autorelease];
         [lWelcomeText setText:@"欢迎来到京东"];
         [lWelcomeText setBackgroundColor:[UIColor clearColor]];
@@ -90,14 +112,23 @@
         [lLogin addTarget:self action:@selector(LoginButton:) forControlEvents:UIControlEventTouchUpInside];
         [lView addSubview:lLogin];
     }else{
+        UIBarButtonItem *lSignOut = [[UIBarButtonItem alloc]initWithTitle:@"退出" style:UIBarButtonItemStyleDone target:self action:@selector(SignOut:)];
+        self.tabBarController.navigationItem.leftBarButtonItems = @[lSignOut];
+        self.tabBarController.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
         [lView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"myjd_defalut_background.png"]]];
-        UIImageView *lHeardImageView = [[[UIImageView alloc]initWithFrame:CGRectMake(20, 10, 95, 95)]autorelease];
-       //        [lHeardImageView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
+        UIImageView *lHeardImageView = [[[UIImageView alloc]initWithFrame:CGRectMake(20, 10, 70, 70)]autorelease];
+        [lHeardImageView setBackgroundColor:[UIColor redColor]];
+        //        [lHeardImageView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
         [lView addSubview:lHeardImageView];
-        UILabel *lUserName = [[[UILabel alloc]initWithFrame:CGRectMake(130, 20, 160, 25)]autorelease];
+        UILabel *lUserName = [[[UILabel alloc]initWithFrame:CGRectMake(125, 20, 160, 25)]autorelease];
         [lUserName setBackgroundColor:[UIColor greenColor]];
+        [lUserName setText:[NSString stringWithFormat:@"%@",[[[JD_DataManager shareGoodsDataManager] UserManage] objectAtIndex:0]]];
+        [lUserName setTextColor:[UIColor whiteColor]];
+        lUserName.layer.shadowColor = [UIColor blackColor].CGColor;
+        lUserName.layer.shadowOffset = CGSizeMake(0, 1);
+        [lUserName setTextAlignment:NSTextAlignmentLeft];
+        [lUserName setFont:[UIFont boldSystemFontOfSize:21]];
         [lView addSubview:lUserName];
-    
     }
     [self.view addSubview:lView];
     [TableView reloadData];
@@ -107,13 +138,26 @@
     MoreView *lJD_MoreView = [[[MoreView alloc]init]autorelease];
     [self.navigationController pushViewController:lJD_MoreView animated:YES];
 }
+-(void)SignOut:(UIBarButtonItem *)sender{
+    UIAlertView *lAlertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"确认退出?" delegate:self cancelButtonTitle:@"返回" otherButtonTitles:@"取消", nil];
+    lAlertView.inputView.backgroundColor = [UIColor redColor];
+    [lAlertView show];
+    [lAlertView release];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [JD_DataManager shareGoodsDataManager].UserState = NO;
+        [[[JD_DataManager shareGoodsDataManager] UserManage] removeAllObjects];
+        [self SignOut];
+    }
+}
 
 -(void)LoginButton:(UIButton *)sender{
     JD_Login *lJD_Login = [[[JD_Login alloc]init]autorelease];
     [self.navigationController pushViewController:lJD_Login animated:YES];
 }
 
-#pragma tableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [[TextArray objectAtIndex:section] count];
 }
@@ -142,20 +186,13 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if ([JD_DataManager shareGoodsDataManager].UserState==YES) {
-        JD_GoodsSingle *lJD_GoodsSingle = [[[JD_GoodsSingle alloc]init]autorelease];
-        NSString *lString=[[TextArray objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]];
-        lJD_GoodsSingle.textString=lString;
-        lJD_GoodsSingle.saveArray=TextArray;
-        [self.tabBarController.navigationController pushViewController:lJD_GoodsSingle animated:YES];
+//    if ([JD_DataManager shareGoodsDataManager].UserState == NO) {
+//        JD_Login *lJD_Login = [[[JD_Login alloc]init]autorelease];
+//        [self.tabBarController.navigationController pushViewController:lJD_Login animated:YES];
 //    }else{
-//        JD_Login *login=[[JD_Login alloc]init];
-//        [self.tabBarController.navigationController pushViewController:login animated:YES];
-//        [login release];
+        [self.navigationController pushViewController:[[ViewArray objectAtIndex:[indexPath section]] objectAtIndex:[indexPath row]] animated:YES];
 //    }
-    
 }
-
 
 - (void)didReceiveMemoryWarning
 {

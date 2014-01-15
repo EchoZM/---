@@ -7,6 +7,7 @@
 //
 
 #import "JD_DataManager.h"
+#import "Reachability.h"
 static JD_DataManager *shareGoodsDataManager = nil;
 #define ip @"http://192.168.1.120/shop/"
 

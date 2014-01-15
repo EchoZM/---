@@ -10,7 +10,7 @@
 #import "JD_Home_Page.h"
 #import "JD_Search.h"
 #import "JD_ShopCar.h"
-#import "JD_UserLogin.h"
+#import "JD_AccountManage.h"
 @interface JD_WelcomeView ()
 
 @end
@@ -67,9 +67,9 @@
     JD_Home_Page *lHome_Page = [[[JD_Home_Page alloc]init]autorelease];
     JD_Search *lJD_Search = [[[JD_Search alloc]init]autorelease];
     JD_ShopCar *lJD_ShopCar = [[[JD_ShopCar alloc]init]autorelease];
-    JD_UserLogin *lUserLogin = [[[JD_UserLogin alloc]init]autorelease];
+    JD_AccountManage *lJD_AccountManage = [[[JD_AccountManage alloc]init]autorelease];
     UITabBarController *lTabBarController = [[[UITabBarController alloc]init]autorelease];
-    lTabBarController.viewControllers = @[lHome_Page,lJD_Search,lJD_ShopCar,lUserLogin];
+    lTabBarController.viewControllers = @[lHome_Page,lJD_Search,lJD_ShopCar,lJD_AccountManage];
     UINavigationController *lNavigation = [[[UINavigationController alloc]initWithRootViewController:lTabBarController]autorelease];
     [self presentViewController:lNavigation animated:YES completion:nil];
 }
