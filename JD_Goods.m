@@ -65,11 +65,16 @@
     goodsCount.textColor = [UIColor whiteColor];
     goodsCount.font = [UIFont systemFontOfSize:10];
     goodsCount.backgroundColor = [UIColor redColor];
-    //    NSString *bodyString = [NSString stringWithFormat:@"customerid=%@",[JD_DataManager shareGoodsDataManager].userID];
-    //    NSDictionary *cartInfo = [NSJSONSerialization JSONObjectWithData:[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:bodyString URL:@"getcart.php"] options:NSJSONReadingAllowFragments error:nil];
-    //    NSDictionary *lDic = [cartInfo objectForKey:@"msg"];
-    //    goodsCount.text = [NSString stringWithFormat:@"%@",[lDic objectForKey:@"count"]];
     [carButton addSubview:goodsCount];
+    [JD_DataManager shareGoodsDataManager].userID = @"20";
+    NSString *bodyString1 = [NSString stringWithFormat:@"customerid=%@",[JD_DataManager shareGoodsDataManager].userID];
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString1 WithURLString:@"getcart.php" AndSuccess:^(NSData *data){
+        NSDictionary *cartInfo = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSDictionary *lDic = [cartInfo objectForKey:@"msg"];
+        goodsCount.text = [NSString stringWithFormat:@"%@",[lDic objectForKey:@"count"]];
+    }AndFailed:^{
+        
+    }];
     //释放
     [backButton release];
     [carButton release];

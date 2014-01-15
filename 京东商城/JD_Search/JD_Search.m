@@ -276,6 +276,7 @@
     [self.navigationController pushViewController:lGoods animated:YES];
     [lGoods release];
 }
+
 //TableView上拉加载
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
@@ -285,27 +286,89 @@
             if (_goodsArray.count%15 == 0) {
                 NSMutableArray *tempArray = [[NSMutableArray alloc]initWithArray:_goodsArray];
                 if (lineView.tag == 10) {
-                    [self getAllGoodsPostType:@"0" Order:@"0" Owncount:[NSString stringWithFormat:@"%i",_goodsArray.count]];
+                    NSString *bodyString = [NSString stringWithFormat:@"type=0&order=0&owncount=%i",_goodsArray.count];
+                    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoods.php" AndSuccess:^(NSData *data){
+                        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                        NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
+                        NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
+                        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+                        [tempArray addObjectsFromArray:_goodsArray];
+                        [_goodsArray removeAllObjects];
+                        [_goodsArray addObjectsFromArray:tempArray];
+                        [_tableView reloadData];
+                    }AndFailed:^{
+                        
+                    }];
                 }
                 if (lineView.tag == 11) {
-                    [self getAllGoodsPostType:@"0" Order:@"1" Owncount:[NSString stringWithFormat:@"%i",_goodsArray.count]];
+                    NSString *bodyString = [NSString stringWithFormat:@"type=0&order=1&owncount=%i",_goodsArray.count];
+                    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoods.php" AndSuccess:^(NSData *data){
+                        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                        NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
+                        NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
+                        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+                        [tempArray addObjectsFromArray:_goodsArray];
+                        [_goodsArray removeAllObjects];
+                        [_goodsArray addObjectsFromArray:tempArray];
+                        [_tableView reloadData];
+                    }AndFailed:^{
+                        
+                    }];
                 }
                 if (lineView.tag == 20) {
-                    [self getAllGoodsPostType:@"1" Order:@"0" Owncount:[NSString stringWithFormat:@"%i",_goodsArray.count]];
+                    NSString *bodyString = [NSString stringWithFormat:@"type=1&order=0&owncount=%i",_goodsArray.count];
+                    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoods.php" AndSuccess:^(NSData *data){
+                        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                        NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
+                        NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
+                        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+                        [tempArray addObjectsFromArray:_goodsArray];
+                        [_goodsArray removeAllObjects];
+                        [_goodsArray addObjectsFromArray:tempArray];
+                        [_tableView reloadData];
+                    }AndFailed:^{
+                        
+                    }];
                 }
                 if (lineView.tag == 21) {
-                    [self getAllGoodsPostType:@"1" Order:@"1" Owncount:[NSString stringWithFormat:@"%i",_goodsArray.count]];
+                    NSString *bodyString = [NSString stringWithFormat:@"type=1&order=1&owncount=%i",_goodsArray.count];
+                    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoods.php" AndSuccess:^(NSData *data){
+                        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                        NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
+                        NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
+                        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+                        [tempArray addObjectsFromArray:_goodsArray];
+                        [_goodsArray removeAllObjects];
+                        [_goodsArray addObjectsFromArray:tempArray];
+                        [_tableView reloadData];
+                    }AndFailed:^{
+                        
+                    }];
                 }
-                [tempArray addObjectsFromArray:_goodsArray];
-                [_goodsArray removeAllObjects];
-                [_goodsArray addObjectsFromArray:tempArray];
-                [_tableView reloadData];
             }else{
-                NSLog(@"上拉加载");
+                NSLog(@"加载");
             }
         }
     }
 }
+
+//-(void)reloaDataTableViewWithType:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount
+//{
+//    NSString *bodyString = [NSString stringWithFormat:@"type=%@&order=%@&owncount=%@",type,order,owncount];
+//    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoods.php" AndSuccess:^(NSData *data){
+//        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+//        NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
+//        NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
+//        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+//        [tempArray addObjectsFromArray:_goodsArray];
+//        [_goodsArray removeAllObjects];
+//        [_goodsArray addObjectsFromArray:tempArray];
+//        [_tableView reloadData];
+//    }AndFailed:^{
+//        
+//    }];
+//}
+
 #pragma mark - ButtonEvent
 -(void)priceUpButton:(UIButton *)sender//按商品价格升序
 {
