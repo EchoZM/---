@@ -71,7 +71,6 @@
 		1099C97E187F8A90005A2B81 /* radiobox_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 1099C979187F8A90005A2B81 /* radiobox_0.png */; };
 		1099C97F187F8A90005A2B81 /* radiobox_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1099C97A187F8A90005A2B81 /* radiobox_0@2x.png */; };
 		1099C980187F8A90005A2B81 /* Register.png in Resources */ = {isa = PBXBuildFile; fileRef = 1099C97B187F8A90005A2B81 /* Register.png */; };
-		1099C98B187FB2AC005A2B81 /* JD_UserLogin_UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1099C98A187FB2AC005A2B81 /* JD_UserLogin_UserInfo.m */; };
 		109B9A2C188630B8008D1201 /* JD_AccountManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 109B99FB188630B8008D1201 /* JD_AccountManage.m */; };
 		109B9A2D188630B8008D1201 /* JD_AccountManage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109B99FC188630B8008D1201 /* JD_AccountManage.xib */; };
 		109B9A2E188630B8008D1201 /* AccountSafety.m in Sources */ = {isa = PBXBuildFile; fileRef = 109B99FF188630B8008D1201 /* AccountSafety.m */; };
@@ -224,8 +223,6 @@
 		1099C979187F8A90005A2B81 /* radiobox_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radiobox_0.png; sourceTree = "<group>"; };
 		1099C97A187F8A90005A2B81 /* radiobox_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radiobox_0@2x.png"; sourceTree = "<group>"; };
 		1099C97B187F8A90005A2B81 /* Register.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Register.png; sourceTree = "<group>"; };
-		1099C989187FB2AC005A2B81 /* JD_UserLogin_UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_UserLogin_UserInfo.h; sourceTree = SOURCE_ROOT; };
-		1099C98A187FB2AC005A2B81 /* JD_UserLogin_UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_UserLogin_UserInfo.m; sourceTree = SOURCE_ROOT; };
 		109B99FA188630B8008D1201 /* JD_AccountManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_AccountManage.h; sourceTree = "<group>"; };
 		109B99FB188630B8008D1201 /* JD_AccountManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_AccountManage.m; sourceTree = "<group>"; };
 		109B99FC188630B8008D1201 /* JD_AccountManage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_AccountManage.xib; sourceTree = "<group>"; };
@@ -378,8 +375,6 @@
 			children = (
 				100A99DA187CE81B006487D8 /* JD_DataManager.h */,
 				100A99DB187CE81B006487D8 /* JD_DataManager.m */,
-				1099C989187FB2AC005A2B81 /* JD_UserLogin_UserInfo.h */,
-				1099C98A187FB2AC005A2B81 /* JD_UserLogin_UserInfo.m */,
 				109B9A50188681CC008D1201 /* NetWorkPrompt.h */,
 				109B9A51188681CC008D1201 /* NetWorkPrompt.m */,
 			);
@@ -914,7 +909,6 @@
 				1065D8DB187E30F40068D9B7 /* ASINetworkQueue.m in Sources */,
 				1065D8DC187E30F40068D9B7 /* ASIWebPageRequest.m in Sources */,
 				1065D8DD187E30F40068D9B7 /* Reachability.m in Sources */,
-				1099C98B187FB2AC005A2B81 /* JD_UserLogin_UserInfo.m in Sources */,
 				109B9A2C188630B8008D1201 /* JD_AccountManage.m in Sources */,
 				109B9A2E188630B8008D1201 /* AccountSafety.m in Sources */,
 				109B9A30188630B8008D1201 /* AllOrderFrom.m in Sources */,
