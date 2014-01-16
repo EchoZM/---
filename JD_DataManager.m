@@ -8,7 +8,7 @@
 
 #import "JD_DataManager.h"
 static JD_DataManager *shareGoodsDataManager = nil;
-#define ip @"http://192.168.1.120/shop/"
+#define ip @"http://192.168.1.119/shop/"
 
 @implementation JD_DataManager
 +(JD_DataManager *)shareGoodsDataManager
@@ -49,12 +49,12 @@ static JD_DataManager *shareGoodsDataManager = nil;
     return lRequest;
 }
 
--(void)downloadDataWithBodyString:(NSString *)bodystring WithURLString:(NSString *)urlstring AndSuccess:(void (^)(NSData *))success AndFailed:(void (^)(void))failed
+-(void)downloadDataWithHTTPMethod:(NSString *)method WithBodyString:(NSString *)bodystring WithURLString:(NSString *)urlstring AndSuccess:(void (^)(NSData *))success AndFailed:(void (^)(void))failed
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
         NSURL *lURL = [NSURL URLWithString:[ip stringByAppendingString:urlstring]];
         NSMutableURLRequest *lRequest = [NSMutableURLRequest requestWithURL:lURL];
-        [lRequest setHTTPMethod:@"post"];
+        [lRequest setHTTPMethod:method];
         [lRequest setHTTPBody:[bodystring dataUsingEncoding:NSUTF8StringEncoding]];
         NSData *lData = [NSURLConnection sendSynchronousRequest:lRequest returningResponse:nil error:nil];
         if (lData == nil) {

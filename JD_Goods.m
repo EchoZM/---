@@ -69,7 +69,7 @@
     [carButton addSubview:goodsCount];
     [JD_DataManager shareGoodsDataManager].userID = @"20";
     NSString *bodyString1 = [NSString stringWithFormat:@"customerid=%@",[JD_DataManager shareGoodsDataManager].userID];
-    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString1 WithURLString:@"getcart.php" AndSuccess:^(NSData *data){
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString1 WithURLString:@"getcart.php" AndSuccess:^(NSData *data){
         NSDictionary *cartInfo = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *lDic = [cartInfo objectForKey:@"msg"];
         goodsCount.text = [NSString stringWithFormat:@"%@",[lDic objectForKey:@"count"]];
@@ -83,7 +83,7 @@
     [lTap2 release];
     //请求数据
     NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@",[JD_DataManager shareGoodsDataManager].goodsID];
-    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoodsinfo.php" AndSuccess:^(NSData *data){
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"getgoodsinfo.php" AndSuccess:^(NSData *data){
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         _goodsInfo = [[lDictionary objectForKey:@"msg"]retain];
         goodsNumber = 1;
@@ -367,7 +367,7 @@
     if ([JD_DataManager shareGoodsDataManager].UserState) {
         [JD_DataManager shareGoodsDataManager].userID = @"20";
         NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@&customerid=%@&goodscount=%i",[JD_DataManager shareGoodsDataManager].goodsID,[JD_DataManager shareGoodsDataManager].userID,goodsNumber];
-        [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"addcart.php" AndSuccess:^(NSData *data){
+        [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"addcart.php" AndSuccess:^(NSData *data){
             NSDictionary *goodsInfo = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
             NSString *errorString = [NSString stringWithFormat:@"%@",[goodsInfo objectForKey:@"error"]];
             if ([errorString isEqualToString:@"0"]) {
@@ -422,7 +422,7 @@
 - (void)addShopFinished:(CALayer*)transitionLayer{
     [transitionLayer removeFromSuperlayer];
     NSString *bodyString = [NSString stringWithFormat:@"customerid=%@",[JD_DataManager shareGoodsDataManager].userID];
-    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getcart.php" AndSuccess:^(NSData *data){
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"getcart.php" AndSuccess:^(NSData *data){
         NSDictionary *cartInfo = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *lDic = [cartInfo objectForKey:@"msg"];
         goodsCount.text = [NSString stringWithFormat:@"%@",[lDic objectForKey:@"count"]];
@@ -434,7 +434,7 @@
 -(void)getNewAllPrice
 {
     NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@",[JD_DataManager shareGoodsDataManager].goodsID];
-    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoodsinfo.php" AndSuccess:^(NSData *data){
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"getgoodsinfo.php" AndSuccess:^(NSData *data){
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         _goodsInfo = [[lDictionary objectForKey:@"msg"]retain];
         goodsPrice = [NSString stringWithFormat:@"%@",[_goodsInfo objectForKey:@"price"]];

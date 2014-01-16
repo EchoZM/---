@@ -30,6 +30,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    _goodsArray = [[NSMutableArray alloc]init];
     //请求数据
     [self getAllGoodsPostType:@"0" Order:@"0" Owncount:@"0"];
     //TableView
@@ -50,6 +51,7 @@
     priceField.textAlignment = NSTextAlignmentCenter;
     priceField.userInteractionEnabled = NO;
     [self.view addSubview:priceField];
+    [priceField release];
     UITextField *salesField = [[UITextField alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+0.5, 0, self.view.frame.size.width/2-0.5, 30)];
     salesField.backgroundColor = [UIColor whiteColor];
     salesField.text = @"销量";
@@ -58,6 +60,7 @@
     salesField.textAlignment = NSTextAlignmentCenter;
     salesField.userInteractionEnabled = NO;
     [self.view addSubview:salesField];
+    [salesField release];
     UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(5, 30, self.view.frame.size.width/2-10, 1)];
     lineView1.backgroundColor = [UIColor grayColor];
     UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+5, 30, self.view.frame.size.width/2-10, 1)];
@@ -65,8 +68,11 @@
     UIView *lineView3 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-0.5, 5, 1, 50)];
     lineView3.backgroundColor = [UIColor grayColor];
     [self.view addSubview:lineView1];
+    [lineView1 release];
     [self.view addSubview:lineView2];
+    [lineView2 release];
     [self.view addSubview:lineView3];
+    [lineView3 release];
     UILabel *priceUplabel = [[UILabel alloc]initWithFrame:CGRectMake(0.5, 31, 79.5, 29.5)];
     priceUplabel.backgroundColor = [UIColor whiteColor];
     priceUplabel.text = @"升序";
@@ -74,6 +80,7 @@
     priceUplabel.font = [UIFont systemFontOfSize:14];
     priceUplabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:priceUplabel];
+    [priceUplabel release];
     UILabel *priceDownlabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 31, 79.5, 29.5)];
     priceDownlabel.backgroundColor = [UIColor whiteColor];
     priceDownlabel.text = @"降序";
@@ -81,6 +88,7 @@
     priceDownlabel.font = [UIFont systemFontOfSize:14];
     priceDownlabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:priceDownlabel];
+    [priceDownlabel release];
     UILabel *salesUplabel = [[UILabel alloc]initWithFrame:CGRectMake(161, 31, 79.5, 29.5)];
     salesUplabel.backgroundColor = [UIColor whiteColor];
     salesUplabel.text = @"升序";
@@ -88,6 +96,7 @@
     salesUplabel.font = [UIFont systemFontOfSize:14];
     salesUplabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:salesUplabel];
+    [salesUplabel release];
     UILabel *salesDownlabel = [[UILabel alloc]initWithFrame:CGRectMake(240.5, 31, 79.5, 29.5)];
     salesDownlabel.backgroundColor = [UIColor whiteColor];
     salesDownlabel.text = @"降序";
@@ -95,6 +104,7 @@
     salesDownlabel.font = [UIFont systemFontOfSize:14];
     salesDownlabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:salesDownlabel];
+    [salesDownlabel release];
     UIButton *priceUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
     priceUpButton.frame = CGRectMake(0.5, 31, 79.5, 29.5);
     priceUpButton.backgroundColor = [UIColor clearColor];
@@ -121,15 +131,15 @@
     lineView.tag = 10;
     [self.view addSubview:lineView];
     
-    [priceField release];
-    [salesField release];
-    [lineView1 release];
-    [lineView2 release];
-    [lineView3 release];
-    [priceUplabel release];
-    [priceDownlabel release];
-    [salesUplabel release];
-    [salesDownlabel release];
+//    [priceField release];
+//    [salesField release];
+//    [lineView1 release];
+//    [lineView2 release];
+//    [lineView3 release];
+//    [priceUplabel release];
+//    [priceDownlabel release];
+//    [salesUplabel release];
+//    [salesDownlabel release];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -178,11 +188,13 @@
 -(void)getAllGoodsPostType:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount
 {
     NSString *bodyString = [NSString stringWithFormat:@"type=%@&order=%@&owncount=%@",type,order,owncount];
-    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoods.php" AndSuccess:^(NSData *data){
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"getgoods.php" AndSuccess:^(NSData *data){
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
         NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
-        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+//        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+        [_goodsArray removeAllObjects];
+        [_goodsArray addObjectsFromArray:infoArray];
         [_tableView reloadData];
     }AndFailed:^{
         
@@ -192,11 +204,13 @@
 -(void)getSearchGoodsPostSearch:(NSString *)search Type:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount
 {
     NSString *bodyString = [NSString stringWithFormat:@"search=%@&type=%@&order=%@&owncount=%@",search,type,order,owncount];
-    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"searchgoods.php" AndSuccess:^(NSData *data){
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"searchgoods.php" AndSuccess:^(NSData *data){
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
         NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
-        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+//        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+        [_goodsArray removeAllObjects];
+        [_goodsArray addObjectsFromArray:infoArray];
         [_tableView reloadData];
     }AndFailed:^{
         
@@ -307,11 +321,13 @@
 -(void)reloaDataTableViewWithType:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount AndTempArray:(NSMutableArray *)tempArray
 {
     NSString *bodyString = [NSString stringWithFormat:@"type=%@&order=%@&owncount=%@",type,order,owncount];
-    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoods.php" AndSuccess:^(NSData *data){
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"getgoods.php" AndSuccess:^(NSData *data){
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
         NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
-        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+//        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+        [_goodsArray removeAllObjects];
+        [_goodsArray addObjectsFromArray:infoArray];
         [tempArray addObjectsFromArray:_goodsArray];
         [_goodsArray removeAllObjects];
         [_goodsArray addObjectsFromArray:tempArray];

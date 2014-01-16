@@ -50,7 +50,7 @@
     self.navigationItem.title = @"商品评价";
     //请求数据
     NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@",[JD_DataManager shareGoodsDataManager].goodsID];
-    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getgoodsinfo.php" AndSuccess:^(NSData *data){
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"getgoodsinfo.php" AndSuccess:^(NSData *data){
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         _goodsInfo = [[lDictionary objectForKey:@"msg"]retain];
         [self setTitleView];
@@ -106,7 +106,7 @@
     [lineView release];
     //请求数据
     NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@&owncount=0",[JD_DataManager shareGoodsDataManager].goodsID];
-    [[JD_DataManager shareGoodsDataManager] downloadDataWithBodyString:bodyString WithURLString:@"getreview.php" AndSuccess:^(NSData *data){
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"getreview.php" AndSuccess:^(NSData *data){
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         _reviewInfo = [[lDictionary objectForKey:@"msg"]retain];
         [self setGoodsInfo];
