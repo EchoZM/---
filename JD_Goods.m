@@ -85,7 +85,7 @@
     NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@",[JD_DataManager shareGoodsDataManager].goodsID];
     [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"getgoodsinfo.php" AndSuccess:^(NSData *data){
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        _goodsInfo = [[lDictionary objectForKey:@"msg"]retain];
+        _goodsInfo = [[NSDictionary alloc]initWithDictionary:[lDictionary objectForKey:@"msg"]];
         goodsNumber = 1;
         goodsPrice = [NSString stringWithFormat:@"%@",[_goodsInfo objectForKey:@"price"]];
         [self setGoodsInfo];
@@ -300,32 +300,32 @@
     alphaView.alpha = 0.5;
     [self.view addSubview:alphaView];
     [alphaView release];
-    UIView *numberView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-200, 150, 100, 80)];
+    UIView *numberView = [[UIView alloc]initWithFrame:CGRectMake(10, 100, 300, 120)];
     numberView.tag = 92;
     numberView.backgroundColor = [UIColor whiteColor];
     numberView.layer.cornerRadius = 8;
     [self.view addSubview:numberView];
     [numberView release];
     UIButton *subtractButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    subtractButton.frame = CGRectMake(5, 15, 20, 20);
+    subtractButton.frame = CGRectMake(105, 35, 20, 20);
     subtractButton.layer.cornerRadius = 10;
     [subtractButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
     [subtractButton addTarget:self action:@selector(subtractGoods:) forControlEvents:UIControlEventTouchUpInside];
     [numberView addSubview:subtractButton];
     UIButton *plusButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    plusButton.frame = CGRectMake(75, 15, 20, 20);
+    plusButton.frame = CGRectMake(175, 35, 20, 20);
     plusButton.layer.cornerRadius = 10;
     [plusButton setImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
     [plusButton addTarget:self action:@selector(plusGoods:) forControlEvents:UIControlEventTouchUpInside];
     [numberView addSubview:plusButton];
-    numLabel = [[UITextField alloc]initWithFrame:CGRectMake(25, 15, 50, 20)];
+    numLabel = [[UITextField alloc]initWithFrame:CGRectMake(125, 35, 50, 20)];
     [numLabel setBorderStyle:UITextBorderStyleLine];
     numLabel.textAlignment = NSTextAlignmentCenter;
     numLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
     numLabel.keyboardType = UIKeyboardTypeNumberPad;
     [numberView addSubview:numLabel];
     UIButton *finishButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    finishButton.frame = CGRectMake(25, 45, 50, 20);
+    finishButton.frame = CGRectMake(125, 65, 50, 20);
     finishButton.layer.cornerRadius = 8;
     finishButton.backgroundColor = [UIColor brownColor];
     [finishButton setTitle:@"完成" forState:UIControlStateNormal];
@@ -340,7 +340,11 @@
     UIView *numberView = (UIView *)[self.view viewWithTag:92];
     [alphaView removeFromSuperview];
     [numberView removeFromSuperview];
-    goodsNumber = [numLabel.text intValue];
+    if ([numLabel.text intValue] >= 1) {
+        goodsNumber = [numLabel.text intValue];
+    }else{
+        goodsNumber = 1;
+    }
     numberLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
     [self getNewAllPrice];
     [numberLabel resignFirstResponder];
@@ -455,13 +459,13 @@
 
 -(void)subtractGoods:(UIButton *)sender
 {
-    if (goodsNumber == 1) {
-        goodsNumber = 1;
+    if (goodsNumber > 1) {
+        goodsNumber--;
         numberLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
         numLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
         [self getNewAllPrice];
     }else{
-        goodsNumber--;
+        goodsNumber = 1;
         numberLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
         numLabel.text = [NSString stringWithFormat:@"%i",goodsNumber];
         [self getNewAllPrice];
