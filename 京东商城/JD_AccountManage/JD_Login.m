@@ -137,13 +137,16 @@
     }AndFailed:^{
         NetWorkPrompt *lNetWorkPrompt = [[[NetWorkPrompt alloc]init]autorelease];
         [self.view addSubview:lNetWorkPrompt];
-        NSLog(@"%f",self.view.frame.size.height);
     }];
 }
 
 - (IBAction)View:(UIControl *)sender {
-    [_UserText resignFirstResponder];
-    [_PasswordText resignFirstResponder];
+    if ([_UserText resignFirstResponder]) {
+        
+    }
+    if ([_PasswordText resignFirstResponder]){
+    
+    }
 }
 
 
