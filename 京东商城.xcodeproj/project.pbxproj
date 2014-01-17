@@ -89,6 +89,8 @@
 		109C82B8187BCBDA000A9975 /* MoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109C82B6187BCBDA000A9975 /* MoreView.xib */; };
 		109C82CD187BF7A5000A9975 /* JD_Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 109C82CB187BF7A4000A9975 /* JD_Register.m */; };
 		109C82CE187BF7A5000A9975 /* JD_Register.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109C82CC187BF7A4000A9975 /* JD_Register.xib */; };
+		10DF34621888BE5100E7712F /* JD_Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DF34601888BE5100E7712F /* JD_Review.m */; };
+		10DF34631888BE5100E7712F /* JD_Review.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10DF34611888BE5100E7712F /* JD_Review.xib */; };
 		10EF7F49187A987700762C73 /* Navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EF7F48187A987700762C73 /* Navigation.png */; };
 		10EF7F4B187A9A9700762C73 /* companyLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EF7F4A187A9A9700762C73 /* companyLogo.png */; };
 		10EFCCF718765628009F4AB4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EFCCF618765628009F4AB4 /* UIKit.framework */; };
@@ -231,6 +233,9 @@
 		109C82CA187BF7A4000A9975 /* JD_Register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Register.h; sourceTree = "<group>"; };
 		109C82CB187BF7A4000A9975 /* JD_Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Register.m; sourceTree = "<group>"; };
 		109C82CC187BF7A4000A9975 /* JD_Register.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Register.xib; sourceTree = "<group>"; };
+		10DF345F1888BE5100E7712F /* JD_Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Review.h; sourceTree = "<group>"; };
+		10DF34601888BE5100E7712F /* JD_Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Review.m; sourceTree = "<group>"; };
+		10DF34611888BE5100E7712F /* JD_Review.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Review.xib; sourceTree = "<group>"; };
 		10EF7F48187A987700762C73 /* Navigation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navigation.png; sourceTree = "<group>"; };
 		10EF7F4A187A9A9700762C73 /* companyLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = companyLogo.png; sourceTree = "<group>"; };
 		10EFCCF318765628009F4AB4 /* 京东商城.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "京东商城.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -468,6 +473,16 @@
 			path = ../../../../Desktop/JD__Comm_Data;
 			sourceTree = "<group>";
 		};
+		10DF345B1888BDF900E7712F /* JD_Review */ = {
+			isa = PBXGroup;
+			children = (
+				10DF345F1888BE5100E7712F /* JD_Review.h */,
+				10DF34601888BE5100E7712F /* JD_Review.m */,
+				10DF34611888BE5100E7712F /* JD_Review.xib */,
+			);
+			name = JD_Review;
+			sourceTree = "<group>";
+		};
 		10EF7F47187A986D00762C73 /* JD_NavigationButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +536,7 @@
 				10EFCD8918769596009F4AB4 /* JD_ShopCar */,
 				10EFCD1F187656C1009F4AB4 /* JD_UserLogin */,
 				100A99DD187CE8F4006487D8 /* JD_Goods */,
+				10DF345B1888BDF900E7712F /* JD_Review */,
 				10EFCD3D18765A63009F4AB4 /* JD_ICon_Images */,
 				10EFCCFD18765628009F4AB4 /* Supporting Files */,
 			);
@@ -790,6 +806,7 @@
 				1017DA031886246E00AA9CB1 /* star_light@2x.png in Resources */,
 				1017DA041886246E00AA9CB1 /* star_dark.png in Resources */,
 				1017DA051886246E00AA9CB1 /* star_dark@2x.png in Resources */,
+				10DF34631888BE5100E7712F /* JD_Review.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,6 +845,7 @@
 				1009C3171883E72C00DF4FD0 /* JD_GoodsSingle.m in Sources */,
 				1017DA08188624AF00AA9CB1 /* StarView.m in Sources */,
 				1017DA0B188624C000AA9CB1 /* CustomView.m in Sources */,
+				10DF34621888BE5100E7712F /* JD_Review.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
