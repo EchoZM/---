@@ -46,7 +46,7 @@
     UITextField *priceField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/2-0.5, 30)];
     priceField.backgroundColor = [UIColor whiteColor];
     priceField.text = @"价格";
-    priceField.textColor = [UIColor grayColor];
+    priceField.textColor = [UIColor blackColor];
     priceField.font = [UIFont systemFontOfSize:20];
     priceField.textAlignment = NSTextAlignmentCenter;
     priceField.userInteractionEnabled = NO;
@@ -55,18 +55,18 @@
     UITextField *salesField = [[UITextField alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+0.5, 0, self.view.frame.size.width/2-0.5, 30)];
     salesField.backgroundColor = [UIColor whiteColor];
     salesField.text = @"销量";
-    salesField.textColor = [UIColor grayColor];
+    salesField.textColor = [UIColor blackColor];
     salesField.font = [UIFont systemFontOfSize:20];
     salesField.textAlignment = NSTextAlignmentCenter;
     salesField.userInteractionEnabled = NO;
     [self.view addSubview:salesField];
     [salesField release];
     UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(5, 30, self.view.frame.size.width/2-10, 1)];
-    lineView1.backgroundColor = [UIColor grayColor];
+    lineView1.backgroundColor = [UIColor blackColor];
     UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+5, 30, self.view.frame.size.width/2-10, 1)];
-    lineView2.backgroundColor = [UIColor grayColor];
+    lineView2.backgroundColor = [UIColor blackColor];
     UIView *lineView3 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-0.5, 5, 1, 50)];
-    lineView3.backgroundColor = [UIColor grayColor];
+    lineView3.backgroundColor = [UIColor blackColor];
     [self.view addSubview:lineView1];
     [lineView1 release];
     [self.view addSubview:lineView2];
@@ -76,7 +76,7 @@
     UILabel *priceUplabel = [[UILabel alloc]initWithFrame:CGRectMake(0.5, 31, 79.5, 29.5)];
     priceUplabel.backgroundColor = [UIColor whiteColor];
     priceUplabel.text = @"升序";
-    priceUplabel.textColor = [UIColor grayColor];
+    priceUplabel.textColor = [UIColor blackColor];
     priceUplabel.font = [UIFont systemFontOfSize:14];
     priceUplabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:priceUplabel];
@@ -84,7 +84,7 @@
     UILabel *priceDownlabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 31, 79.5, 29.5)];
     priceDownlabel.backgroundColor = [UIColor whiteColor];
     priceDownlabel.text = @"降序";
-    priceDownlabel.textColor = [UIColor grayColor];
+    priceDownlabel.textColor = [UIColor blackColor];
     priceDownlabel.font = [UIFont systemFontOfSize:14];
     priceDownlabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:priceDownlabel];
@@ -92,7 +92,7 @@
     UILabel *salesUplabel = [[UILabel alloc]initWithFrame:CGRectMake(161, 31, 79.5, 29.5)];
     salesUplabel.backgroundColor = [UIColor whiteColor];
     salesUplabel.text = @"升序";
-    salesUplabel.textColor = [UIColor grayColor];
+    salesUplabel.textColor = [UIColor blackColor];
     salesUplabel.font = [UIFont systemFontOfSize:14];
     salesUplabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:salesUplabel];
@@ -100,7 +100,7 @@
     UILabel *salesDownlabel = [[UILabel alloc]initWithFrame:CGRectMake(240.5, 31, 79.5, 29.5)];
     salesDownlabel.backgroundColor = [UIColor whiteColor];
     salesDownlabel.text = @"降序";
-    salesDownlabel.textColor = [UIColor grayColor];
+    salesDownlabel.textColor = [UIColor blackColor];
     salesDownlabel.font = [UIFont systemFontOfSize:14];
     salesDownlabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:salesDownlabel];
@@ -130,16 +130,6 @@
     lineView.backgroundColor = [UIColor redColor];
     lineView.tag = 10;
     [self.view addSubview:lineView];
-    
-//    [priceField release];
-//    [salesField release];
-//    [lineView1 release];
-//    [lineView2 release];
-//    [lineView3 release];
-//    [priceUplabel release];
-//    [priceDownlabel release];
-//    [salesUplabel release];
-//    [salesDownlabel release];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -192,7 +182,6 @@
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
         NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
-//        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
         [_goodsArray removeAllObjects];
         [_goodsArray addObjectsFromArray:infoArray];
         [_tableView reloadData];
@@ -208,7 +197,6 @@
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
         NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
-//        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
         [_goodsArray removeAllObjects];
         [_goodsArray addObjectsFromArray:infoArray];
         [_tableView reloadData];
@@ -325,7 +313,6 @@
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
         NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
-//        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
         [_goodsArray removeAllObjects];
         [_goodsArray addObjectsFromArray:infoArray];
         [tempArray addObjectsFromArray:_goodsArray];
