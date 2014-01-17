@@ -1,8 +1,8 @@
 //
 //  JD_Register.h
-//  京东商城
+//  JD_MALL
 //
-//  Created by TY on 14-1-7.
+//  Created by TY on 14-1-14.
 //  Copyright (c) 2014年 张太松. All rights reserved.
 //
 
@@ -15,7 +15,7 @@
     UITextField *EmailText;
     UITextField *TelephoneText;
     UIButton *ShowPassword;
-    NSMutableData *Data;
+//    NSMutableData *Data;
 }
 - (IBAction)View:(UIControl *)sender;
 

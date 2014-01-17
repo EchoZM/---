@@ -15,4 +15,5 @@
     #import "JD_DataManager.h"
     #import "ASIHTTPRequest.h"
     #import "ASIFormDataRequest.h"
+    #import "JD_NetworkPrompt.h"
 #endif

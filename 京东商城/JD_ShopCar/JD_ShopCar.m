@@ -7,7 +7,7 @@
 //
 
 #import "JD_ShopCar.h"
-#import  "JD_UserLogin.h"
+#import  "JD_AccountManage.h"
 #import "JD_Home_Page.h"
 @interface JD_ShopCar ()
 
@@ -105,9 +105,9 @@
 {
     [loginButton setBackgroundColor:[UIColor redColor]];
     loginButton.alpha=1;
-    JD_UserLogin *loginView=[[JD_UserLogin alloc]init];
-    [self.navigationController pushViewController:loginView animated:YES];
-    [loginView release];
+    JD_AccountManage *lJD_AccountManage=[[JD_AccountManage alloc]init];
+    [self.navigationController pushViewController:lJD_AccountManage animated:YES];
+    [lJD_AccountManage release];
 }
 
 //删除购物车
