@@ -57,6 +57,16 @@
     NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@&customerid=%@&star=%@&detail=%@",[JD_DataManager shareGoodsDataManager].goodsID,[JD_DataManager shareGoodsDataManager].userID,_star,_detail];
     [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"addreview.php" AndSuccess:^(NSData *data){
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSString *lString = [lDictionary objectForKey:@"error"];
+        if ([lString isEqualToString:@"0"]) {
+            UIAlertView *lAlertview = [[UIAlertView alloc]initWithTitle:@"提醒" message:@"添加成功" delegate:self cancelButtonTitle:@"返回" otherButtonTitles: nil];
+            [lAlertview show];
+            [lAlertview release];
+        }else{
+            UIAlertView *lAlertview = [[UIAlertView alloc]initWithTitle:@"提醒" message:@"添加失败" delegate:self cancelButtonTitle:@"返回" otherButtonTitles: nil];
+            [lAlertview show];
+            [lAlertview release];
+        }
     }AndFailed:^(){
         
     }];

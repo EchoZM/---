@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _goodsArray = [[NSMutableArray alloc]init];
+//    _goodsArray = [[NSMutableArray alloc]init];
     //请求数据
     [self getAllGoodsPostType:@"0" Order:@"0" Owncount:@"0"];
     //TableView
@@ -182,8 +182,9 @@
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
         NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
-        [_goodsArray removeAllObjects];
-        [_goodsArray addObjectsFromArray:infoArray];
+        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+//        [_goodsArray removeAllObjects];
+//        [_goodsArray addObjectsFromArray:infoArray];
         [_tableView reloadData];
     }AndFailed:^{
         
@@ -197,8 +198,9 @@
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
         NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
-        [_goodsArray removeAllObjects];
-        [_goodsArray addObjectsFromArray:infoArray];
+        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+//        [_goodsArray removeAllObjects];
+//        [_goodsArray addObjectsFromArray:infoArray];
         [_tableView reloadData];
     }AndFailed:^{
         
@@ -313,8 +315,9 @@
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
         NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
-        [_goodsArray removeAllObjects];
-        [_goodsArray addObjectsFromArray:infoArray];
+        _goodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
+//        [_goodsArray removeAllObjects];
+//        [_goodsArray addObjectsFromArray:infoArray];
         [tempArray addObjectsFromArray:_goodsArray];
         [_goodsArray removeAllObjects];
         [_goodsArray addObjectsFromArray:tempArray];
