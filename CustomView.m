@@ -44,6 +44,14 @@
     }
     return value;
 }
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    float width = self.frame.size.width;
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:self];
+    float value = location.x/width;
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"post" object:[NSNumber numberWithFloat:value*10/2] userInfo:nil];
+}
 -(void)dealloc{
     [_array release];
     [super dealloc];

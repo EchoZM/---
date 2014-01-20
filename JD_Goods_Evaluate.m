@@ -148,15 +148,15 @@
         [lCell addSubview:lImageView];
         [lImageView release];
         CustomView *lCustomView = [[CustomView alloc]initWithHeight:15 AndStar:0];
-        lCustomView.frame = CGRectMake(0, 0, 75, 15);
+        lCustomView.frame = CGRectMake(0, 0, 85, 15);
         lCustomView.tag = 11;
         [lImageView addSubview:lCustomView];
         [lCustomView release];
-        UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(120, 0, 50, 15)];
+        UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, 0, 75, 15)];
         nameLabel.tag = 12;
         nameLabel.backgroundColor = [UIColor whiteColor];
         nameLabel.textColor = [UIColor blackColor];
-        nameLabel.textAlignment = NSTextAlignmentLeft;
+        nameLabel.textAlignment = NSTextAlignmentRight;
         nameLabel.font = [UIFont systemFontOfSize:14];
         [lCell addSubview:nameLabel];
         [nameLabel release];
@@ -173,7 +173,7 @@
         detailLabel.backgroundColor = [UIColor whiteColor];
         detailLabel.textColor = [UIColor blackColor];
         detailLabel.textAlignment = NSTextAlignmentLeft;
-        detailLabel.font = [UIFont systemFontOfSize:20];
+        detailLabel.font = [UIFont systemFontOfSize:16];
         detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
         detailLabel.numberOfLines = 2;
         [lCell addSubview:detailLabel];

@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomView.h"
 
 @interface JD_Review : UIViewController
 {
     NSString *_star;
-    NSString *_detail;
+    UITextField *_detailText;
+    CustomView *_customView;
+    UILabel *_persentLabel;
 }
+- (IBAction)screenExit:(UIControl *)sender;
 
 @end
