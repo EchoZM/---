@@ -253,6 +253,7 @@
     UITableViewCell *lCell=[tableView dequeueReusableCellWithIdentifier:cellID];
     if (lCell==nil) {
         lCell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+        lCell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     if (tableView.tag==99) {
         NSInteger row=[indexPath row];

@@ -52,6 +52,8 @@
     UITapGestureRecognizer *lTap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(popToView:)];
     [backButton addGestureRecognizer:lTap1];
     [self.view addSubview:backButton];
+    [backButton release];
+    [lTap1 release];
     //去往购物车按钮
     UIImageView *carButton = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"car"]];
     carButton.frame = CGRectMake(self.view.frame.size.width-50, 10, 40, 40);
@@ -60,8 +62,17 @@
     UITapGestureRecognizer *lTap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(popToShopCar:)];
     [carButton addGestureRecognizer:lTap2];
     [self.view addSubview:carButton];
+    [carButton release];
+    [lTap2 release];
+    ///////////////////////////
+    [JD_DataManager shareGoodsDataManager].UserState = YES;
     goodsCount = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 20, 10)];
     goodsCount.layer.cornerRadius = 3;
+    if ([JD_DataManager shareGoodsDataManager].UserState == YES) {
+        goodsCount.hidden = NO;
+    }else{
+        goodsCount.hidden = YES;
+    }
     goodsCount.textAlignment = NSTextAlignmentCenter;
     goodsCount.textColor = [UIColor whiteColor];
     goodsCount.font = [UIFont systemFontOfSize:10];
@@ -76,16 +87,11 @@
     }AndFailed:^{
         
     }];
-    //释放
-    [backButton release];
-    [carButton release];
-    [lTap1 release];
-    [lTap2 release];
     //请求数据
     NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@",[JD_DataManager shareGoodsDataManager].goodsID];
     [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"getgoodsinfo.php" AndSuccess:^(NSData *data){
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        _goodsInfo = [[NSDictionary alloc]initWithDictionary:[lDictionary objectForKey:@"msg"]];
+        _goodsInfo = [NSDictionary dictionaryWithDictionary:[lDictionary objectForKey:@"msg"]];
         goodsNumber = 1;
         goodsPrice = [NSString stringWithFormat:@"%@",[_goodsInfo objectForKey:@"price"]];
         [self setGoodsInfo];
@@ -102,10 +108,8 @@
 
 -(void)dealloc
 {
-    [_goodsInfo release];
     [_backgroundView release];
     [goodsCount release];
-    [goodsPrice release];
     [numberLabel release];
     [priceView release];
     [_customView release];
@@ -119,8 +123,12 @@
 }
 
 -(void)popToShopCar:(UITapGestureRecognizer *)sender
-{
-    NSLog(@"ToShopCar");
+{///////////////////////////////
+    if ([JD_DataManager shareGoodsDataManager].UserState == YES) {
+        NSLog(@"ToShopCar");
+    }else{
+        
+    }
 }
 #pragma mark - setGoods
 -(void)setGoodsInfo
@@ -132,11 +140,14 @@
     backgroundView.backgroundColor = [UIColor whiteColor];
     [_backgroundView addSubview:backgroundView];
     [backgroundView addSubview:headerImageView];
+    [headerImageView release];
+    [backgroundView release];
     //商品信息
     UIView *informationView = [[UIView alloc]initWithFrame:CGRectMake(5, 165, 310, 151)];
     informationView.backgroundColor = [UIColor whiteColor];
     informationView.layer.cornerRadius = 8;
     [_backgroundView addSubview:informationView];
+    [informationView release];
     UILabel *infoLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 0, 284, 50)];
     infoLabel.backgroundColor = [UIColor whiteColor];
     infoLabel.layer.cornerRadius = 8;
@@ -144,10 +155,12 @@
     infoLabel.textAlignment = NSTextAlignmentLeft;
     infoLabel.textColor = [UIColor blackColor];
     [informationView addSubview:infoLabel];
+    [infoLabel release];
     UIImageView *intoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(285, 15, 20, 20)];
     intoImageView.backgroundColor = [UIColor whiteColor];
     intoImageView.image = [UIImage imageNamed:@"into"];
     [informationView addSubview:intoImageView];
+    [intoImageView release];
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     infoButton.frame = CGRectMake(0, 0, 310, 50);
     infoButton.backgroundColor = [UIColor clearColor];
@@ -157,6 +170,7 @@
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(5, 50, 300, 1)];
     lineView.backgroundColor = [UIColor grayColor];
     [informationView addSubview:lineView];
+    [lineView release];
     UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 51, 300, 50)];
     nameLabel.backgroundColor = [UIColor whiteColor];
     nameLabel.lineBreakMode = NSLineBreakByWordWrapping;//自动换行
@@ -165,17 +179,20 @@
     nameLabel.textColor = [UIColor blackColor];
     nameLabel.textAlignment = NSTextAlignmentLeft;
     [informationView addSubview:nameLabel];
+    [nameLabel release];
     UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 101, 300, 50)];
     priceLabel.backgroundColor = [UIColor whiteColor];
     priceLabel.text = [[@"价格：" stringByAppendingString:[_goodsInfo objectForKey:@"price"]] stringByAppendingString:@"元"];
     priceLabel.textColor = [UIColor blackColor];
     priceLabel.textAlignment = NSTextAlignmentLeft;
     [informationView addSubview:priceLabel];
+    [priceLabel release];
     //商品评价
     UIView *evaluateView = [[UIView alloc]initWithFrame:CGRectMake(5, 320, 310, 50)];
     evaluateView.backgroundColor = [UIColor whiteColor];
     evaluateView.layer.cornerRadius = 8;
     [_backgroundView addSubview:evaluateView];
+    [evaluateView release];
     UILabel *evaluateLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 0, 129, 50)];
     evaluateLabel.backgroundColor = [UIColor whiteColor];
     evaluateLabel.layer.cornerRadius = 8;
@@ -183,6 +200,7 @@
     evaluateLabel.textAlignment = NSTextAlignmentLeft;
     evaluateLabel.textColor = [UIColor blackColor];
     [evaluateView addSubview:evaluateLabel];
+    [evaluateLabel release];
     _customView = [[CustomView alloc]initWithHeight:20 AndStar:0];
     _customView.frame = CGRectMake(100, 15, 150, 20);
     NSString *lString=[_goodsInfo objectForKey:@"star"];
@@ -196,10 +214,12 @@
     reviewcountLabel.textAlignment = NSTextAlignmentRight;
     reviewcountLabel.textColor = [UIColor blackColor];
     [evaluateView addSubview:reviewcountLabel];
+    [reviewcountLabel release];
     UIImageView *intooImageView = [[UIImageView alloc]initWithFrame:CGRectMake(285, 15, 20, 20)];
     intooImageView.backgroundColor = [UIColor whiteColor];
     intooImageView.image = [UIImage imageNamed:@"into"];
     [evaluateView addSubview:intooImageView];
+    [intooImageView release];
     UIButton *evaluateButton = [UIButton buttonWithType:UIButtonTypeCustom];
     evaluateButton.frame = CGRectMake(0, 0, 310, 50);
     evaluateButton.layer.cornerRadius = 8;
@@ -211,6 +231,7 @@
     modelView.backgroundColor = [UIColor whiteColor];
     modelView.layer.cornerRadius = 8;
     [_backgroundView addSubview:modelView];
+    [modelView release];
     UILabel *modelLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 0, 300, 50)];
     modelLabel.backgroundColor = [UIColor whiteColor];
     modelLabel.layer.cornerRadius = 8;
@@ -218,9 +239,11 @@
     modelLabel.textAlignment = NSTextAlignmentLeft;
     modelLabel.textColor = [UIColor blackColor];
     [modelView addSubview:modelLabel];
+    [modelLabel release];
     UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(5, 50, 300, 1)];
     lineView2.backgroundColor = [UIColor grayColor];
     [modelView addSubview:lineView2];
+    [lineView2 release];
     UILabel *colorLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 51, 300, 50)];
     colorLabel.backgroundColor = [UIColor whiteColor];
     colorLabel.layer.cornerRadius = 8;
@@ -228,6 +251,7 @@
     colorLabel.textAlignment = NSTextAlignmentLeft;
     colorLabel.textColor = [UIColor blackColor];
     [modelView addSubview:colorLabel];
+    [colorLabel release];
     //商品描述
     //加入购物车及欲购买商品的信息
     UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -242,6 +266,7 @@
     numberView.backgroundColor = [UIColor whiteColor];
     numberView.layer.cornerRadius = 8;
     [self.view addSubview:numberView];
+    [numberView release];
     UIButton *subtractButton = [UIButton buttonWithType:UIButtonTypeCustom];
     subtractButton.frame = CGRectMake(5, 15, 20, 20);
     subtractButton.layer.cornerRadius = 10;
@@ -273,23 +298,23 @@
     priceView.numberOfLines = 2;//行数
     [self.view addSubview:priceView];
     //释放
-    [headerImageView release];
-    [backgroundView release];
-    [informationView release];
-    [infoLabel release];
-    [intoImageView release];
-    [lineView release];
-    [nameLabel release];
-    [priceLabel release];
-    [evaluateView release];
-    [evaluateLabel release];
-    [reviewcountLabel release];
-    [intooImageView release];
-    [modelView release];
-    [modelLabel release];
-    [lineView2 release];
-    [colorLabel release];
-    [numberView release];
+//    [headerImageView release];
+//    [backgroundView release];
+//    [informationView release];
+//    [infoLabel release];
+//    [intoImageView release];
+//    [lineView release];
+//    [nameLabel release];
+//    [priceLabel release];
+//    [evaluateView release];
+//    [evaluateLabel release];
+//    [reviewcountLabel release];
+//    [intooImageView release];
+//    [modelView release];
+//    [modelLabel release];
+//    [lineView2 release];
+//    [colorLabel release];
+//    [numberView release];
 }
 #pragma mark - textFieldDelegate
 -(void)textFieldDidBeginEditing:(UITextField *)textField//当输入框获得焦点时，执行该方法

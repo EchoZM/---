@@ -20,9 +20,9 @@
     UITableView *lTableView;
     NSMutableArray *searchGoodsArray;
 }
-@property(nonatomic,strong)UIScrollView *scrollView;
-@property(nonatomic,strong)UIPageControl *pageControl;
-@property(nonatomic,strong)NSArray *arrayImages;
-@property(nonatomic,strong)NSMutableArray *viewController;
+@property(nonatomic,retain)UIScrollView *scrollView;
+@property(nonatomic,retain)UIPageControl *pageControl;
+@property(nonatomic,retain)NSArray *arrayImages;
+@property(nonatomic,retain)NSMutableArray *viewController;
 @property(nonatomic,assign)NSTimer *timer;
 @end
