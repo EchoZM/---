@@ -10,6 +10,7 @@
 #import "JD_UserLogin.h"
 #import "ASIFormDataRequest.h"
 #import "JD_Goods.h"
+#define ip @"http://192.168.1.121/shop/"
 @interface JD_Home_Page ()
 
 @end
@@ -20,9 +21,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-//        // Custom initialization
+        // Custom initialization
         self.tabBarItem.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tabBar_item0_1@2x" ofType:@"png"]];
-//         _data=[[NSMutableData alloc]init];
+        _data=[[NSMutableData alloc]init];
     }
     return self;
 }
@@ -50,78 +51,86 @@
     
     //添加scrollerview
     lScrollView=[[UIScrollView alloc]initWithFrame:self.view.frame];
-    lScrollView.contentSize=CGSizeMake(320, 630);
+    lScrollView.contentSize=CGSizeMake(320, self.view.frame.size.height);
     [self.view addSubview:lScrollView];
     lView1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 150)];
+    [lView1 setBackgroundColor:[UIColor clearColor]];
     [lScrollView addSubview:lView1];
     //滑动翻页
-    NSArray *colors=[NSArray arrayWithObjects:[UIImage imageNamed:@"1.jpg"],[UIImage imageNamed:@"2.jpg"],[UIImage imageNamed:@"3.jpg"],[UIImage imageNamed:@"4.jpg"],[UIImage imageNamed:@"5.jpg"], nil];
+    _arrayImages=[NSArray arrayWithObjects:[UIImage imageNamed:@"1.jpg"],[UIImage imageNamed:@"2.jpg"],[UIImage imageNamed:@"3.jpg"],[UIImage imageNamed:@"4.jpg"],[UIImage imageNamed:@"5.jpg"], nil];
     [lView1 addSubview:lImageView];
     //设置scroll的属性
-    _scroll=[[UIScrollView alloc]initWithFrame:lView1.frame];
-    _scroll.showsVerticalScrollIndicator=NO;//不显示垂直滑动线
-    _scroll.showsHorizontalScrollIndicator=NO;//不显示水平滑动线
-    _scroll.pagingEnabled=YES;
-    _scroll.scrollsToTop=NO;
-    _scroll.delegate=self;
-    [lView1 addSubview:_scroll];
-    for (int i=0; i<colors.count; i++) {
+    _scrollView=[[UIScrollView alloc]initWithFrame:lView1.frame];
+    _scrollView.showsVerticalScrollIndicator=NO;//不显示垂直滑动线
+    _scrollView.showsHorizontalScrollIndicator=NO;//不显示水平滑动线
+    _scrollView.pagingEnabled=YES;
+    _scrollView.scrollsToTop=NO;
+    _scrollView.delegate=self;
+    [lView1 addSubview:_scrollView];
+    for (int i=0; i<_arrayImages.count; i++) {
         CGRect frame;
-        frame.origin.x=_scroll.frame.size.width*i;
+        frame.origin.x=_scrollView.frame.size.width*i;
         frame.origin.y=0;
-        frame.size=_scroll.frame.size;
+        frame.size=_scrollView.frame.size;
         
         UIImageView *subView=[[UIImageView alloc]initWithFrame:frame];
-        subView.image=[colors objectAtIndex:i];
-        subView.animationDuration=20;
-        subView.animationImages=colors;
-        subView.animationRepeatCount=500;
-        [subView startAnimating];
-        [_scroll addSubview:subView];
+        [subView setBackgroundColor:[UIColor clearColor]];
+        subView.image=[_arrayImages objectAtIndex:i];
+        [_scrollView addSubview:subView];
     }
     //设置scroll view的contentsize属性
-    _scroll.contentSize=CGSizeMake(_scroll.frame.size.width*colors.count, _scroll.frame.size.height);
+    _scrollView.contentSize=CGSizeMake(CGRectGetWidth(lView1.frame)*_arrayImages.count,lView1.frame.size.height);
     
-    _pageController=[[UIPageControl alloc]initWithFrame:CGRectMake(150, 100, 5, 5)];
-    _pageController.numberOfPages=colors.count;//设置页数
-    _pageController.currentPage=0;//设置当前页
-    _pageController.hidesForSinglePage=NO;
+    //定义uipagecontrol
+    _pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(150, 100, 10, 10)];
+    _pageControl.numberOfPages=_arrayImages.count;//设置页数
+    [_pageControl setBackgroundColor:[UIColor clearColor]];
+    _pageControl.currentPage=0;//设置当前页
+    _pageControl.hidesForSinglePage=NO;
+    [_pageControl addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];
+    [lView1 addSubview:_pageControl];
     
-    _pageController.backgroundColor=[UIColor blackColor];
-    [_pageController addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];
-    [lView1 addSubview:_pageController];
-    
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerChang:) userInfo:nil repeats:YES];
-    
-    UIView *lView2=[[UIView alloc]initWithFrame:CGRectMake(0, 150, 320, 120)];
-    [lView2 setBackgroundColor:[UIColor blackColor]];
-    lView2.alpha=0.7;
-    UIImage *image1=[UIImage imageNamed:@"ico_menu07@2x.png"];
-    UIImage *image2=[UIImage imageNamed:@"ico_menu09@2x.png"];
-    UIImage *image3=[UIImage imageNamed:@"xiang3@2x.png"];
-    UIImage *image4=[UIImage imageNamed:@"ico_menu04@2x.png"];
-    NSArray *imageArray=[[NSArray alloc]initWithObjects:image1,image2,image3,image4,nil];
-    NSArray *textArray=[[NSArray alloc]initWithObjects:@"我的关注",@"喜摇摇",@"充值",@"彩票", nil];
-    for (int i=0; i<imageArray.count; i++) {
-        UIButton *lButton=[UIButton buttonWithType:UIButtonTypeCustom];
-        [lButton setFrame:CGRectMake(10+i%4*75, 10, 70, 70)];
-        [lButton setImage:[imageArray objectAtIndex:i] forState:UIControlStateNormal];
-        [lButton setBackgroundColor:[UIColor whiteColor]];
-        UILabel *lLabel=[[UILabel alloc]initWithFrame:CGRectMake(10+i%4*75, 80, 70, 30)];
-        lLabel.text=[textArray objectAtIndex:i];
-        [lLabel setTextAlignment:NSTextAlignmentCenter];
-        [lLabel setBackgroundColor:[UIColor whiteColor]];
-        [lView2 addSubview:lLabel];
-        [lView2 addSubview:lButton];
+    _viewController=[[NSMutableArray alloc]init];
+    for (NSInteger i=0; i<_arrayImages.count; i++) {
+        [_viewController addObject:[NSNull null]];
     }
-    [lScrollView addSubview:lView2];
+    //nstimer的用法
+    _timer=[NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(scrollPages) userInfo:nil repeats:YES];
+    [self loadScrollViewPage:0];
+    [self loadScrollViewPage:1];
+    [self loadScrollViewPage:2];
+    [self loadScrollViewPage:3];
+    [self loadScrollViewPage:4];
+    //    //4个button
+    //    UIView *lView2=[[UIView alloc]initWithFrame:CGRectMake(0, 150, 320, 120)];
+    //    [lView2 setBackgroundColor:[UIColor blackColor]];
+    //    lView2.alpha=0.7;
+    //    UIImage *image1=[UIImage imageNamed:@"ico_menu07@2x.png"];
+    //    UIImage *image2=[UIImage imageNamed:@"ico_menu09@2x.png"];
+    //    UIImage *image3=[UIImage imageNamed:@"xiang3@2x.png"];
+    //    UIImage *image4=[UIImage imageNamed:@"ico_menu04@2x.png"];
+    //    NSArray *imageArray=[[NSArray alloc]initWithObjects:image1,image2,image3,image4,nil];
+    //    NSArray *textArray=[[NSArray alloc]initWithObjects:@"我的关注",@"喜摇摇",@"充值",@"彩票", nil];
+    //    for (int i=0; i<imageArray.count; i++) {
+    //        UIButton *lButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    //        [lButton setFrame:CGRectMake(10+i%4*75, 10, 70, 70)];
+    //        [lButton setImage:[imageArray objectAtIndex:i] forState:UIControlStateNormal];
+    //        [lButton setBackgroundColor:[UIColor whiteColor]];
+    //        UILabel *lLabel=[[UILabel alloc]initWithFrame:CGRectMake(10+i%4*75, 80, 70, 30)];
+    //        lLabel.text=[textArray objectAtIndex:i];
+    //        [lLabel setTextAlignment:NSTextAlignmentCenter];
+    //        [lLabel setBackgroundColor:[UIColor whiteColor]];
+    //        [lView2 addSubview:lLabel];
+    //        [lView2 addSubview:lButton];
+    //    }
+    //    [lScrollView addSubview:lView2];
     
-    UILabel *lLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 270, 300, 50)];
+    UILabel *lLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 150, 300, 50)];
     [lLabel setBackgroundColor:[UIColor clearColor]];
-    [lLabel setText:@"掌上秒杀"];
+    [lLabel setText:@"热门商品"];
     [lLabel setFont:[UIFont fontWithName:@"Helvetica" size:23]];
     [lScrollView addSubview:lLabel];
-    justTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 330, 300, 300)];
+    justTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 200, 300, self.view.frame.size.height-200)];
     //    justTableView.showsVerticalScrollIndicator=NO;
     //    justTableView.scrollEnabled=NO;//固定tableview
     justTableView.delegate=self;
@@ -142,25 +151,69 @@
     [lView1 addGestureRecognizer:tap];
     
     //网络请求数据
-//    NSString *lBodyString=[NSString stringWithFormat:@"goodscount=0"];//请求内容
+    NSString *lBodyString=[NSString stringWithFormat:@"goodscount=0"];//请求内容
+    NSURL *lURL=[NSURL URLWithString:[ip stringByAppendingString:@"hotgoods.php"] ];
+    NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:lURL];
+    [lRequest setHTTPMethod:@"post"];//发送请求
+    [lRequest setHTTPBody:[lBodyString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLConnection *lConnection=[NSURLConnection connectionWithRequest:lRequest delegate:self];
+    [lConnection start];
     
-//    NSURL *lURL=[NSURL URLWithString:@"http://192.168.1.138/shop/hotgoods.php "];//ip地址
-//    NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:lURL];//请求初始化
-//    [lRequest setHTTPMethod:@"post"];//发送请求
-//    [lRequest setHTTPBody:[lBodyString dataUsingEncoding:NSUTF8StringEncoding]];
-//    NSURLConnection *lConnection=[NSURLConnection connectionWithRequest:lRequest delegate:self];
-//    [lConnection start];
-//    NSData *lData=[[JD_DataManager shareGoodsDataManager] downloadDataWithBody:lBodyString URL:@"hotgoods.php"];
-//    NSLog(@"%@",[[NSString alloc]initWithData:lData encoding:NSUTF8StringEncoding]);
-//    NSDictionary *lDictionary=[NSJSONSerialization JSONObjectWithData:lData options:NSJSONReadingAllowFragments error:nil];
-//    lArray=[[lDictionary objectForKey:@"msg"]retain];
-//    [justTableView reloadData];
 }
--(void)timerChang:(NSTimer *)sender{
-    
-
+#pragma scrollView And UIPageControl//自动翻页和手动翻页效果
+-(void)loadScrollViewPage:(NSInteger)page{
+    //当page大于数组时，自动返回
+    if (page>_arrayImages.count) {
+        return;
+    }
+    //创建一个视图控制器，并将空的地址导人
+    UIViewController *imageViewController=[_viewController objectAtIndex:page];
+    if ((NSNull *)imageViewController==[NSNull null]) {
+        imageViewController=[[UIViewController alloc]init];
+        [_viewController replaceObjectAtIndex:page withObject:imageViewController];
+    }
+    //假如imageviewcontroller没有子视图，那么就添加
+    if (imageViewController.view.superview==nil) {
+        CGRect frame=_scrollView.frame;
+        frame.origin.x=CGRectGetWidth(frame)*page;
+        frame.origin.y=0;
+        imageViewController.view.frame=frame;
+        
+        [_scrollView addSubview:imageViewController.view];
+        [imageViewController didMoveToParentViewController:self];
+        [imageViewController.view setBackgroundColor:[UIColor colorWithPatternImage:(UIImage *)[self.arrayImages objectAtIndex:page]]];
+    }
 }
-#pragma downloadData
+//scrollview的代理方法，横向滚动切换到下一张图片
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    CGFloat pageWidth=CGRectGetWidth(_scrollView.frame);
+    NSInteger page=floor((_scrollView.contentOffset.x-pageWidth/2)/pageWidth)+1;
+    _pageControl.currentPage=page;
+}
+-(void)pageControlChanged:(UIPageControl *)sender{
+    NSInteger page=_pageControl.currentPage;
+    CGRect bounds=_scrollView.bounds;
+    bounds.origin.x=CGRectGetWidth(bounds)*page;
+    bounds.origin.y=0;
+    [_scrollView scrollRectToVisible:bounds animated:YES];
+}
+//nstimer的方法，实现自动滚动
+-(void)scrollPages{
+    ++_pageControl.currentPage;
+    CGFloat pageWidth=CGRectGetWidth(_scrollView.frame);
+    if (isFromStart) {
+        [_scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+        _pageControl.currentPage=0;
+    }else{
+        [_scrollView setContentOffset:CGPointMake(pageWidth*_pageControl.currentPage, _scrollView.bounds.origin.y) animated:YES];
+    }
+    if (_pageControl.currentPage==_pageControl.numberOfPages-1) {
+        isFromStart=YES;
+    }else{
+        isFromStart=NO;
+    }
+}
+#pragma loadData
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
     [_data setLength:0];
 }//开始接收
@@ -171,22 +224,6 @@
     NSDictionary *lDictionary=[NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
     lArray=[[lDictionary objectForKey:@"msg"]retain];
     [justTableView reloadData];
-    
-}
-#pragma scrollViewMethod
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGFloat pageWidth=_scroll.frame.size.width;
-    //在滚动超过50%的时候切换到新页面
-    int page=floor((_scroll.contentOffset.x-pageWidth/2)/pageWidth)+1;
-    _pageController.currentPage=page;
-}
--(void)pageControlChanged:(id)sender{
-    //更新scroll view到正确的页面
-//    CGRect frame;
-//    frame.origin.x=_scroll.frame.size.width*_pageController.currentPage;
-//    frame.origin.y=0;
-//    frame.size=_scroll.frame.size;
-//    [_scroll scrollRectToVisible:frame animated:YES];
 }
 #pragma TableViewMethod
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -202,26 +239,27 @@
         lCell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
     if (tableView.tag==99) {
-//        NSInteger row=[indexPath row];
-//        NSDictionary *dictionary=[lArray objectAtIndex:row];
-//        NSURL *lURL=[NSURL URLWithString:[@"http://192.168.1.141/shop/goodsimage/" stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
-//        NSData *lData=[NSData dataWithContentsOfURL:lURL];
-//        UIImage *lImage=[UIImage imageWithData:lData];
-//        lCell.textLabel.text=[dictionary objectForKey:@"name"];
-//        lCell.imageView.image=lImage;
-//        lCell.detailTextLabel.text=[[@"价格:" stringByAppendingString:[dictionary objectForKey:@"price"]] stringByAppendingString:@"元"];
+        NSInteger row=[indexPath row];
+        NSDictionary *dictionary=[lArray objectAtIndex:row];
+        NSURL *lURL=[NSURL URLWithString:[[ip stringByAppendingString:@"goodsimage/"] stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
+        NSData *lData=[NSData dataWithContentsOfURL:lURL];
+        UIImage *lImage=[UIImage imageWithData:lData];
+        lCell.textLabel.text=[dictionary objectForKey:@"name"];
+        lCell.imageView.image=lImage;
+        lCell.detailTextLabel.text=[[@"价格:" stringByAppendingString:[dictionary objectForKey:@"price"]] stringByAppendingString:@"元"];
         return  lCell;
+    }else{
+        NSInteger row=[indexPath row];
+        NSDictionary *dictionary=[searchGoodsArray objectAtIndex:row];
+        NSURL *lURL=[NSURL URLWithString:[[ip stringByAppendingString:@"goodsimage/"] stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
+        NSData *lData=[NSData dataWithContentsOfURL:lURL];
+        UIImage *lImage=[UIImage imageWithData:lData];
+        lCell.backgroundColor = [UIColor clearColor];
+        lCell.textLabel.text=[dictionary objectForKey:@"name"];
+        lCell.imageView.image=lImage;
+        lCell.detailTextLabel.text=[[@"价格:" stringByAppendingString:[dictionary objectForKey:@"price"]] stringByAppendingString:@"元"];;
+        return lCell;
     }
-//    NSInteger row=[indexPath row];
-//    NSDictionary *dictionary=[searchGoodsArray objectAtIndex:row];
-//    NSURL *lURL=[NSURL URLWithString:[@"http://192.168.1.141/shop/goodsimage/" stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
-//    NSData *lData=[NSData dataWithContentsOfURL:lURL];
-//    UIImage *lImage=[UIImage imageWithData:lData];
-//    lCell.backgroundColor = [UIColor clearColor];
-//    lCell.textLabel.text=[dictionary objectForKey:@"name"];
-//    lCell.imageView.image=lImage;
-//    lCell.detailTextLabel.text=[[@"价格:" stringByAppendingString:[dictionary objectForKey:@"price"]] stringByAppendingString:@"元"];;
-    return lCell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 80;
@@ -235,7 +273,6 @@
         [self.navigationController pushViewController:goodsViewController animated:YES];
         [goodsViewController release];
     }else{
-//        NSLog(@"%@",searchGoodsArray);
         NSDictionary *dictionary=[searchGoodsArray objectAtIndex:row];
         [JD_DataManager shareGoodsDataManager].goodsID=[dictionary objectForKey:@"goodsid"];
         JD_Goods *goodsViewController=[[JD_Goods alloc]init];
@@ -249,7 +286,7 @@
     if (![searchText isEqualToString:@""]) {
         lScrollView.hidden=YES;
         lTableView.hidden=NO;
-//        [self downloadData:searchText Type:@"0" Order:@"0" Owncount:@"0"];
+        [self downloadData:searchText Type:@"0" Order:@"0" Owncount:@"0"];
         [lTableView reloadData];
     }else{
         lScrollView.hidden=NO;
@@ -262,7 +299,7 @@
 }
 #pragma downloadData
 -(NSMutableArray *)downloadData:(NSString *)search Type:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount{
-    NSURL *lURL = [NSURL URLWithString:@"http://192.168.1.141/shop/searchgoods.php"];
+    NSURL *lURL=[NSURL URLWithString:[ip stringByAppendingString:@"searchgoods.php"]];
     ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:lURL];
     [lRequest setPostValue:search forKey:@"search"];
     [lRequest setPostValue:type forKey:@"type"];
@@ -273,16 +310,15 @@
     NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
     NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
     searchGoodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
-//    NSLog(@"%@",searchGoodsArray);
     return searchGoodsArray;
 }
 -(void)viewTapped:(UITapGestureRecognizer *)sender{
-//    [lSearchBar resignFirstResponder];
+    [lSearchBar resignFirstResponder];
 }
 -(void)dealloc{
     [lSearchBar release];
-    [_scroll release];
-    [_pageController release];
+    [_scrollView release];
+    [_pageControl release];
     [lView1 release];
     [_data release];
     [lArray release];
@@ -291,6 +327,9 @@
     [lScrollView release];
     [lTableView release];
     [searchGoodsArray release];
+    [_timer release];
+    [_arrayImages release];
+    [_viewController release];
     [super dealloc];
 }
 - (void)didReceiveMemoryWarning

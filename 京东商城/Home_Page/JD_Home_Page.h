@@ -10,10 +10,8 @@
 
 @interface JD_Home_Page : UIViewController<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
-    
+    BOOL isFromStart;
     UISearchBar *lSearchBar;
-    UIScrollView *_scroll;
-    UIPageControl *_pageController;
     UIView *lView1;
     NSMutableData *_data;
     NSArray *lArray;
@@ -23,4 +21,9 @@
     UITableView *lTableView;
     NSMutableArray *searchGoodsArray;
 }
+@property(nonatomic,strong)UIScrollView *scrollView;
+@property(nonatomic,strong)UIPageControl *pageControl;
+@property(nonatomic,strong)NSArray *arrayImages;
+@property(nonatomic,strong)NSMutableArray *viewController;
+@property(nonatomic,assign)NSTimer *timer;
 @end
