@@ -7,7 +7,7 @@
 //
 
 #import "JD_Home_Page.h"
-#import "JD_UserLogin.h"
+#import "JD_AccountManage.h"
 #import "ASIFormDataRequest.h"
 #import "JD_Goods.h"
 @interface JD_Home_Page ()
