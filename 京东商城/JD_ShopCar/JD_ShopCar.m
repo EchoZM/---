@@ -363,7 +363,8 @@
             UIButton *lButton=[[UIButton alloc]init];
             [lButton  setFrame:CGRectMake(self.view.frame.size.width/2-40, 185, 90, 25)];
             [lButton setTitle:@"现在去逛逛" forState:UIControlStateNormal];
-            [lButton setFont:[UIFont systemFontOfSize:14]];
+            [lButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+//            [lButton setFont:[UIFont systemFontOfSize:14]];
             [lButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             lButton.layer.cornerRadius=3;
             [lButton setBackgroundColor:[UIColor lightGrayColor]];

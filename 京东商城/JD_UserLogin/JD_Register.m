@@ -121,7 +121,7 @@
         //        lJD_Login.UserText.text = UserText.text;
         //        lJD_Login.PasswordText.text = PasswordText.text;
         
-        NSLog(@"%@",[lRequestForm responseString]);
+//        NSLog(@"%@",[lRequestForm responseString]);
     }
 }
     

@@ -136,7 +136,7 @@
         NSArray *UserArray = @[[[lDictionary objectForKey:@"msg"] objectForKey:@"name"],[[lDictionary objectForKey:@"msg"] objectForKey:@"email"],[[lDictionary objectForKey:@"msg"] objectForKey:@"telephone"]];
         [[[JD_DataManager shareGoodsDataManager] UserManage] addObject:UserArray];
         [JD_DataManager shareGoodsDataManager].UserState = YES;
-        NSLog(@"%@,%@",[[lDictionary objectForKey:@"msg"] objectForKey:@"customerid"],[[JD_DataManager shareGoodsDataManager] UserManage]);
+//        NSLog(@"%@,%@",[[lDictionary objectForKey:@"msg"] objectForKey:@"customerid"],[[JD_DataManager shareGoodsDataManager] UserManage]);
     }
 }
 

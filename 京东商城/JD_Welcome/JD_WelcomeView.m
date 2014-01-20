@@ -23,6 +23,7 @@
     if (self) {
         
         // Custom initialization
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"welcom"]];
     }
     return self;
 }
@@ -30,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(View_Transition:) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(View_Transition:) userInfo:nil repeats:NO];
     //    UISearchBar *lSearchBar = [[[UISearchBar alloc]initWithFrame:CGRectMake(88, 0, 232, 44)]autorelease];
     //    [lSearchBar setBackgroundColor:[UIColor darkGrayColor]];
     //    [self.view addSubview:lSearchBar];

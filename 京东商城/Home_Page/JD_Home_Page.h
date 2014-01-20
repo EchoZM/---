@@ -13,7 +13,6 @@
     BOOL isFromStart;
     UISearchBar *lSearchBar;
     UIView *lView1;
-    NSMutableData *_data;
     NSArray *lArray;
     UITableView *justTableView;
     UIImageView *lImageView;

@@ -43,7 +43,7 @@
     [TextArray addObject:lTextOrder];
     [TextArray addObject:lTextMessage];
     [TextArray addObject:lTextCommodityRelated];
-    NSLog(@"%@",TextArray);
+//    NSLog(@"%@",TextArray);
     [ImageArray addObject:lImageOrder];
     [ImageArray addObject:lImageMessage];
     [ImageArray addObject:lImageCommodityRelated];
