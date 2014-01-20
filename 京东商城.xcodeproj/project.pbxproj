@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1009C3171883E72C00DF4FD0 /* JD_GoodsSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1009C3161883E72C00DF4FD0 /* JD_GoodsSingle.m */; };
-		1009C3191883E76800DF4FD0 /* JD_GoodsSingle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1009C3181883E76800DF4FD0 /* JD_GoodsSingle.xib */; };
 		100A99DC187CE81B006487D8 /* JD_DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 100A99DB187CE81B006487D8 /* JD_DataManager.m */; };
 		100A99E6187CEBEB006487D8 /* JD_Goods.m in Sources */ = {isa = PBXBuildFile; fileRef = 100A99E4187CEBEB006487D8 /* JD_Goods.m */; };
 		100A99E7187CEBEB006487D8 /* JD_Goods.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100A99E5187CEBEB006487D8 /* JD_Goods.xib */; };
@@ -90,16 +88,7 @@
 		1099C97E187F8A90005A2B81 /* radiobox_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 1099C979187F8A90005A2B81 /* radiobox_0.png */; };
 		1099C97F187F8A90005A2B81 /* radiobox_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1099C97A187F8A90005A2B81 /* radiobox_0@2x.png */; };
 		1099C980187F8A90005A2B81 /* Register.png in Resources */ = {isa = PBXBuildFile; fileRef = 1099C97B187F8A90005A2B81 /* Register.png */; };
-		1099C987187F94A5005A2B81 /* JD_UserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1099C985187F94A5005A2B81 /* JD_UserLogin.m */; };
-		1099C988187F94A5005A2B81 /* JD_UserLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1099C986187F94A5005A2B81 /* JD_UserLogin.xib */; };
-		1099C98B187FB2AC005A2B81 /* JD_UserLogin_UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1099C98A187FB2AC005A2B81 /* JD_UserLogin_UserInfo.m */; };
 		109C829C187B9167000A9975 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 109C829B187B9167000A9975 /* QuartzCore.framework */; };
-		109C82A0187B9847000A9975 /* JD_Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 109C829E187B9847000A9975 /* JD_Login.m */; };
-		109C82A1187B9847000A9975 /* JD_Login.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109C829F187B9847000A9975 /* JD_Login.xib */; };
-		109C82B7187BCBDA000A9975 /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 109C82B5187BCBDA000A9975 /* MoreView.m */; };
-		109C82B8187BCBDA000A9975 /* MoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109C82B6187BCBDA000A9975 /* MoreView.xib */; };
-		109C82CD187BF7A5000A9975 /* JD_Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 109C82CB187BF7A4000A9975 /* JD_Register.m */; };
-		109C82CE187BF7A5000A9975 /* JD_Register.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109C82CC187BF7A4000A9975 /* JD_Register.xib */; };
 		10DF34621888BE5100E7712F /* JD_Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DF34601888BE5100E7712F /* JD_Review.m */; };
 		10DF34631888BE5100E7712F /* JD_Review.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10DF34611888BE5100E7712F /* JD_Review.xib */; };
 		10EF7F49187A987700762C73 /* Navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = 10EF7F48187A987700762C73 /* Navigation.png */; };
@@ -135,9 +124,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1009C3151883E72C00DF4FD0 /* JD_GoodsSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_GoodsSingle.h; sourceTree = "<group>"; };
-		1009C3161883E72C00DF4FD0 /* JD_GoodsSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_GoodsSingle.m; sourceTree = "<group>"; };
-		1009C3181883E76800DF4FD0 /* JD_GoodsSingle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_GoodsSingle.xib; sourceTree = "<group>"; };
 		100A99DA187CE81B006487D8 /* JD_DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_DataManager.h; sourceTree = SOURCE_ROOT; };
 		100A99DB187CE81B006487D8 /* JD_DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_DataManager.m; sourceTree = SOURCE_ROOT; };
 		100A99E3187CEBEB006487D8 /* JD_Goods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Goods.h; sourceTree = "<group>"; };
@@ -239,21 +225,7 @@
 		1099C979187F8A90005A2B81 /* radiobox_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radiobox_0.png; sourceTree = "<group>"; };
 		1099C97A187F8A90005A2B81 /* radiobox_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radiobox_0@2x.png"; sourceTree = "<group>"; };
 		1099C97B187F8A90005A2B81 /* Register.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Register.png; sourceTree = "<group>"; };
-		1099C984187F94A5005A2B81 /* JD_UserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_UserLogin.h; sourceTree = "<group>"; };
-		1099C985187F94A5005A2B81 /* JD_UserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_UserLogin.m; sourceTree = "<group>"; };
-		1099C986187F94A5005A2B81 /* JD_UserLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_UserLogin.xib; sourceTree = "<group>"; };
-		1099C989187FB2AC005A2B81 /* JD_UserLogin_UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_UserLogin_UserInfo.h; sourceTree = SOURCE_ROOT; };
-		1099C98A187FB2AC005A2B81 /* JD_UserLogin_UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_UserLogin_UserInfo.m; sourceTree = SOURCE_ROOT; };
 		109C829B187B9167000A9975 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		109C829D187B9847000A9975 /* JD_Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Login.h; sourceTree = "<group>"; };
-		109C829E187B9847000A9975 /* JD_Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Login.m; sourceTree = "<group>"; };
-		109C829F187B9847000A9975 /* JD_Login.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Login.xib; sourceTree = "<group>"; };
-		109C82B4187BCBDA000A9975 /* MoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
-		109C82B5187BCBDA000A9975 /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
-		109C82B6187BCBDA000A9975 /* MoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreView.xib; sourceTree = "<group>"; };
-		109C82CA187BF7A4000A9975 /* JD_Register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Register.h; sourceTree = "<group>"; };
-		109C82CB187BF7A4000A9975 /* JD_Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Register.m; sourceTree = "<group>"; };
-		109C82CC187BF7A4000A9975 /* JD_Register.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Register.xib; sourceTree = "<group>"; };
 		10DF345F1888BE5100E7712F /* JD_Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Review.h; sourceTree = "<group>"; };
 		10DF34601888BE5100E7712F /* JD_Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Review.m; sourceTree = "<group>"; };
 		10DF34611888BE5100E7712F /* JD_Review.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Review.xib; sourceTree = "<group>"; };
@@ -359,8 +331,6 @@
 			children = (
 				100A99DA187CE81B006487D8 /* JD_DataManager.h */,
 				100A99DB187CE81B006487D8 /* JD_DataManager.m */,
-				1099C989187FB2AC005A2B81 /* JD_UserLogin_UserInfo.h */,
-				1099C98A187FB2AC005A2B81 /* JD_UserLogin_UserInfo.m */,
 			);
 			name = JD_DataManager;
 			sourceTree = "<group>";
@@ -557,7 +527,6 @@
 				10EFCD1918765680009F4AB4 /* JD_Home_Page */,
 				10EFCD881876957A009F4AB4 /* JD_Search */,
 				10EFCD8918769596009F4AB4 /* JD_ShopCar */,
-				10EFCD1F187656C1009F4AB4 /* JD_UserLogin */,
 				100A99DD187CE8F4006487D8 /* JD_Goods */,
 				10DF345B1888BDF900E7712F /* JD_Review */,
 				10EFCD3D18765A63009F4AB4 /* JD_ICon_Images */,
@@ -590,28 +559,6 @@
 			);
 			name = JD_Home_Page;
 			path = Home_Page;
-			sourceTree = "<group>";
-		};
-		10EFCD1F187656C1009F4AB4 /* JD_UserLogin */ = {
-			isa = PBXGroup;
-			children = (
-				1009C3151883E72C00DF4FD0 /* JD_GoodsSingle.h */,
-				1009C3161883E72C00DF4FD0 /* JD_GoodsSingle.m */,
-				1009C3181883E76800DF4FD0 /* JD_GoodsSingle.xib */,
-				109C829D187B9847000A9975 /* JD_Login.h */,
-				109C829E187B9847000A9975 /* JD_Login.m */,
-				109C829F187B9847000A9975 /* JD_Login.xib */,
-				109C82B4187BCBDA000A9975 /* MoreView.h */,
-				109C82B5187BCBDA000A9975 /* MoreView.m */,
-				109C82B6187BCBDA000A9975 /* MoreView.xib */,
-				109C82CA187BF7A4000A9975 /* JD_Register.h */,
-				109C82CB187BF7A4000A9975 /* JD_Register.m */,
-				109C82CC187BF7A4000A9975 /* JD_Register.xib */,
-				1099C984187F94A5005A2B81 /* JD_UserLogin.h */,
-				1099C985187F94A5005A2B81 /* JD_UserLogin.m */,
-				1099C986187F94A5005A2B81 /* JD_UserLogin.xib */,
-			);
-			path = JD_UserLogin;
 			sourceTree = "<group>";
 		};
 		10EFCD3D18765A63009F4AB4 /* JD_ICon_Images */ = {
@@ -782,9 +729,6 @@
 				10EFCDB218769DED009F4AB4 /* tabBar_item3_1@2x.png in Resources */,
 				10EFCDB418769DFD009F4AB4 /* tabBar_item4_1@2x.png in Resources */,
 				10EF7F49187A987700762C73 /* Navigation.png in Resources */,
-				109C82A1187B9847000A9975 /* JD_Login.xib in Resources */,
-				109C82B8187BCBDA000A9975 /* MoreView.xib in Resources */,
-				109C82CE187BF7A5000A9975 /* JD_Register.xib in Resources */,
 				100A99E7187CEBEB006487D8 /* JD_Goods.xib in Resources */,
 				100A99EE187CEC91006487D8 /* JD_Goods_Info.xib in Resources */,
 				100A99F3187CECB1006487D8 /* JD_Goods_Evaluate.xib in Resources */,
@@ -825,9 +769,7 @@
 				1099C97E187F8A90005A2B81 /* radiobox_0.png in Resources */,
 				1099C97F187F8A90005A2B81 /* radiobox_0@2x.png in Resources */,
 				1099C980187F8A90005A2B81 /* Register.png in Resources */,
-				1099C988187F94A5005A2B81 /* JD_UserLogin.xib in Resources */,
 				10432360187FD55A0095C3FD /* white.png in Resources */,
-				1009C3191883E76800DF4FD0 /* JD_GoodsSingle.xib in Resources */,
 				101B188F1883E89C00D47DF8 /* rect_check1@2x.png in Resources */,
 				101B18901883E89C00D47DF8 /* rect_check2@2x.png in Resources */,
 				101B18911883E89C00D47DF8 /* round_check1@2x.png in Resources */,
@@ -864,9 +806,6 @@
 				10EFCD86187694E4009F4AB4 /* JD_WelcomeView.m in Sources */,
 				10EFCD8E1876965E009F4AB4 /* JD_Search.m in Sources */,
 				10EFCD931876966D009F4AB4 /* JD_ShopCar.m in Sources */,
-				109C82A0187B9847000A9975 /* JD_Login.m in Sources */,
-				109C82B7187BCBDA000A9975 /* MoreView.m in Sources */,
-				109C82CD187BF7A5000A9975 /* JD_Register.m in Sources */,
 				100A99DC187CE81B006487D8 /* JD_DataManager.m in Sources */,
 				100A99E6187CEBEB006487D8 /* JD_Goods.m in Sources */,
 				100A99ED187CEC91006487D8 /* JD_Goods_Info.m in Sources */,
@@ -881,9 +820,6 @@
 				1065D8DB187E30F40068D9B7 /* ASINetworkQueue.m in Sources */,
 				1065D8DC187E30F40068D9B7 /* ASIWebPageRequest.m in Sources */,
 				1065D8DD187E30F40068D9B7 /* Reachability.m in Sources */,
-				1099C987187F94A5005A2B81 /* JD_UserLogin.m in Sources */,
-				1099C98B187FB2AC005A2B81 /* JD_UserLogin_UserInfo.m in Sources */,
-				1009C3171883E72C00DF4FD0 /* JD_GoodsSingle.m in Sources */,
 				1017DA08188624AF00AA9CB1 /* StarView.m in Sources */,
 				1017DA0B188624C000AA9CB1 /* CustomView.m in Sources */,
 				10DF34621888BE5100E7712F /* JD_Review.m in Sources */,
