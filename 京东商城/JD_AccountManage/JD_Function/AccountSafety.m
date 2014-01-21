@@ -38,7 +38,7 @@
         self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"确认" style:UIBarButtonItemStylePlain target:self action:@selector(ConfirmButton:)];
         self.navigationItem.rightBarButtonItem.tintColor= [UIColor redColor];
-        UIView *lView = [[[UIView alloc]initWithFrame:CGRectMake(10, 20, 300, 120)]autorelease];
+        UIView *lView = [[[UIView alloc]initWithFrame:CGRectMake(10, 120, 300, 120)]autorelease];
         lView.layer.cornerRadius = 6.0;
         [lView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"AccountSafety.png"]]];
         [self.view addSubview:lView];

@@ -29,6 +29,7 @@ static JD_DataManager *shareGoodsDataManager = nil;
         _userID = [[NSString alloc]init];
         _cartID = [[NSString alloc]init];
         UserManage = [[NSMutableArray alloc]init];
+        _OrderArray = [[NSMutableArray alloc]init];
     }
     return self;
     

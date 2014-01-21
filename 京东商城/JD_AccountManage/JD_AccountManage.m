@@ -47,7 +47,6 @@
     TakeDeliveryAddressManage *lTakeDeliveryAddressManage = [[[TakeDeliveryAddressManage alloc]init]autorelease];
     AccountSafety *lAccountSafety = [[[AccountSafety alloc]init]autorelease];
     NSArray *lTextOrder = [[[NSArray alloc]initWithObjects:@"订单状态速查",@"待付款订单",@"全部订单", nil]autorelease];
-    //    NSArray *lTextMessage = [[[NSArray alloc]initWithObjects:@"消息中心",@"我的关注",@"浏览纪录", nil]autorelease];
     NSArray *lTextCommodityRelated = [[[NSArray alloc]initWithObjects:@"商品评价/晒单",@"返修/退换货",@"预约电话服务",@"收货地址管理",@"修改密码", nil]autorelease];
     NSArray *lImageOrder = [[[NSArray alloc]initWithObjects:@"myjd_orderStat@2x.png",@"myjd_waitOrder@2x.png",@"myjd_allOrder@2x.png", nil]autorelease];
     NSArray *lImageCommodityRelated = [[[NSArray alloc]initWithObjects:@"myjd_share@2x.png",@"myjd_returnWare@2x.png",@"myjd_tbis@2x.png",@"myjd_adress@2x.png",@"myjd_accountSafe@2x.png", nil]autorelease];
@@ -84,7 +83,7 @@
     if ([JD_DataManager shareGoodsDataManager].UserState == NO) {
         self.tabBarController.navigationItem.leftBarButtonItems = nil;
         UILabel *lWelcomeText = [[[UILabel alloc]initWithFrame:CGRectMake(0, 25, 320, 25)]autorelease];
-//        [lWelcomeText setText:@"欢迎来到墨云"];
+        [lWelcomeText setText:@"欢迎来到墨云"];
         [lWelcomeText setBackgroundColor:[UIColor clearColor]];
         [lWelcomeText setTextColor:[UIColor whiteColor]];
         lWelcomeText.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -114,7 +113,6 @@
         HeardButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [HeardButton setFrame:CGRectMake(20, 20, 69, 69)];
         [HeardButton setImage:[UIImage imageNamed:@"user_header_placeholder@2x.png"] forState:UIControlStateNormal];
-        [HeardButton setTitle:@"点击选择" forState:UIControlStateNormal];
         [HeardButton addTarget:self action:@selector(ChoiceHeadImageClick:) forControlEvents:UIControlEventTouchUpInside];
         [lView addSubview:HeardButton];
         UILabel *lUserName = [[[UILabel alloc]initWithFrame:CGRectMake(110, 20, 160, 25)]autorelease];

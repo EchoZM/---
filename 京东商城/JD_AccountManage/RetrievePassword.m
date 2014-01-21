@@ -32,6 +32,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationItem.title = @"找回密码";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(BackButton:)];
+    self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
     UIView *lLogin = [[[UIView alloc]initWithFrame:CGRectMake(20, 120, 280, 110)]autorelease];
     lLogin.layer.cornerRadius = 6.0;
     lLogin.layer.borderWidth = 1;
@@ -65,8 +67,12 @@
     [lLoginButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [lLoginButton setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
     [lLoginButton addTarget:self action:@selector(Confirmation:) forControlEvents:UIControlEventTouchUpInside];
-    [lLoginButton setTitle:@"登录" forState:UIControlStateNormal];
+    [lLoginButton setTitle:@"确认" forState:UIControlStateNormal];
     [self.view addSubview:lLoginButton];
+}
+
+-(void)BackButton:(UIBarButtonItem *)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)Confirmation:(UIButton *)sender{

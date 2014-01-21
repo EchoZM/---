@@ -1,5 +1,5 @@
 //
-//  InfoView.h
+//  Orderetail.h
 //  京东商城
 //
 //  Created by TY on 14-1-20.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InfoView : UIView
+@interface Orderetail : UIViewController<UITableViewDataSource,UITableViewDelegate> {
+    UITableView *TableView;
+}
 
 @end

@@ -2,12 +2,12 @@
 //  AllOrderFrom.m
 //  京东商城
 //
-//  Created by TY on 14-1-13.
+//  Created by TY on 14-1-20.
 //  Copyright (c) 2014年 张太松. All rights reserved.
 //
 
 #import "AllOrderFrom.h"
-
+#import "Orderetail.h"
 @interface AllOrderFrom ()
 
 @end
@@ -20,7 +20,6 @@
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"全部订单";
-        OrderArray = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -28,7 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"%f",self.view.frame.size.height);
     UIView *lHeard = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 36)]autorelease];
     [lHeard setBackgroundColor:[UIColor redColor]];
     [self.view addSubview:lHeard];
@@ -39,14 +37,14 @@
     lOrderid.font = [UIFont boldSystemFontOfSize:15];
     lOrderid.textColor = [UIColor purpleColor];
     [lHeard addSubview:lOrderid];
-    UILabel *lAmount = [[[UILabel alloc]initWithFrame:CGRectMake(110, 0, 80, 36)]autorelease];
+    UILabel *lAmount = [[[UILabel alloc]initWithFrame:CGRectMake(150, 0, 80, 36)]autorelease];
     [lAmount setText:@"订单价额"];
     lAmount.textAlignment = NSTextAlignmentCenter;
     lAmount.backgroundColor = [UIColor clearColor];
     lAmount.font = [UIFont boldSystemFontOfSize:15];
     lAmount.textColor = [UIColor purpleColor];
     [lHeard addSubview:lAmount];
-    UILabel *lState = [[[UILabel alloc]initWithFrame:CGRectMake(220, 0, 80, 36)]autorelease];
+    UILabel *lState = [[[UILabel alloc]initWithFrame:CGRectMake(240, 0, 80, 36)]autorelease];
     [lState setText:@"订单状态"];
     lState.textAlignment = NSTextAlignmentCenter;
     lState.backgroundColor = [UIColor clearColor];
@@ -63,10 +61,11 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(NavigationFurbish:)];
     self.navigationItem.rightBarButtonItem.tintColor= [UIColor redColor];
     [self Furbish];
-    if (OrderArray.count <= 8) {
-        TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35, 320, self.view.frame.size.height) style:UITableViewStylePlain];
+    TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35, 320, 64*[[JD_DataManager shareGoodsDataManager] OrderArray].count) style:UITableViewStylePlain];
+    if ([[JD_DataManager shareGoodsDataManager] OrderArray].count != 0) {
+        TableView.scrollEnabled = NO;
     }else{
-        TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35, 320, 64*OrderArray.count) style:UITableViewStylePlain];
+        TableView.scrollEnabled = YES;
     }
     TableView.backgroundView = nil;
     TableView.backgroundColor = [UIColor clearColor];
@@ -83,8 +82,8 @@
 -(void)Furbish{
     NSString *lBodyString = [NSString stringWithFormat:@"customerid=%@",[[[JD_DataManager shareGoodsDataManager] UserManage] objectAtIndex:0]];
     [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:lBodyString WithURLString:@"getorder.php" AndSuccess:^(NSData *data) {
-        [OrderArray removeAllObjects];
-        [OrderArray addObjectsFromArray:[[[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"msg"] objectForKey:@"info"]];
+        [[[JD_DataManager shareGoodsDataManager] OrderArray] removeAllObjects];
+        [[[JD_DataManager shareGoodsDataManager] OrderArray] addObjectsFromArray:[[[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"msg"] objectForKey:@"info"]];
         [TableView reloadData];
     } AndFailed:^{
         JD_NetworkPrompt *lNetWorkPrompt = [[[JD_NetworkPrompt alloc]init]autorelease];
@@ -97,7 +96,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [OrderArray count];
+    return [[[JD_DataManager shareGoodsDataManager] OrderArray] count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -120,19 +119,23 @@
         [lcell addSubview:lStateLable];
     }
     UILabel *lOrderidLable = (UILabel *)[lcell viewWithTag:10001];
-    lOrderidLable.text = [[OrderArray objectAtIndex:[indexPath row]] objectForKey:@"ordercode"];
+    lOrderidLable.text = [[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:[indexPath row]] objectForKey:@"ordercode"];
     lOrderidLable.textAlignment = NSTextAlignmentCenter;
     lOrderidLable.backgroundColor = [UIColor clearColor];
     lOrderidLable.font = [UIFont boldSystemFontOfSize:15];
     lOrderidLable.textColor = [UIColor purpleColor];
     UILabel *lAmountLable = (UILabel *)[lcell viewWithTag:10002];
-    lAmountLable.text = [[OrderArray objectAtIndex:[indexPath row]] objectForKey:@"amount"];
+    lAmountLable.text = [[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:[indexPath row]] objectForKey:@"amount"];
     lAmountLable.textAlignment = NSTextAlignmentCenter;
     lAmountLable.backgroundColor = [UIColor clearColor];
     lAmountLable.font = [UIFont boldSystemFontOfSize:15];
     lAmountLable.textColor = [UIColor purpleColor];
     UILabel *lStateLable = (UILabel *)[lcell viewWithTag:10003];
-    lStateLable.text = [[OrderArray objectAtIndex:[indexPath row]] objectForKey:@"state"];
+    if ([[[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:[indexPath row]] objectForKey:@"state"] intValue] == 0) {
+        lStateLable.text = @"未提交";
+    }else{
+        lStateLable.text = @"提交";
+    }
     lStateLable.textAlignment = NSTextAlignmentCenter;
     lStateLable.backgroundColor = [UIColor clearColor];
     lStateLable.font = [UIFont boldSystemFontOfSize:15];
@@ -143,10 +146,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    Orderetail *lOrderetail = [[[Orderetail alloc]init]autorelease];
+    [self.navigationController pushViewController:lOrderetail animated:YES];
     
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
