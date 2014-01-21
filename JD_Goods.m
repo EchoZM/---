@@ -66,25 +66,24 @@
     [lTap2 release];
     goodsCount = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 20, 10)];
     goodsCount.layer.cornerRadius = 3;
-    if ([JD_DataManager shareGoodsDataManager].UserState == YES) {
-        goodsCount.hidden = NO;
-    }else{
-        goodsCount.hidden = YES;
-    }
     goodsCount.textAlignment = NSTextAlignmentCenter;
     goodsCount.textColor = [UIColor whiteColor];
     goodsCount.font = [UIFont systemFontOfSize:10];
     goodsCount.backgroundColor = [UIColor redColor];
     [carButton addSubview:goodsCount];
-    [JD_DataManager shareGoodsDataManager].userID = @"20";
-    NSString *bodyString1 = [NSString stringWithFormat:@"customerid=%@",[JD_DataManager shareGoodsDataManager].userID];
-    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString1 WithURLString:@"getcart.php" AndSuccess:^(NSData *data){
-        NSDictionary *cartInfo = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        NSDictionary *lDic = [cartInfo objectForKey:@"msg"];
-        goodsCount.text = [NSString stringWithFormat:@"%@",[lDic objectForKey:@"count"]];
-    }AndFailed:^{
-        
-    }];
+    if ([JD_DataManager shareGoodsDataManager].UserState == YES) {
+        goodsCount.hidden = NO;
+        NSString *bodyString1 = [NSString stringWithFormat:@"customerid=%@",[JD_DataManager shareGoodsDataManager].userID];
+        [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString1 WithURLString:@"getcart.php" AndSuccess:^(NSData *data){
+            NSDictionary *cartInfo = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            NSDictionary *lDic = [cartInfo objectForKey:@"msg"];
+            goodsCount.text = [NSString stringWithFormat:@"%@",[lDic objectForKey:@"count"]];
+        }AndFailed:^{
+            
+        }];
+    }else{
+        goodsCount.hidden = YES;
+    }
     //请求数据
     NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@",[JD_DataManager shareGoodsDataManager].goodsID];
     [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"getgoodsinfo.php" AndSuccess:^(NSData *data){

@@ -191,5 +191,15 @@
     [addressTextField resignFirstResponder];
     [telephoneTextField resignFirstResponder];
     [codeTextField resignFirstResponder];
+    nameTextField.userInteractionEnabled = NO;
+    addressTextField.userInteractionEnabled = NO;
+    telephoneTextField.userInteractionEnabled = NO;
+    codeTextField.userInteractionEnabled = NO;
+    UIButton *deleteButton = (UIButton *)[self.view viewWithTag:521];
+    deleteButton.backgroundColor = [UIColor grayColor];
+    deleteButton.tag = 520;
+    UIBarButtonItem *rightBarButton = self.navigationItem.rightBarButtonItem;
+    rightBarButton.tag = 101;
+    [rightBarButton setTitle:@"编辑"];
 }
 @end
