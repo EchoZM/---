@@ -11,5 +11,5 @@
 @interface Orderetail : UIViewController<UITableViewDataSource,UITableViewDelegate> {
     UITableView *TableView;
 }
-
+@property(nonatomic,assign)int Section;
 @end

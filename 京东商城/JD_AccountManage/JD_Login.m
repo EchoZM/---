@@ -54,6 +54,9 @@
     _UserText = [[UITextField alloc]initWithFrame:CGRectMake(90, 5, 170, 40)];
     [_UserText setBackgroundColor:[UIColor clearColor]];
     [_UserText setPlaceholder:@"请输入帐户名"];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"UserDefaultNameKey"] != nil && ![[[NSUserDefaults standardUserDefaults] objectForKey:@"UserDefaultNameKey"] isEqualToString:@""]) {
+        _UserText.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserDefaultNameKey"];
+    }
     [_UserText setKeyboardType:UIKeyboardTypeNamePhonePad];
     _UserText.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _UserText.font = [UIFont boldSystemFontOfSize:21];
@@ -61,6 +64,9 @@
     _PasswordText = [[UITextField alloc]initWithFrame:CGRectMake(90, 65, 170, 40)];
     [_PasswordText setBackgroundColor:[UIColor clearColor]];
     [_PasswordText setPlaceholder:@"请输入密码"];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"UserDefaultPasswordKey"] != nil && ![[[NSUserDefaults standardUserDefaults] objectForKey:@"UserDefaultPasswordKey"] isEqualToString:@""]) {
+        _PasswordText.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserDefaultPasswordKey"];
+    }
     [_PasswordText setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     [_PasswordText setSecureTextEntry:YES];
     _PasswordText.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -84,15 +90,22 @@
     [lRetrievePassword setTitle:@"找回密码" forState:UIControlStateNormal];
     [lRetrievePassword addTarget:self action:@selector(RetrievePassword:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:lRetrievePassword];
-    UIButton *lOtherLogin = [UIButton buttonWithType:UIButtonTypeCustom];
-    [lOtherLogin setFrame:CGRectMake(self.view.frame.size.width-160, 260, 140, 30)];
-    [lOtherLogin setBackgroundColor:[UIColor clearColor]];
-    [lOtherLogin.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
-    [lOtherLogin.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [lOtherLogin setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
-    [lOtherLogin setTitle:@"用合作网站帐号登录" forState:UIControlStateNormal];
-    [lOtherLogin addTarget:self action:@selector(OtherLogin:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:lOtherLogin];
+    RememberPassword = [UIButton buttonWithType:UIButtonTypeCustom];
+    [RememberPassword setTag:10000];
+    [RememberPassword setFrame:CGRectMake(self.view.frame.size.width-110, 260, 28, 28)];
+    RememberPassword.layer.cornerRadius = 6;
+    [RememberPassword setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"radiobox_0.png"]]];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"Remember"] intValue] == 1) {
+        [RememberPassword setImage:[UIImage imageNamed:@"checkbox_1@2x.png"] forState:UIControlStateNormal];
+    }
+    [RememberPassword addTarget:self action:@selector(RememberPassword:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:RememberPassword];
+    UILabel *lShowPasswordLable = [[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width-80, 260, 60, 30)]autorelease];
+    [lShowPasswordLable setBackgroundColor:[UIColor clearColor]];
+    [lShowPasswordLable setText:@"记住密码"];
+    lShowPasswordLable.font = [UIFont boldSystemFontOfSize:15];
+    [lShowPasswordLable setTextColor:[UIColor purpleColor]];
+    [self.view addSubview:lShowPasswordLable];
     UIButton *lFreeRegister = [UIButton buttonWithType:UIButtonTypeCustom];
     [lFreeRegister setFrame:CGRectMake(20, 310, 280, 40)];
     [lFreeRegister setBackgroundColor:[UIColor orangeColor]];
@@ -102,6 +115,24 @@
     [lFreeRegister setTitle:@"免费注册" forState:UIControlStateNormal];
     [lFreeRegister addTarget:self action:@selector(FreeRegister:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:lFreeRegister];
+}
+
+-(void)RememberPassword:(UIButton *)sender{
+    if (sender.tag == 10000) {
+        _Remember = YES;
+        [[NSUserDefaults standardUserDefaults] setBool:_Remember forKey:@"Remember"];
+        [RememberPassword setImage:[UIImage imageNamed:@"checkbox_1@2x.png"] forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults] setObject:_UserText.text forKey:@"UserDefaultNameKey"];
+        [[NSUserDefaults standardUserDefaults] setObject:_PasswordText.text forKey:@"UserDefaultPasswordKey"];
+        sender.tag = 10001;
+    }else{
+        _Remember = NO;
+        [[NSUserDefaults standardUserDefaults] setBool:_Remember forKey:@"Remember"];
+        [RememberPassword setImage:nil forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"UserDefaultNameKey"];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"UserDefaultPasswordKey"];
+        sender.tag = 10000;
+    }
 }
 
 -(void)CancelButton:(UIBarButtonItem *)sender{
