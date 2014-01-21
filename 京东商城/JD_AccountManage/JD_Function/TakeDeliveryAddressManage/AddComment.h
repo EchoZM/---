@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddComment : UIViewController
+@interface AddComment : UIViewController<UITextFieldDelegate>
+- (IBAction)screenExit:(UIControl *)sender;
 
 @end
