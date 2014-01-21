@@ -1,26 +1,25 @@
 //
-//  AddComment.m
+//  DeleteComment.m
 //  JD_MALL
 //
 //  Created by TY on 14-1-14.
 //  Copyright (c) 2014年 张太松. All rights reserved.
 //
 
-#import "AddComment.h"
+#import "DeleteComment.h"
 
-@interface AddComment ()
+@interface DeleteComment ()
 
 @end
 
-@implementation AddComment
+@implementation DeleteComment
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.navigationItem.title = @"添加评论";
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"JD_BG.png"]]];
+        self.navigationItem.title = @"删除评论";
     }
     return self;
 }
@@ -43,11 +42,6 @@
 -(void)BackButton:(UIBarButtonItem *)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
--(void)ConfirmButton:(UIBarButtonItem *)sender{
-    
-}
-
 
 
 - (void)didReceiveMemoryWarning

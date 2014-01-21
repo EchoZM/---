@@ -98,27 +98,29 @@
 }
 
 -(void)RegisterButton:(UIBarButtonItem *)sender{
-    NSString *lBodyString = [NSString stringWithFormat:@"name=%@&password=%@&email=%@&telephone=%@",UserText.text,PasswordText.text,EmailText.text,TelephoneText.text];
-    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:lBodyString WithURLString:@"register.php" AndSuccess:^(NSData *data) {
-        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        NSNumber *lNumber = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"error"];
-        NSLog(@"%@",lDictionary);
-        if ([lNumber isEqualToNumber:[NSNumber numberWithInt:0]] && [lDictionary objectForKey:@"msg"] != nil){
-            [JD_DataManager shareGoodsDataManager].UserRegisterState = YES;
-            [self.navigationController popViewControllerAnimated:YES];
-        }else{
-            if ([lNumber isEqualToNumber:[NSNumber numberWithInt:1]] && [lDictionary objectForKey:@"msg"] != nil) {
-                UserText.text = @"";
-                UserText.placeholder = @"用户名重复";
+    if (![UserText.text isEqualToString:@""] && ![PasswordText.text isEqualToString:@""] && ![RePasswordText.text isEqualToString:@""] && ![EmailText.text isEqualToString:@""] && ![TelephoneText.text isEqualToString:@""] && UserText.text != nil && PasswordText.text != nil && RePasswordText.text != nil && EmailText.text != nil && TelephoneText.text != nil) {
+        NSString *lBodyString = [NSString stringWithFormat:@"name=%@&password=%@&email=%@&telephone=%@",UserText.text,PasswordText.text,EmailText.text,TelephoneText.text];
+        [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:lBodyString WithURLString:@"register.php" AndSuccess:^(NSData *data) {
+            NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            NSNumber *lNumber = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"error"];
+            if ([lNumber isEqualToNumber:[NSNumber numberWithInt:0]] && [lDictionary objectForKey:@"msg"] != nil){
+                [JD_DataManager shareGoodsDataManager].UserRegisterState = YES;
+                [self.navigationController popViewControllerAnimated:YES];
             }else{
-                UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户信息录入不完整，请仔细核对!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
-                [lErrorAlertView show];
+                if ([lNumber isEqualToNumber:[NSNumber numberWithInt:1]] && [lDictionary objectForKey:@"msg"] != nil) {
+                    UserText.text = @"";
+                    UserText.placeholder = @"用户名重复";
+                }
             }
-        }
-    } AndFailed:^{
-        JD_NetworkPrompt *lNetWorkPrompt = [[[JD_NetworkPrompt alloc]init]autorelease];
-        [self.view addSubview:lNetWorkPrompt];
-    }];
+        } AndFailed:^{
+            JD_NetworkPrompt *lNetWorkPrompt = [[[JD_NetworkPrompt alloc]init]autorelease];
+            [self.view addSubview:lNetWorkPrompt];
+        }];
+    }else{
+        UIAlertView *lErrorAlertView = [[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户信息录入不完整，请仔细核对!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil]autorelease];
+        [lErrorAlertView show];
+    }
+    
 }
 
 -(void)ShowPassword:(UIButton *)sender{
@@ -174,6 +176,9 @@
         if (![RePasswordText.text isEqualToString:PasswordText.text]) {
             RePasswordText.text = @"";
             RePasswordText.placeholder = @"密码输入不一致";
+        }else if (PasswordText.text == nil || [PasswordText.text isEqualToString:@""]){
+            RePasswordText.text = @"";
+            RePasswordText.placeholder = @"请输入密码";
         }
     }
     //失去焦点，检查邮箱合法性
@@ -200,7 +205,6 @@
         [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"get" WithBodyString:nil WithURLString:[NSString stringWithFormat:@"checktelephone.php?telephone=%@",TelephoneText.text] AndSuccess:^(NSData *data) {
             NSNumber *lError = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"error"];
             NSNumber *lMsg = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"msg"];
-            NSLog(@"%@,%@",lError,lMsg);
             NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
             NSPredicate *lPredicate = [NSPredicate predicateWithFormat:@"self MATCHES %@", regex];
             if (![lPredicate evaluateWithObject:[NSString stringWithFormat:@"%@",TelephoneText.text]]){

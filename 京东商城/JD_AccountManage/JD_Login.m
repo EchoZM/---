@@ -28,13 +28,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"%f",self.view.frame.size.height);
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.title = @"登录";
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(CancelButton:)]autorelease];
     self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
