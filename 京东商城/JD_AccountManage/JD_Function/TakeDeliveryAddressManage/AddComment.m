@@ -19,8 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.navigationItem.title = @"添加评论";
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"JD_BG.png"]]];
+        self.navigationItem.title = @"新建收货人";
     }
     return self;
 }
@@ -31,24 +30,31 @@
     // Do any additional setup after loading the view from its nib.
 }
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(BackButton:)];
-    self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"确认" style:UIBarButtonItemStylePlain target:self action:@selector(ConfirmButton:)];
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 40, 40);
+    [backButton setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(BackButton:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = leftBarButton;
+    [leftBarButton release];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(FinishButton:)];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
     self.navigationItem.rightBarButtonItem.tintColor= [UIColor redColor];
-    
+    [rightBarButton release];
 }
 
--(void)BackButton:(UIBarButtonItem *)sender{
+-(void)BackButton:(UIBarButtonItem *)sender
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)ConfirmButton:(UIBarButtonItem *)sender{
+-(void)FinishButton:(UIBarButtonItem *)sender
+{
     
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {

@@ -64,8 +64,6 @@
     [self.view addSubview:carButton];
     [carButton release];
     [lTap2 release];
-    ///////////////////////////
-    [JD_DataManager shareGoodsDataManager].UserState = YES;
     goodsCount = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 20, 10)];
     goodsCount.layer.cornerRadius = 3;
     if ([JD_DataManager shareGoodsDataManager].UserState == YES) {
@@ -123,11 +121,13 @@
 }
 
 -(void)popToShopCar:(UITapGestureRecognizer *)sender
-{///////////////////////////////
-    if ([JD_DataManager shareGoodsDataManager].UserState == YES) {
-        NSLog(@"ToShopCar");
+{
+    if ([JD_DataManager shareGoodsDataManager].UserState) {
+        NSLog(@"ToShopCarYes");
     }else{
-        
+        JD_Login *lLogin = [[JD_Login alloc]init];
+        [self.navigationController pushViewController:lLogin animated:YES];
+        [lLogin release];
     }
 }
 #pragma mark - setGoods
@@ -297,24 +297,6 @@
     priceView.lineBreakMode = NSLineBreakByWordWrapping;//自动换行
     priceView.numberOfLines = 2;//行数
     [self.view addSubview:priceView];
-    //释放
-//    [headerImageView release];
-//    [backgroundView release];
-//    [informationView release];
-//    [infoLabel release];
-//    [intoImageView release];
-//    [lineView release];
-//    [nameLabel release];
-//    [priceLabel release];
-//    [evaluateView release];
-//    [evaluateLabel release];
-//    [reviewcountLabel release];
-//    [intooImageView release];
-//    [modelView release];
-//    [modelLabel release];
-//    [lineView2 release];
-//    [colorLabel release];
-//    [numberView release];
 }
 #pragma mark - textFieldDelegate
 -(void)textFieldDidBeginEditing:(UITextField *)textField//当输入框获得焦点时，执行该方法
@@ -392,9 +374,7 @@
 #pragma mark - addCart
 -(void)addToShopCar:(UIButton *)sender
 {
-    [JD_DataManager shareGoodsDataManager].UserState = YES;
     if ([JD_DataManager shareGoodsDataManager].UserState) {
-        [JD_DataManager shareGoodsDataManager].userID = @"20";
         NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@&customerid=%@&goodscount=%i",[JD_DataManager shareGoodsDataManager].goodsID,[JD_DataManager shareGoodsDataManager].userID,goodsNumber];
         [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"addcart.php" AndSuccess:^(NSData *data){
             NSDictionary *goodsInfo = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];

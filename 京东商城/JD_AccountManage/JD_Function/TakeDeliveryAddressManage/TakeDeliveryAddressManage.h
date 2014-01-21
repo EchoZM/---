@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TakeDeliveryAddressManage : UIViewController{
-    NSArray *ActionButtonArray;
-    UITableView *TableView;
+@interface TakeDeliveryAddressManage : UIViewController
+{
+    NSMutableArray *_infoviewArray;
 }
 
 @end

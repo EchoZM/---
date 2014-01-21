@@ -43,6 +43,9 @@
 		104140B3188CED3E005B3BFB /* welcom.png in Resources */ = {isa = PBXBuildFile; fileRef = 104140B1188CED3E005B3BFB /* welcom.png */; };
 		104140B4188CED3E005B3BFB /* welcom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 104140B2188CED3E005B3BFB /* welcom@2x.png */; };
 		104140B8188CF332005B3BFB /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 104140B7188CF332005B3BFB /* logo.jpg */; };
+		104140BC188D199F005B3BFB /* AddressInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 104140BA188D199F005B3BFB /* AddressInfoViewController.m */; };
+		104140BD188D199F005B3BFB /* AddressInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 104140BB188D199F005B3BFB /* AddressInfoViewController.xib */; };
+		104140C1188D1B4E005B3BFB /* InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 104140C0188D1B4E005B3BFB /* InfoView.m */; };
 		10432360187FD55A0095C3FD /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 1043235E187FD55A0095C3FD /* white.png */; };
 		1065D8D4187E30F40068D9B7 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1065D8BB187E30F40068D9B7 /* ASIAuthenticationDialog.m */; };
 		1065D8D5187E30F40068D9B7 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1065D8BE187E30F40068D9B7 /* ASIDataCompressor.m */; };
@@ -107,10 +110,6 @@
 		109D68D1188D0FD6000F06AC /* subscribeTelServices.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109D68A8188D0FD6000F06AC /* subscribeTelServices.xib */; };
 		109D68D2188D0FD6000F06AC /* AddComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 109D68AB188D0FD6000F06AC /* AddComment.m */; };
 		109D68D3188D0FD6000F06AC /* AddComment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109D68AC188D0FD6000F06AC /* AddComment.xib */; };
-		109D68D4188D0FD6000F06AC /* AlterComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 109D68AE188D0FD6000F06AC /* AlterComment.m */; };
-		109D68D5188D0FD6000F06AC /* AlterComment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109D68AF188D0FD6000F06AC /* AlterComment.xib */; };
-		109D68D6188D0FD6000F06AC /* DeleteComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 109D68B1188D0FD6000F06AC /* DeleteComment.m */; };
-		109D68D7188D0FD6000F06AC /* DeleteComment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109D68B2188D0FD6000F06AC /* DeleteComment.xib */; };
 		109D68D8188D0FD6000F06AC /* TakeDeliveryAddressManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 109D68B4188D0FD6000F06AC /* TakeDeliveryAddressManage.m */; };
 		109D68D9188D0FD6000F06AC /* TakeDeliveryAddressManage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 109D68B5188D0FD6000F06AC /* TakeDeliveryAddressManage.xib */; };
 		109D68DA188D0FD6000F06AC /* JD_Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 109D68B7188D0FD6000F06AC /* JD_Login.m */; };
@@ -199,6 +198,11 @@
 		104140B1188CED3E005B3BFB /* welcom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcom.png; sourceTree = "<group>"; };
 		104140B2188CED3E005B3BFB /* welcom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom@2x.png"; sourceTree = "<group>"; };
 		104140B7188CF332005B3BFB /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
+		104140B9188D199F005B3BFB /* AddressInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressInfoViewController.h; sourceTree = "<group>"; };
+		104140BA188D199F005B3BFB /* AddressInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressInfoViewController.m; sourceTree = "<group>"; };
+		104140BB188D199F005B3BFB /* AddressInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressInfoViewController.xib; sourceTree = "<group>"; };
+		104140BF188D1B4E005B3BFB /* InfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoView.h; sourceTree = "<group>"; };
+		104140C0188D1B4E005B3BFB /* InfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoView.m; sourceTree = "<group>"; };
 		1043235E187FD55A0095C3FD /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = white.png; path = ../white.png; sourceTree = "<group>"; };
 		1065D8BA187E30F40068D9B7 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		1065D8BB187E30F40068D9B7 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
@@ -286,12 +290,6 @@
 		109D68AA188D0FD6000F06AC /* AddComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddComment.h; sourceTree = "<group>"; };
 		109D68AB188D0FD6000F06AC /* AddComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddComment.m; sourceTree = "<group>"; };
 		109D68AC188D0FD6000F06AC /* AddComment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddComment.xib; sourceTree = "<group>"; };
-		109D68AD188D0FD6000F06AC /* AlterComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlterComment.h; sourceTree = "<group>"; };
-		109D68AE188D0FD6000F06AC /* AlterComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlterComment.m; sourceTree = "<group>"; };
-		109D68AF188D0FD6000F06AC /* AlterComment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlterComment.xib; sourceTree = "<group>"; };
-		109D68B0188D0FD6000F06AC /* DeleteComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteComment.h; sourceTree = "<group>"; };
-		109D68B1188D0FD6000F06AC /* DeleteComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteComment.m; sourceTree = "<group>"; };
-		109D68B2188D0FD6000F06AC /* DeleteComment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeleteComment.xib; sourceTree = "<group>"; };
 		109D68B3188D0FD6000F06AC /* TakeDeliveryAddressManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeDeliveryAddressManage.h; sourceTree = "<group>"; };
 		109D68B4188D0FD6000F06AC /* TakeDeliveryAddressManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeDeliveryAddressManage.m; sourceTree = "<group>"; };
 		109D68B5188D0FD6000F06AC /* TakeDeliveryAddressManage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakeDeliveryAddressManage.xib; sourceTree = "<group>"; };
@@ -441,6 +439,15 @@
 				104140A1188CA7D1005B3BFB /* select.png */,
 			);
 			name = JD_Image;
+			sourceTree = "<group>";
+		};
+		104140BE188D1B36005B3BFB /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				104140BF188D1B4E005B3BFB /* InfoView.h */,
+				104140C0188D1B4E005B3BFB /* InfoView.m */,
+			);
+			name = CustomView;
 			sourceTree = "<group>";
 		};
 		1065D8B9187E30F40068D9B7 /* ASIHttpRequestX */ = {
@@ -606,18 +613,16 @@
 		109D68A9188D0FD6000F06AC /* TakeDeliveryAddressManage */ = {
 			isa = PBXGroup;
 			children = (
-				109D68AA188D0FD6000F06AC /* AddComment.h */,
-				109D68AB188D0FD6000F06AC /* AddComment.m */,
-				109D68AC188D0FD6000F06AC /* AddComment.xib */,
-				109D68AD188D0FD6000F06AC /* AlterComment.h */,
-				109D68AE188D0FD6000F06AC /* AlterComment.m */,
-				109D68AF188D0FD6000F06AC /* AlterComment.xib */,
-				109D68B0188D0FD6000F06AC /* DeleteComment.h */,
-				109D68B1188D0FD6000F06AC /* DeleteComment.m */,
-				109D68B2188D0FD6000F06AC /* DeleteComment.xib */,
+				104140BE188D1B36005B3BFB /* CustomView */,
 				109D68B3188D0FD6000F06AC /* TakeDeliveryAddressManage.h */,
 				109D68B4188D0FD6000F06AC /* TakeDeliveryAddressManage.m */,
 				109D68B5188D0FD6000F06AC /* TakeDeliveryAddressManage.xib */,
+				109D68AA188D0FD6000F06AC /* AddComment.h */,
+				109D68AB188D0FD6000F06AC /* AddComment.m */,
+				109D68AC188D0FD6000F06AC /* AddComment.xib */,
+				104140B9188D199F005B3BFB /* AddressInfoViewController.h */,
+				104140BA188D199F005B3BFB /* AddressInfoViewController.m */,
+				104140BB188D199F005B3BFB /* AddressInfoViewController.xib */,
 			);
 			path = TakeDeliveryAddressManage;
 			sourceTree = "<group>";
@@ -678,12 +683,12 @@
 			children = (
 				10EFCD0518765628009F4AB4 /* AppDelegate.h */,
 				10EFCD0618765628009F4AB4 /* AppDelegate.m */,
-				109D688F188D0FD6000F06AC /* JD_AccountManage */,
 				10EFCD9C18769A21009F4AB4 /* JD_Comm */,
 				10EFCD82187694D1009F4AB4 /* JD_Welcome */,
 				10EFCD1918765680009F4AB4 /* JD_Home_Page */,
 				10EFCD881876957A009F4AB4 /* JD_Search */,
 				10EFCD8918769596009F4AB4 /* JD_ShopCar */,
+				109D688F188D0FD6000F06AC /* JD_AccountManage */,
 				100A99DD187CE8F4006487D8 /* JD_Goods */,
 				10DF345B1888BDF900E7712F /* JD_Review */,
 				10EFCD3D18765A63009F4AB4 /* JD_ICon_Images */,
@@ -956,13 +961,12 @@
 				109D68CF188D0FD6000F06AC /* ReturnGoods.xib in Resources */,
 				109D68D1188D0FD6000F06AC /* subscribeTelServices.xib in Resources */,
 				109D68D3188D0FD6000F06AC /* AddComment.xib in Resources */,
-				109D68D5188D0FD6000F06AC /* AlterComment.xib in Resources */,
-				109D68D7188D0FD6000F06AC /* DeleteComment.xib in Resources */,
 				109D68D9188D0FD6000F06AC /* TakeDeliveryAddressManage.xib in Resources */,
 				109D68DB188D0FD6000F06AC /* JD_Login.xib in Resources */,
 				109D68DD188D0FD6000F06AC /* JD_Register.xib in Resources */,
 				109D68DF188D0FD6000F06AC /* MoreView.xib in Resources */,
 				109D68E1188D0FD6000F06AC /* RetrievePassword.xib in Resources */,
+				104140BD188D199F005B3BFB /* AddressInfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1005,14 +1009,14 @@
 				109D68CE188D0FD6000F06AC /* ReturnGoods.m in Sources */,
 				109D68D0188D0FD6000F06AC /* subscribeTelServices.m in Sources */,
 				109D68D2188D0FD6000F06AC /* AddComment.m in Sources */,
-				109D68D4188D0FD6000F06AC /* AlterComment.m in Sources */,
-				109D68D6188D0FD6000F06AC /* DeleteComment.m in Sources */,
 				109D68D8188D0FD6000F06AC /* TakeDeliveryAddressManage.m in Sources */,
 				109D68DA188D0FD6000F06AC /* JD_Login.m in Sources */,
 				109D68DC188D0FD6000F06AC /* JD_Register.m in Sources */,
 				109D68DE188D0FD6000F06AC /* MoreView.m in Sources */,
 				109D68E0188D0FD6000F06AC /* RetrievePassword.m in Sources */,
 				109D68E6188D108B000F06AC /* JD_NetworkPrompt.m in Sources */,
+				104140BC188D199F005B3BFB /* AddressInfoViewController.m in Sources */,
+				104140C1188D1B4E005B3BFB /* InfoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
