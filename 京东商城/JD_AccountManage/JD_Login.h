@@ -10,10 +10,11 @@
 
 @interface JD_Login : UIViewController {
     UIAlertView *ErrorAlertView;
-    
+    UIButton *RememberPassword;
 }
 @property (nonatomic,retain)UITextField *UserText;
 @property (nonatomic,retain)UITextField *PasswordText;
+@property (nonatomic,assign)BOOL Remember;
 - (IBAction)View:(UIControl *)sender;
 
 @end

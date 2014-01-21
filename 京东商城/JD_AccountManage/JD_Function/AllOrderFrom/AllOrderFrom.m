@@ -61,8 +61,12 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(NavigationFurbish:)];
     self.navigationItem.rightBarButtonItem.tintColor= [UIColor redColor];
     [self Furbish];
-    TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35, 320, 64*[[JD_DataManager shareGoodsDataManager] OrderArray].count) style:UITableViewStylePlain];
-    if ([[JD_DataManager shareGoodsDataManager] OrderArray].count != 0) {
+    if ([[JD_DataManager shareGoodsDataManager] OrderArray].count <= 8) {
+        TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35, 320, 64*[[JD_DataManager shareGoodsDataManager] OrderArray].count) style:UITableViewStylePlain];
+    }else{
+        TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35, 320, 548) style:UITableViewStylePlain];
+    }
+    if ([[JD_DataManager shareGoodsDataManager] OrderArray].count <= 0) {
         TableView.scrollEnabled = NO;
     }else{
         TableView.scrollEnabled = YES;
@@ -71,6 +75,7 @@
     TableView.backgroundColor = [UIColor clearColor];
     TableView.delegate = self;
     TableView.dataSource = self;
+    TableView.contentSize = CGSizeMake(320, 64*[[JD_DataManager shareGoodsDataManager] OrderArray].count);
     [self.view addSubview:TableView];
     
 }
@@ -84,6 +89,7 @@
     [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:lBodyString WithURLString:@"getorder.php" AndSuccess:^(NSData *data) {
         [[[JD_DataManager shareGoodsDataManager] OrderArray] removeAllObjects];
         [[[JD_DataManager shareGoodsDataManager] OrderArray] addObjectsFromArray:[[[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"msg"] objectForKey:@"info"]];
+        [TableView setFrame:CGRectMake(0, 35, 320, 64*[[JD_DataManager shareGoodsDataManager] OrderArray].count)];
         [TableView reloadData];
     } AndFailed:^{
         JD_NetworkPrompt *lNetWorkPrompt = [[[JD_NetworkPrompt alloc]init]autorelease];
@@ -96,8 +102,9 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[[JD_DataManager shareGoodsDataManager] OrderArray] count];
+    return [[JD_DataManager shareGoodsDataManager] OrderArray].count;
 }
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 64;
@@ -148,7 +155,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Orderetail *lOrderetail = [[[Orderetail alloc]init]autorelease];
     [self.navigationController pushViewController:lOrderetail animated:YES];
-    
+    lOrderetail.Section = [indexPath row];
 }
 - (void)didReceiveMemoryWarning
 {
