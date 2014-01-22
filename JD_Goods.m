@@ -187,7 +187,7 @@
     [informationView addSubview:priceLabel];
     [priceLabel release];
     //商品评价
-    UIView *evaluateView = [[UIView alloc]initWithFrame:CGRectMake(5, 320, 310, 50)];
+    UIView *evaluateView = [[UIView alloc]initWithFrame:CGRectMake(5, 321, 310, 50)];
     evaluateView.backgroundColor = [UIColor whiteColor];
     evaluateView.layer.cornerRadius = 8;
     [_backgroundView addSubview:evaluateView];
@@ -226,7 +226,7 @@
     [evaluateButton addTarget:self action:@selector(toGoodsEvaluate:) forControlEvents:UIControlEventTouchUpInside];
     [evaluateView addSubview:evaluateButton];
     //商品型号
-    UIView *modelView = [[UIView alloc]initWithFrame:CGRectMake(5, 375, 310, 101)];
+    UIView *modelView = [[UIView alloc]initWithFrame:CGRectMake(5, 376, 310, 101)];
     modelView.backgroundColor = [UIColor whiteColor];
     modelView.layer.cornerRadius = 8;
     [_backgroundView addSubview:modelView];
@@ -251,11 +251,15 @@
     colorLabel.textColor = [UIColor blackColor];
     [modelView addSubview:colorLabel];
     [colorLabel release];
-    //商品描述
     //加入购物车及欲购买商品的信息
+    UIView *lastView = [[UIView alloc]initWithFrame:CGRectMake(0, 482, self.view.frame.size.width, self.view.frame.size.height-482)];
+    lastView.backgroundColor = [UIColor whiteColor];
+    [_backgroundView addSubview:lastView];
+    [lastView release];
     UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
     addButton.backgroundColor = [UIColor redColor];
     addButton.layer.cornerRadius = 8;
+    addButton.layer.borderWidth = 1;
     addButton.frame = CGRectMake(10, self.view.frame.size.height-16-44, 100, 50);
     [addButton setTitle:@"加入购物车" forState:UIControlStateNormal];
     addButton.titleLabel.backgroundColor = [UIColor redColor];
@@ -264,6 +268,7 @@
     UIView *numberView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-200, self.view.frame.size.height-16-44, 100, 50)];
     numberView.backgroundColor = [UIColor whiteColor];
     numberView.layer.cornerRadius = 8;
+    numberView.layer.borderWidth = 1;
     [self.view addSubview:numberView];
     [numberView release];
     UIButton *subtractButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -293,6 +298,7 @@
     priceView.font = [UIFont systemFontOfSize:16];
     priceView.textAlignment = NSTextAlignmentCenter;
     priceView.layer.cornerRadius = 8;
+    priceView.layer.borderWidth = 1;
     priceView.lineBreakMode = NSLineBreakByWordWrapping;//自动换行
     priceView.numberOfLines = 2;//行数
     [self.view addSubview:priceView];

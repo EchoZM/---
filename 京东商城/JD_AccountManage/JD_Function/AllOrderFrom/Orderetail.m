@@ -65,8 +65,15 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(BackButton:)];
-    self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 40, 40);
+    [backButton setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(BackButton:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = leftBarButton;
+    [leftBarButton release];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(BackButton:)];
+//    self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
     if ([[JD_DataManager shareGoodsDataManager] OrderArray].count <= 8) {
         TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 36, 320, 64*[[[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:_Section] objectForKey:@"carts"] count]) style:UITableViewStylePlain];
     }else{

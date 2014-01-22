@@ -34,8 +34,16 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationItem.title = @"登录";
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(CancelButton:)]autorelease];
-    self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 40, 40);
+    [backButton setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(CancelButton:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = leftBarButton;
+    [leftBarButton release];
+//    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(CancelButton:)]autorelease];
+//    self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
     self.navigationItem.rightBarButtonItem = nil;
     UIView *lLogin = [[[UIView alloc]initWithFrame:CGRectMake(20, 70, 280, 110)]autorelease];
     lLogin.layer.cornerRadius = 6.0;
