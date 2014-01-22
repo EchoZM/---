@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OrderFromStateQuery : UIViewController
+@interface OrderFromStateQuery : UIViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate> {
+    UITableView *TableView;
+    UIButton *HeardButton;
+}
 
 @end

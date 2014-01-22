@@ -46,6 +46,30 @@
 		10432360187FD55A0095C3FD /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 1043235E187FD55A0095C3FD /* white.png */; };
 		104F9482188E4E66007C021D /* AddressInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 104F9480188E4E66007C021D /* AddressInfoViewController.m */; };
 		104F9483188E4E66007C021D /* AddressInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 104F9481188E4E66007C021D /* AddressInfoViewController.xib */; };
+		105CCB3E188F54AD007A9AB0 /* AccountSafety.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB3C188F54AD007A9AB0 /* AccountSafety.m */; };
+		105CCB3F188F54AD007A9AB0 /* AccountSafety.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105CCB3D188F54AD007A9AB0 /* AccountSafety.xib */; };
+		105CCB46188F54FC007A9AB0 /* AllOrderFrom.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB41188F54FC007A9AB0 /* AllOrderFrom.m */; };
+		105CCB47188F54FC007A9AB0 /* AllOrderFrom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105CCB42188F54FC007A9AB0 /* AllOrderFrom.xib */; };
+		105CCB48188F54FC007A9AB0 /* Orderetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB44188F54FC007A9AB0 /* Orderetail.m */; };
+		105CCB49188F54FC007A9AB0 /* Orderetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105CCB45188F54FC007A9AB0 /* Orderetail.xib */; };
+		105CCB59188F5579007A9AB0 /* GoodsEvaluationOrSingleOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB4B188F5579007A9AB0 /* GoodsEvaluationOrSingleOrder.m */; };
+		105CCB5A188F5579007A9AB0 /* GoodsEvaluationOrSingleOrder.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105CCB4C188F5579007A9AB0 /* GoodsEvaluationOrSingleOrder.xib */; };
+		105CCB5B188F5579007A9AB0 /* ObligationQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB4E188F5579007A9AB0 /* ObligationQuery.m */; };
+		105CCB5C188F5579007A9AB0 /* ObligationQuery.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105CCB4F188F5579007A9AB0 /* ObligationQuery.xib */; };
+		105CCB5D188F5579007A9AB0 /* OrderFromStateQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB51188F5579007A9AB0 /* OrderFromStateQuery.m */; };
+		105CCB5E188F5579007A9AB0 /* OrderFromStateQuery.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105CCB52188F5579007A9AB0 /* OrderFromStateQuery.xib */; };
+		105CCB5F188F5579007A9AB0 /* ReturnGoods.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB54188F5579007A9AB0 /* ReturnGoods.m */; };
+		105CCB60188F5579007A9AB0 /* ReturnGoods.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105CCB55188F5579007A9AB0 /* ReturnGoods.xib */; };
+		105CCB61188F5579007A9AB0 /* subscribeTelServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB57188F5579007A9AB0 /* subscribeTelServices.m */; };
+		105CCB62188F5579007A9AB0 /* subscribeTelServices.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105CCB58188F5579007A9AB0 /* subscribeTelServices.xib */; };
+		105CCB6F188F55E7007A9AB0 /* JD_Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB64188F55E7007A9AB0 /* JD_Login.m */; };
+		105CCB70188F55E7007A9AB0 /* JD_Login.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105CCB65188F55E7007A9AB0 /* JD_Login.xib */; };
+		105CCB71188F55E7007A9AB0 /* JD_Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB67188F55E7007A9AB0 /* JD_Register.m */; };
+		105CCB72188F55E7007A9AB0 /* JD_Register.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105CCB68188F55E7007A9AB0 /* JD_Register.xib */; };
+		105CCB73188F55E7007A9AB0 /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB6A188F55E7007A9AB0 /* MoreView.m */; };
+		105CCB74188F55E7007A9AB0 /* MoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105CCB6B188F55E7007A9AB0 /* MoreView.xib */; };
+		105CCB75188F55E7007A9AB0 /* RetrievePassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB6D188F55E7007A9AB0 /* RetrievePassword.m */; };
+		105CCB76188F55E7007A9AB0 /* RetrievePassword.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105CCB6E188F55E7007A9AB0 /* RetrievePassword.xib */; };
 		1065D8D4187E30F40068D9B7 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1065D8BB187E30F40068D9B7 /* ASIAuthenticationDialog.m */; };
 		1065D8D5187E30F40068D9B7 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1065D8BE187E30F40068D9B7 /* ASIDataCompressor.m */; };
 		1065D8D6187E30F40068D9B7 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1065D8C0187E30F40068D9B7 /* ASIDataDecompressor.m */; };
@@ -61,34 +85,10 @@
 		107FA178187E9E4600286CF8 /* title_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107FA176187E9E4600286CF8 /* title_back@2x.png */; };
 		10916C7A188E0288006E20BA /* JD_AccountManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C45188E0288006E20BA /* JD_AccountManage.m */; };
 		10916C7B188E0288006E20BA /* JD_AccountManage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C46188E0288006E20BA /* JD_AccountManage.xib */; };
-		10916C7C188E0288006E20BA /* AccountSafety.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C49188E0288006E20BA /* AccountSafety.m */; };
-		10916C7D188E0288006E20BA /* AccountSafety.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C4A188E0288006E20BA /* AccountSafety.xib */; };
-		10916C7E188E0288006E20BA /* AllOrderFrom.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C4D188E0288006E20BA /* AllOrderFrom.m */; };
-		10916C7F188E0288006E20BA /* AllOrderFrom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C4E188E0288006E20BA /* AllOrderFrom.xib */; };
-		10916C80188E0288006E20BA /* Orderetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C50188E0288006E20BA /* Orderetail.m */; };
-		10916C81188E0288006E20BA /* Orderetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C51188E0288006E20BA /* Orderetail.xib */; };
-		10916C82188E0288006E20BA /* GoodsEvaluationOrSingleOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C53188E0288006E20BA /* GoodsEvaluationOrSingleOrder.m */; };
-		10916C83188E0288006E20BA /* GoodsEvaluationOrSingleOrder.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C54188E0288006E20BA /* GoodsEvaluationOrSingleOrder.xib */; };
-		10916C84188E0288006E20BA /* ObligationQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C56188E0288006E20BA /* ObligationQuery.m */; };
-		10916C85188E0288006E20BA /* ObligationQuery.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C57188E0288006E20BA /* ObligationQuery.xib */; };
-		10916C86188E0288006E20BA /* OrderFromStateQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C59188E0288006E20BA /* OrderFromStateQuery.m */; };
-		10916C87188E0288006E20BA /* OrderFromStateQuery.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C5A188E0288006E20BA /* OrderFromStateQuery.xib */; };
-		10916C88188E0288006E20BA /* ReturnGoods.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C5C188E0288006E20BA /* ReturnGoods.m */; };
-		10916C89188E0288006E20BA /* ReturnGoods.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C5D188E0288006E20BA /* ReturnGoods.xib */; };
-		10916C8A188E0288006E20BA /* subscribeTelServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C5F188E0288006E20BA /* subscribeTelServices.m */; };
-		10916C8B188E0288006E20BA /* subscribeTelServices.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C60188E0288006E20BA /* subscribeTelServices.xib */; };
 		10916C8C188E0288006E20BA /* AddComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C63188E0288006E20BA /* AddComment.m */; };
 		10916C8D188E0288006E20BA /* AddComment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C64188E0288006E20BA /* AddComment.xib */; };
 		10916C92188E0288006E20BA /* TakeDeliveryAddressManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C6C188E0288006E20BA /* TakeDeliveryAddressManage.m */; };
 		10916C93188E0288006E20BA /* TakeDeliveryAddressManage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C6D188E0288006E20BA /* TakeDeliveryAddressManage.xib */; };
-		10916C94188E0288006E20BA /* JD_Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C6F188E0288006E20BA /* JD_Login.m */; };
-		10916C95188E0288006E20BA /* JD_Login.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C70188E0288006E20BA /* JD_Login.xib */; };
-		10916C96188E0288006E20BA /* JD_Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C72188E0288006E20BA /* JD_Register.m */; };
-		10916C97188E0288006E20BA /* JD_Register.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C73188E0288006E20BA /* JD_Register.xib */; };
-		10916C98188E0288006E20BA /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C75188E0288006E20BA /* MoreView.m */; };
-		10916C99188E0288006E20BA /* MoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C76188E0288006E20BA /* MoreView.xib */; };
-		10916C9A188E0288006E20BA /* RetrievePassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916C78188E0288006E20BA /* RetrievePassword.m */; };
-		10916C9B188E0288006E20BA /* RetrievePassword.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C79188E0288006E20BA /* RetrievePassword.xib */; };
 		10916C9D188E0380006E20BA /* AccountSafety.png in Resources */ = {isa = PBXBuildFile; fileRef = 10916C9C188E0380006E20BA /* AccountSafety.png */; };
 		10916C9F188E039A006E20BA /* user_header_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10916C9E188E039A006E20BA /* user_header_placeholder@2x.png */; };
 		10916CA3188E4A34006E20BA /* Goodsretail.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916CA1188E4A33006E20BA /* Goodsretail.m */; };
@@ -207,6 +207,42 @@
 		104F947F188E4E66007C021D /* AddressInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressInfoViewController.h; sourceTree = "<group>"; };
 		104F9480188E4E66007C021D /* AddressInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressInfoViewController.m; sourceTree = "<group>"; };
 		104F9481188E4E66007C021D /* AddressInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressInfoViewController.xib; sourceTree = "<group>"; };
+		105CCB3B188F54AD007A9AB0 /* AccountSafety.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSafety.h; sourceTree = "<group>"; };
+		105CCB3C188F54AD007A9AB0 /* AccountSafety.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSafety.m; sourceTree = "<group>"; };
+		105CCB3D188F54AD007A9AB0 /* AccountSafety.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountSafety.xib; sourceTree = "<group>"; };
+		105CCB40188F54FC007A9AB0 /* AllOrderFrom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllOrderFrom.h; sourceTree = "<group>"; };
+		105CCB41188F54FC007A9AB0 /* AllOrderFrom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllOrderFrom.m; sourceTree = "<group>"; };
+		105CCB42188F54FC007A9AB0 /* AllOrderFrom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllOrderFrom.xib; sourceTree = "<group>"; };
+		105CCB43188F54FC007A9AB0 /* Orderetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Orderetail.h; sourceTree = "<group>"; };
+		105CCB44188F54FC007A9AB0 /* Orderetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Orderetail.m; sourceTree = "<group>"; };
+		105CCB45188F54FC007A9AB0 /* Orderetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Orderetail.xib; sourceTree = "<group>"; };
+		105CCB4A188F5579007A9AB0 /* GoodsEvaluationOrSingleOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsEvaluationOrSingleOrder.h; sourceTree = "<group>"; };
+		105CCB4B188F5579007A9AB0 /* GoodsEvaluationOrSingleOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsEvaluationOrSingleOrder.m; sourceTree = "<group>"; };
+		105CCB4C188F5579007A9AB0 /* GoodsEvaluationOrSingleOrder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsEvaluationOrSingleOrder.xib; sourceTree = "<group>"; };
+		105CCB4D188F5579007A9AB0 /* ObligationQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObligationQuery.h; sourceTree = "<group>"; };
+		105CCB4E188F5579007A9AB0 /* ObligationQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObligationQuery.m; sourceTree = "<group>"; };
+		105CCB4F188F5579007A9AB0 /* ObligationQuery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObligationQuery.xib; sourceTree = "<group>"; };
+		105CCB50188F5579007A9AB0 /* OrderFromStateQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderFromStateQuery.h; sourceTree = "<group>"; };
+		105CCB51188F5579007A9AB0 /* OrderFromStateQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderFromStateQuery.m; sourceTree = "<group>"; };
+		105CCB52188F5579007A9AB0 /* OrderFromStateQuery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderFromStateQuery.xib; sourceTree = "<group>"; };
+		105CCB53188F5579007A9AB0 /* ReturnGoods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReturnGoods.h; sourceTree = "<group>"; };
+		105CCB54188F5579007A9AB0 /* ReturnGoods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReturnGoods.m; sourceTree = "<group>"; };
+		105CCB55188F5579007A9AB0 /* ReturnGoods.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReturnGoods.xib; sourceTree = "<group>"; };
+		105CCB56188F5579007A9AB0 /* subscribeTelServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subscribeTelServices.h; sourceTree = "<group>"; };
+		105CCB57188F5579007A9AB0 /* subscribeTelServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = subscribeTelServices.m; sourceTree = "<group>"; };
+		105CCB58188F5579007A9AB0 /* subscribeTelServices.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = subscribeTelServices.xib; sourceTree = "<group>"; };
+		105CCB63188F55E7007A9AB0 /* JD_Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Login.h; sourceTree = "<group>"; };
+		105CCB64188F55E7007A9AB0 /* JD_Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Login.m; sourceTree = "<group>"; };
+		105CCB65188F55E7007A9AB0 /* JD_Login.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Login.xib; sourceTree = "<group>"; };
+		105CCB66188F55E7007A9AB0 /* JD_Register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Register.h; sourceTree = "<group>"; };
+		105CCB67188F55E7007A9AB0 /* JD_Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Register.m; sourceTree = "<group>"; };
+		105CCB68188F55E7007A9AB0 /* JD_Register.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Register.xib; sourceTree = "<group>"; };
+		105CCB69188F55E7007A9AB0 /* MoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
+		105CCB6A188F55E7007A9AB0 /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
+		105CCB6B188F55E7007A9AB0 /* MoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreView.xib; sourceTree = "<group>"; };
+		105CCB6C188F55E7007A9AB0 /* RetrievePassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrievePassword.h; sourceTree = "<group>"; };
+		105CCB6D188F55E7007A9AB0 /* RetrievePassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrievePassword.m; sourceTree = "<group>"; };
+		105CCB6E188F55E7007A9AB0 /* RetrievePassword.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RetrievePassword.xib; sourceTree = "<group>"; };
 		1065D8BA187E30F40068D9B7 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		1065D8BB187E30F40068D9B7 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		1065D8BC187E30F40068D9B7 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -237,48 +273,12 @@
 		10916C44188E0288006E20BA /* JD_AccountManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_AccountManage.h; sourceTree = "<group>"; };
 		10916C45188E0288006E20BA /* JD_AccountManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_AccountManage.m; sourceTree = "<group>"; };
 		10916C46188E0288006E20BA /* JD_AccountManage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_AccountManage.xib; sourceTree = "<group>"; };
-		10916C48188E0288006E20BA /* AccountSafety.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSafety.h; sourceTree = "<group>"; };
-		10916C49188E0288006E20BA /* AccountSafety.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSafety.m; sourceTree = "<group>"; };
-		10916C4A188E0288006E20BA /* AccountSafety.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountSafety.xib; sourceTree = "<group>"; };
-		10916C4C188E0288006E20BA /* AllOrderFrom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllOrderFrom.h; sourceTree = "<group>"; };
-		10916C4D188E0288006E20BA /* AllOrderFrom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllOrderFrom.m; sourceTree = "<group>"; };
-		10916C4E188E0288006E20BA /* AllOrderFrom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllOrderFrom.xib; sourceTree = "<group>"; };
-		10916C4F188E0288006E20BA /* Orderetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Orderetail.h; sourceTree = "<group>"; };
-		10916C50188E0288006E20BA /* Orderetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Orderetail.m; sourceTree = "<group>"; };
-		10916C51188E0288006E20BA /* Orderetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Orderetail.xib; sourceTree = "<group>"; };
-		10916C52188E0288006E20BA /* GoodsEvaluationOrSingleOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsEvaluationOrSingleOrder.h; sourceTree = "<group>"; };
-		10916C53188E0288006E20BA /* GoodsEvaluationOrSingleOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsEvaluationOrSingleOrder.m; sourceTree = "<group>"; };
-		10916C54188E0288006E20BA /* GoodsEvaluationOrSingleOrder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsEvaluationOrSingleOrder.xib; sourceTree = "<group>"; };
-		10916C55188E0288006E20BA /* ObligationQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObligationQuery.h; sourceTree = "<group>"; };
-		10916C56188E0288006E20BA /* ObligationQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObligationQuery.m; sourceTree = "<group>"; };
-		10916C57188E0288006E20BA /* ObligationQuery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObligationQuery.xib; sourceTree = "<group>"; };
-		10916C58188E0288006E20BA /* OrderFromStateQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderFromStateQuery.h; sourceTree = "<group>"; };
-		10916C59188E0288006E20BA /* OrderFromStateQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderFromStateQuery.m; sourceTree = "<group>"; };
-		10916C5A188E0288006E20BA /* OrderFromStateQuery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderFromStateQuery.xib; sourceTree = "<group>"; };
-		10916C5B188E0288006E20BA /* ReturnGoods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReturnGoods.h; sourceTree = "<group>"; };
-		10916C5C188E0288006E20BA /* ReturnGoods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReturnGoods.m; sourceTree = "<group>"; };
-		10916C5D188E0288006E20BA /* ReturnGoods.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReturnGoods.xib; sourceTree = "<group>"; };
-		10916C5E188E0288006E20BA /* subscribeTelServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subscribeTelServices.h; sourceTree = "<group>"; };
-		10916C5F188E0288006E20BA /* subscribeTelServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = subscribeTelServices.m; sourceTree = "<group>"; };
-		10916C60188E0288006E20BA /* subscribeTelServices.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = subscribeTelServices.xib; sourceTree = "<group>"; };
 		10916C62188E0288006E20BA /* AddComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddComment.h; sourceTree = "<group>"; };
 		10916C63188E0288006E20BA /* AddComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddComment.m; sourceTree = "<group>"; };
 		10916C64188E0288006E20BA /* AddComment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddComment.xib; sourceTree = "<group>"; };
 		10916C6B188E0288006E20BA /* TakeDeliveryAddressManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeDeliveryAddressManage.h; sourceTree = "<group>"; };
 		10916C6C188E0288006E20BA /* TakeDeliveryAddressManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeDeliveryAddressManage.m; sourceTree = "<group>"; };
 		10916C6D188E0288006E20BA /* TakeDeliveryAddressManage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakeDeliveryAddressManage.xib; sourceTree = "<group>"; };
-		10916C6E188E0288006E20BA /* JD_Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Login.h; sourceTree = "<group>"; };
-		10916C6F188E0288006E20BA /* JD_Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Login.m; sourceTree = "<group>"; };
-		10916C70188E0288006E20BA /* JD_Login.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Login.xib; sourceTree = "<group>"; };
-		10916C71188E0288006E20BA /* JD_Register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_Register.h; sourceTree = "<group>"; };
-		10916C72188E0288006E20BA /* JD_Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_Register.m; sourceTree = "<group>"; };
-		10916C73188E0288006E20BA /* JD_Register.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_Register.xib; sourceTree = "<group>"; };
-		10916C74188E0288006E20BA /* MoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
-		10916C75188E0288006E20BA /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
-		10916C76188E0288006E20BA /* MoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreView.xib; sourceTree = "<group>"; };
-		10916C77188E0288006E20BA /* RetrievePassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrievePassword.h; sourceTree = "<group>"; };
-		10916C78188E0288006E20BA /* RetrievePassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrievePassword.m; sourceTree = "<group>"; };
-		10916C79188E0288006E20BA /* RetrievePassword.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RetrievePassword.xib; sourceTree = "<group>"; };
 		10916C9C188E0380006E20BA /* AccountSafety.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AccountSafety.png; sourceTree = "<group>"; };
 		10916C9E188E039A006E20BA /* user_header_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_header_placeholder@2x.png"; sourceTree = "<group>"; };
 		10916CA0188E4A33006E20BA /* Goodsretail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goodsretail.h; sourceTree = "<group>"; };
@@ -507,18 +507,18 @@
 				10916C45188E0288006E20BA /* JD_AccountManage.m */,
 				10916C46188E0288006E20BA /* JD_AccountManage.xib */,
 				10916C47188E0288006E20BA /* JD_Function */,
-				10916C6E188E0288006E20BA /* JD_Login.h */,
-				10916C6F188E0288006E20BA /* JD_Login.m */,
-				10916C70188E0288006E20BA /* JD_Login.xib */,
-				10916C71188E0288006E20BA /* JD_Register.h */,
-				10916C72188E0288006E20BA /* JD_Register.m */,
-				10916C73188E0288006E20BA /* JD_Register.xib */,
-				10916C74188E0288006E20BA /* MoreView.h */,
-				10916C75188E0288006E20BA /* MoreView.m */,
-				10916C76188E0288006E20BA /* MoreView.xib */,
-				10916C77188E0288006E20BA /* RetrievePassword.h */,
-				10916C78188E0288006E20BA /* RetrievePassword.m */,
-				10916C79188E0288006E20BA /* RetrievePassword.xib */,
+				105CCB63188F55E7007A9AB0 /* JD_Login.h */,
+				105CCB64188F55E7007A9AB0 /* JD_Login.m */,
+				105CCB65188F55E7007A9AB0 /* JD_Login.xib */,
+				105CCB66188F55E7007A9AB0 /* JD_Register.h */,
+				105CCB67188F55E7007A9AB0 /* JD_Register.m */,
+				105CCB68188F55E7007A9AB0 /* JD_Register.xib */,
+				105CCB69188F55E7007A9AB0 /* MoreView.h */,
+				105CCB6A188F55E7007A9AB0 /* MoreView.m */,
+				105CCB6B188F55E7007A9AB0 /* MoreView.xib */,
+				105CCB6C188F55E7007A9AB0 /* RetrievePassword.h */,
+				105CCB6D188F55E7007A9AB0 /* RetrievePassword.m */,
+				105CCB6E188F55E7007A9AB0 /* RetrievePassword.xib */,
 			);
 			path = JD_AccountManage;
 			sourceTree = "<group>";
@@ -526,25 +526,25 @@
 		10916C47188E0288006E20BA /* JD_Function */ = {
 			isa = PBXGroup;
 			children = (
-				10916C48188E0288006E20BA /* AccountSafety.h */,
-				10916C49188E0288006E20BA /* AccountSafety.m */,
-				10916C4A188E0288006E20BA /* AccountSafety.xib */,
+				105CCB3B188F54AD007A9AB0 /* AccountSafety.h */,
+				105CCB3C188F54AD007A9AB0 /* AccountSafety.m */,
+				105CCB3D188F54AD007A9AB0 /* AccountSafety.xib */,
 				10916C4B188E0288006E20BA /* AllOrderFrom */,
-				10916C52188E0288006E20BA /* GoodsEvaluationOrSingleOrder.h */,
-				10916C53188E0288006E20BA /* GoodsEvaluationOrSingleOrder.m */,
-				10916C54188E0288006E20BA /* GoodsEvaluationOrSingleOrder.xib */,
-				10916C55188E0288006E20BA /* ObligationQuery.h */,
-				10916C56188E0288006E20BA /* ObligationQuery.m */,
-				10916C57188E0288006E20BA /* ObligationQuery.xib */,
-				10916C58188E0288006E20BA /* OrderFromStateQuery.h */,
-				10916C59188E0288006E20BA /* OrderFromStateQuery.m */,
-				10916C5A188E0288006E20BA /* OrderFromStateQuery.xib */,
-				10916C5B188E0288006E20BA /* ReturnGoods.h */,
-				10916C5C188E0288006E20BA /* ReturnGoods.m */,
-				10916C5D188E0288006E20BA /* ReturnGoods.xib */,
-				10916C5E188E0288006E20BA /* subscribeTelServices.h */,
-				10916C5F188E0288006E20BA /* subscribeTelServices.m */,
-				10916C60188E0288006E20BA /* subscribeTelServices.xib */,
+				105CCB4A188F5579007A9AB0 /* GoodsEvaluationOrSingleOrder.h */,
+				105CCB4B188F5579007A9AB0 /* GoodsEvaluationOrSingleOrder.m */,
+				105CCB4C188F5579007A9AB0 /* GoodsEvaluationOrSingleOrder.xib */,
+				105CCB4D188F5579007A9AB0 /* ObligationQuery.h */,
+				105CCB4E188F5579007A9AB0 /* ObligationQuery.m */,
+				105CCB4F188F5579007A9AB0 /* ObligationQuery.xib */,
+				105CCB50188F5579007A9AB0 /* OrderFromStateQuery.h */,
+				105CCB51188F5579007A9AB0 /* OrderFromStateQuery.m */,
+				105CCB52188F5579007A9AB0 /* OrderFromStateQuery.xib */,
+				105CCB53188F5579007A9AB0 /* ReturnGoods.h */,
+				105CCB54188F5579007A9AB0 /* ReturnGoods.m */,
+				105CCB55188F5579007A9AB0 /* ReturnGoods.xib */,
+				105CCB56188F5579007A9AB0 /* subscribeTelServices.h */,
+				105CCB57188F5579007A9AB0 /* subscribeTelServices.m */,
+				105CCB58188F5579007A9AB0 /* subscribeTelServices.xib */,
 				10916C61188E0288006E20BA /* TakeDeliveryAddressManage */,
 			);
 			path = JD_Function;
@@ -553,12 +553,12 @@
 		10916C4B188E0288006E20BA /* AllOrderFrom */ = {
 			isa = PBXGroup;
 			children = (
-				10916C4C188E0288006E20BA /* AllOrderFrom.h */,
-				10916C4D188E0288006E20BA /* AllOrderFrom.m */,
-				10916C4E188E0288006E20BA /* AllOrderFrom.xib */,
-				10916C4F188E0288006E20BA /* Orderetail.h */,
-				10916C50188E0288006E20BA /* Orderetail.m */,
-				10916C51188E0288006E20BA /* Orderetail.xib */,
+				105CCB40188F54FC007A9AB0 /* AllOrderFrom.h */,
+				105CCB41188F54FC007A9AB0 /* AllOrderFrom.m */,
+				105CCB42188F54FC007A9AB0 /* AllOrderFrom.xib */,
+				105CCB43188F54FC007A9AB0 /* Orderetail.h */,
+				105CCB44188F54FC007A9AB0 /* Orderetail.m */,
+				105CCB45188F54FC007A9AB0 /* Orderetail.xib */,
 				10916CA0188E4A33006E20BA /* Goodsretail.h */,
 				10916CA1188E4A33006E20BA /* Goodsretail.m */,
 				10916CA2188E4A34006E20BA /* Goodsretail.xib */,
@@ -970,24 +970,24 @@
 				104140B4188CED3E005B3BFB /* welcom@2x.png in Resources */,
 				104140B8188CF332005B3BFB /* logo.jpg in Resources */,
 				10916C7B188E0288006E20BA /* JD_AccountManage.xib in Resources */,
-				10916C7D188E0288006E20BA /* AccountSafety.xib in Resources */,
-				10916C7F188E0288006E20BA /* AllOrderFrom.xib in Resources */,
-				10916C81188E0288006E20BA /* Orderetail.xib in Resources */,
-				10916C83188E0288006E20BA /* GoodsEvaluationOrSingleOrder.xib in Resources */,
-				10916C85188E0288006E20BA /* ObligationQuery.xib in Resources */,
-				10916C87188E0288006E20BA /* OrderFromStateQuery.xib in Resources */,
-				10916C89188E0288006E20BA /* ReturnGoods.xib in Resources */,
-				10916C8B188E0288006E20BA /* subscribeTelServices.xib in Resources */,
 				10916C8D188E0288006E20BA /* AddComment.xib in Resources */,
 				10916C93188E0288006E20BA /* TakeDeliveryAddressManage.xib in Resources */,
-				10916C95188E0288006E20BA /* JD_Login.xib in Resources */,
-				10916C97188E0288006E20BA /* JD_Register.xib in Resources */,
-				10916C99188E0288006E20BA /* MoreView.xib in Resources */,
-				10916C9B188E0288006E20BA /* RetrievePassword.xib in Resources */,
 				10916C9D188E0380006E20BA /* AccountSafety.png in Resources */,
 				10916C9F188E039A006E20BA /* user_header_placeholder@2x.png in Resources */,
 				10916CA4188E4A34006E20BA /* Goodsretail.xib in Resources */,
 				104F9483188E4E66007C021D /* AddressInfoViewController.xib in Resources */,
+				105CCB3F188F54AD007A9AB0 /* AccountSafety.xib in Resources */,
+				105CCB47188F54FC007A9AB0 /* AllOrderFrom.xib in Resources */,
+				105CCB49188F54FC007A9AB0 /* Orderetail.xib in Resources */,
+				105CCB5A188F5579007A9AB0 /* GoodsEvaluationOrSingleOrder.xib in Resources */,
+				105CCB5C188F5579007A9AB0 /* ObligationQuery.xib in Resources */,
+				105CCB5E188F5579007A9AB0 /* OrderFromStateQuery.xib in Resources */,
+				105CCB60188F5579007A9AB0 /* ReturnGoods.xib in Resources */,
+				105CCB62188F5579007A9AB0 /* subscribeTelServices.xib in Resources */,
+				105CCB70188F55E7007A9AB0 /* JD_Login.xib in Resources */,
+				105CCB72188F55E7007A9AB0 /* JD_Register.xib in Resources */,
+				105CCB74188F55E7007A9AB0 /* MoreView.xib in Resources */,
+				105CCB76188F55E7007A9AB0 /* RetrievePassword.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1023,22 +1023,22 @@
 				10DF34621888BE5100E7712F /* JD_Review.m in Sources */,
 				109D68E6188D108B000F06AC /* JD_NetworkPrompt.m in Sources */,
 				10916C7A188E0288006E20BA /* JD_AccountManage.m in Sources */,
-				10916C7C188E0288006E20BA /* AccountSafety.m in Sources */,
-				10916C7E188E0288006E20BA /* AllOrderFrom.m in Sources */,
-				10916C80188E0288006E20BA /* Orderetail.m in Sources */,
-				10916C82188E0288006E20BA /* GoodsEvaluationOrSingleOrder.m in Sources */,
-				10916C84188E0288006E20BA /* ObligationQuery.m in Sources */,
-				10916C86188E0288006E20BA /* OrderFromStateQuery.m in Sources */,
-				10916C88188E0288006E20BA /* ReturnGoods.m in Sources */,
-				10916C8A188E0288006E20BA /* subscribeTelServices.m in Sources */,
 				10916C8C188E0288006E20BA /* AddComment.m in Sources */,
 				10916C92188E0288006E20BA /* TakeDeliveryAddressManage.m in Sources */,
-				10916C94188E0288006E20BA /* JD_Login.m in Sources */,
-				10916C96188E0288006E20BA /* JD_Register.m in Sources */,
-				10916C98188E0288006E20BA /* MoreView.m in Sources */,
-				10916C9A188E0288006E20BA /* RetrievePassword.m in Sources */,
 				10916CA3188E4A34006E20BA /* Goodsretail.m in Sources */,
 				104F9482188E4E66007C021D /* AddressInfoViewController.m in Sources */,
+				105CCB3E188F54AD007A9AB0 /* AccountSafety.m in Sources */,
+				105CCB46188F54FC007A9AB0 /* AllOrderFrom.m in Sources */,
+				105CCB48188F54FC007A9AB0 /* Orderetail.m in Sources */,
+				105CCB59188F5579007A9AB0 /* GoodsEvaluationOrSingleOrder.m in Sources */,
+				105CCB5B188F5579007A9AB0 /* ObligationQuery.m in Sources */,
+				105CCB5D188F5579007A9AB0 /* OrderFromStateQuery.m in Sources */,
+				105CCB5F188F5579007A9AB0 /* ReturnGoods.m in Sources */,
+				105CCB61188F5579007A9AB0 /* subscribeTelServices.m in Sources */,
+				105CCB6F188F55E7007A9AB0 /* JD_Login.m in Sources */,
+				105CCB71188F55E7007A9AB0 /* JD_Register.m in Sources */,
+				105CCB73188F55E7007A9AB0 /* MoreView.m in Sources */,
+				105CCB75188F55E7007A9AB0 /* RetrievePassword.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

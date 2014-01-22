@@ -95,7 +95,9 @@
     [RememberPassword setFrame:CGRectMake(self.view.frame.size.width-110, 260, 28, 28)];
     RememberPassword.layer.cornerRadius = 6;
     [RememberPassword setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"radiobox_0.png"]]];
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"Remember"] intValue] == 1) {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"Remember"] intValue] == 0) {
+        [RememberPassword setImage:nil forState:UIControlStateNormal];
+    }else{
         [RememberPassword setImage:[UIImage imageNamed:@"checkbox_1@2x.png"] forState:UIControlStateNormal];
     }
     [RememberPassword addTarget:self action:@selector(RememberPassword:) forControlEvents:UIControlEventTouchUpInside];
@@ -118,20 +120,19 @@
 }
 
 -(void)RememberPassword:(UIButton *)sender{
-    if (sender.tag == 10000) {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"Remember"] intValue] == 0) {
         _Remember = YES;
         [[NSUserDefaults standardUserDefaults] setBool:_Remember forKey:@"Remember"];
         [RememberPassword setImage:[UIImage imageNamed:@"checkbox_1@2x.png"] forState:UIControlStateNormal];
         [[NSUserDefaults standardUserDefaults] setObject:_UserText.text forKey:@"UserDefaultNameKey"];
         [[NSUserDefaults standardUserDefaults] setObject:_PasswordText.text forKey:@"UserDefaultPasswordKey"];
-        sender.tag = 10001;
+//        sender.tag = 10001;
     }else{
         _Remember = NO;
         [[NSUserDefaults standardUserDefaults] setBool:_Remember forKey:@"Remember"];
         [RememberPassword setImage:nil forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"UserDefaultNameKey"];
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"UserDefaultPasswordKey"];
-        sender.tag = 10000;
+//        sender.tag = 10000;
     }
 }
 

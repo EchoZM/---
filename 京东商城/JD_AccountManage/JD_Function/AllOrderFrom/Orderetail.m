@@ -7,6 +7,7 @@
 //
 
 #import "Orderetail.h"
+#import "JD_Goods.h"
 
 @interface Orderetail ()
 
@@ -19,6 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.navigationItem.title = @"订单详情";
     }
     return self;
 }
@@ -27,7 +29,7 @@
 {
     [super viewDidLoad];
     UIView *lHeard = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 36)]autorelease];
-    [lHeard setBackgroundColor:[UIColor redColor]];
+    [lHeard setBackgroundColor:[UIColor lightGrayColor]];
     [self.view addSubview:lHeard];
     UILabel *lOrderid = [[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80, 36)]autorelease];
     [lOrderid setText:@"商品预览"];
@@ -62,13 +64,15 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(BackButton:)];
+    self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
     if ([[JD_DataManager shareGoodsDataManager] OrderArray].count <= 8) {
         TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 36, 320, 64*[[[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:_Section] objectForKey:@"carts"] count]) style:UITableViewStylePlain];
     }else{
         TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 36, 320, 548) style:UITableViewStylePlain];
     }
-    if ([[JD_DataManager shareGoodsDataManager] OrderArray].count <= 0) {
+    if ([[JD_DataManager shareGoodsDataManager] OrderArray].count <= 8) {
         TableView.scrollEnabled = NO;
     }else{
         TableView.scrollEnabled = YES;
@@ -140,6 +144,12 @@
     lcell.accessoryType = UITableViewCellAccessoryNone;
     lcell.selectionStyle = UITableViewCellEditingStyleNone;
     return lcell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [JD_DataManager shareGoodsDataManager].goodsID = [[[[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:_Section] objectForKey:@"carts"] objectAtIndex:[indexPath row]] objectForKey:@"goodsid"];
+    JD_Goods *lJD_Goods = [[[JD_Goods alloc]init]autorelease];
+    [self.navigationController pushViewController:lJD_Goods animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

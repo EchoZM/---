@@ -143,6 +143,8 @@
         [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"get" WithBodyString:nil WithURLString:[NSString stringWithFormat:@"checkname.php?name=%@",UserText.text] AndSuccess:^(NSData *data) {
             NSNumber *lError = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"error"];
             NSNumber *lMsg = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"msg"];
+            
+            
             if ([UserText.text length] < 6 || [UserText.text length] > 18){
                 UserText.text = @"";
                 UserText.placeholder = @"请输入6至18位";

@@ -13,5 +13,5 @@
     UITextField *OldPasswordText;
     UITextField *NewPasswordText;
 }
-
+- (IBAction)View:(UIControl *)sender;
 @end

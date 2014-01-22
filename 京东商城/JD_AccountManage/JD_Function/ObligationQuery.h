@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ObligationQuery : UIViewController
+@interface ObligationQuery : UIViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate> {
+    UITableView *TableView;
+    UIButton *HeardButton;
+}
 
 @end

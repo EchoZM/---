@@ -27,8 +27,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//    TableView = [[UITableView alloc]init];
+    // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    for (UIView *View in self.view.subviews) {
+        [View removeFromSuperview];
+    }
     UIView *lHeard = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 36)]autorelease];
-    [lHeard setBackgroundColor:[UIColor redColor]];
+    [lHeard setBackgroundColor:[UIColor lightGrayColor]];
     [self.view addSubview:lHeard];
     UILabel *lOrderid = [[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 140, 36)]autorelease];
     [lOrderid setText:@"订单号"];
@@ -51,11 +61,6 @@
     lState.font = [UIFont boldSystemFontOfSize:15];
     lState.textColor = [UIColor purpleColor];
     [lHeard addSubview:lState];
-    // Do any additional setup after loading the view from its nib.
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(BackButton:)];
     self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(NavigationFurbish:)];
@@ -66,7 +71,7 @@
     }else{
         TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35, 320, 548) style:UITableViewStylePlain];
     }
-    if ([[JD_DataManager shareGoodsDataManager] OrderArray].count <= 0) {
+    if ([[JD_DataManager shareGoodsDataManager] OrderArray].count <= 8) {
         TableView.scrollEnabled = NO;
     }else{
         TableView.scrollEnabled = YES;
@@ -115,6 +120,8 @@
     UITableViewCell *lcell = [tableView dequeueReusableCellWithIdentifier:cell];
     if (lcell == nil) {
         lcell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell]autorelease];
+        lcell.accessoryType = UITableViewCellAccessoryNone;
+        lcell.selectionStyle = UITableViewCellEditingStyleNone;
         UILabel *lOrderidLable = [[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 140, 64)]autorelease];
         lOrderidLable.tag = 10001;
         [lcell addSubview:lOrderidLable];
@@ -147,8 +154,6 @@
     lStateLable.backgroundColor = [UIColor clearColor];
     lStateLable.font = [UIFont boldSystemFontOfSize:15];
     lStateLable.textColor = [UIColor purpleColor];
-    lcell.accessoryType = UITableViewCellAccessoryNone;
-    lcell.selectionStyle = UITableViewCellEditingStyleNone;
     return lcell;
 }
 
@@ -157,6 +162,14 @@
     [self.navigationController pushViewController:lOrderetail animated:YES];
     lOrderetail.Section = [indexPath row];
 }
+
+-(void)dealloc{
+    [super dealloc];
+    [TableView release];
+    [HeardButton release];
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

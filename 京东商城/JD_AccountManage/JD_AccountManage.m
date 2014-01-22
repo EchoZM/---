@@ -222,7 +222,7 @@
         JD_Login *lJD_Login = [[[JD_Login alloc]init]autorelease];
         [self.navigationController pushViewController:lJD_Login animated:YES];
     }
-
+    
 }
 
 -(void)ChoiceHeadImageClick:(UIButton *)sender{
@@ -274,6 +274,8 @@
     [TableView release];
     [TextArray release];
     [HeardButton release];
+    [ImageArray release];
+    [ViewArray release];
     [super dealloc];
 }
 @end
