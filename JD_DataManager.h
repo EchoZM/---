@@ -19,6 +19,8 @@
 @property(nonatomic,retain)NSString *addressID;//地址id
 @property(nonatomic,assign)BOOL UserState;//用户状态
 @property(nonatomic,assign)BOOL UserRegisterState;//用户注册状态
+@property(nonatomic,retain)NSMutableArray *BuyCardInfoArray;//购物车数据
+@property(nonatomic,retain)NSMutableArray *AddressArray;//地址
 +(JD_DataManager *)shareGoodsDataManager;
 -(UIImage *)getgoodsImage:(NSString *)imageString;//商品图片
 @property(nonatomic,retain)NSMutableArray *OrderArray;//商品订单

@@ -8,6 +8,30 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JD_ShopCar : UIViewController
+@interface JD_ShopCar : UIViewController<UITableViewDataSource,UITableViewDelegate,ASIHTTPRequestDelegate,NSURLConnectionDataDelegate,UITextFieldDelegate>{
+    
+    UIButton *GoPayButton;
+    UIAlertView *lAlertView;
+    NSMutableArray *lTablViewCellImageButton;
+    UIButton  *loginButton;
+    ASIHTTPRequest   *Request;
+    UIImage *lImage;
+    UILabel *TotalLabel;
+    CGFloat   PayTotal;
+    UIButton *lOptionButton;
+    NSMutableData *lData;
+    UITableView    *lTableView;
+    UITextField *lCountText;
+    UITextField *bySelectKeyBoard;
+    UITextField *UpdateBySelectKeyBoard;
+    UIView *SkipLayer;
+    UIView *FunctionLayer;
+    int Sgin;
+    UIButton *byOptionAdress;
+    
+    
+   
+}
+@property (nonatomic,retain) NSArray *BuyCarAllGoodsArray;
 
 @end
