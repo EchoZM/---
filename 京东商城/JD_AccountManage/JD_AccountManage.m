@@ -46,8 +46,8 @@
     subscribeTelServices *lsubscribeTelServices = [[[subscribeTelServices alloc]init]autorelease];
     TakeDeliveryAddressManage *lTakeDeliveryAddressManage = [[[TakeDeliveryAddressManage alloc]init]autorelease];
     AccountSafety *lAccountSafety = [[[AccountSafety alloc]init]autorelease];
-    NSArray *lTextOrder = [[[NSArray alloc]initWithObjects:@"订单状态速查",@"待付款订单",@"全部订单", nil]autorelease];
-    NSArray *lTextCommodityRelated = [[[NSArray alloc]initWithObjects:@"商品评价/晒单",@"返修/退换货",@"预约电话服务",@"收货地址管理",@"修改密码", nil]autorelease];
+    NSArray *lTextOrder = [[[NSArray alloc]initWithObjects:@"订单状态速查(待开发)",@"待付款订单(待开发)",@"订单管理", nil]autorelease];
+    NSArray *lTextCommodityRelated = [[[NSArray alloc]initWithObjects:@"商品评价",@"返修/退换货(待开发)",@"预约电话服务(待开发)",@"收货地址管理",@"修改密码", nil]autorelease];
     NSArray *lImageOrder = [[[NSArray alloc]initWithObjects:@"myjd_orderStat@2x.png",@"myjd_waitOrder@2x.png",@"myjd_allOrder@2x.png", nil]autorelease];
     NSArray *lImageCommodityRelated = [[[NSArray alloc]initWithObjects:@"myjd_share@2x.png",@"myjd_returnWare@2x.png",@"myjd_tbis@2x.png",@"myjd_adress@2x.png",@"myjd_accountSafe@2x.png", nil]autorelease];
     NSArray *lViewOrder = [[[NSArray alloc]initWithObjects:lOrderFromStateQuery,lObligationQuery,lAllOrderFrom, nil]autorelease];
@@ -83,7 +83,7 @@
     if ([JD_DataManager shareGoodsDataManager].UserState == NO) {
         self.tabBarController.navigationItem.leftBarButtonItems = nil;
         UILabel *lWelcomeText = [[[UILabel alloc]initWithFrame:CGRectMake(0, 25, 320, 25)]autorelease];
-        [lWelcomeText setText:@"欢迎来到墨云"];
+        [lWelcomeText setText:@"请登录"];
         [lWelcomeText setBackgroundColor:[UIColor clearColor]];
         [lWelcomeText setTextColor:[UIColor whiteColor]];
         lWelcomeText.layer.shadowColor = [UIColor blackColor].CGColor;

@@ -72,6 +72,7 @@
                 _tableView.dataSource = self;
                 _tableView.delegate = self;
                 _tableView.backgroundView = nil;
+                _tableView.bounces = NO;
                 [_tableView.tableHeaderView removeFromSuperview];
                 _tableView.showsVerticalScrollIndicator = NO;
                 [self.view addSubview:_tableView];

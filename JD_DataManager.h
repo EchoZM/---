@@ -17,6 +17,7 @@
 @property(nonatomic,retain)NSString *cartID;//购物车id
 @property(nonatomic,retain)NSString *orderID;//订单id
 @property(nonatomic,retain)NSString *addressID;//地址id
+@property(nonatomic,retain)NSString *star;
 @property(nonatomic,assign)BOOL UserState;//用户状态
 @property(nonatomic,assign)BOOL UserRegisterState;//用户注册状态
 @property(nonatomic,retain)NSMutableArray *BuyCardInfoArray;//购物车数据

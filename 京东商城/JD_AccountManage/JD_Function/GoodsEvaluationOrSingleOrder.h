@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GoodsEvaluationOrSingleOrder : UIViewController
+@interface GoodsEvaluationOrSingleOrder : UIViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    NSMutableArray *_goodsArray;
+}
 
 @end

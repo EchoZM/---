@@ -68,41 +68,25 @@
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = leftBarButton;
     [leftBarButton release];
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(BackButton:)];
-//    self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(NavigationFurbish:)];
+    self.navigationItem.rightBarButtonItem=[self editButtonItem];
+    self.navigationItem.rightBarButtonItem.title=@"编辑";
     self.navigationItem.rightBarButtonItem.tintColor= [UIColor redColor];
-    [self Furbish];
-    if ([[JD_DataManager shareGoodsDataManager] OrderArray].count <= 8) {
-        TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35, 320, 64*[[JD_DataManager shareGoodsDataManager] OrderArray].count) style:UITableViewStylePlain];
-    }else{
-        TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35, 320, 548) style:UITableViewStylePlain];
-    }
-    if ([[JD_DataManager shareGoodsDataManager] OrderArray].count <= 8) {
-        TableView.scrollEnabled = NO;
-    }else{
-        TableView.scrollEnabled = YES;
-    }
-    TableView.backgroundView = nil;
-    TableView.backgroundColor = [UIColor clearColor];
-    TableView.delegate = self;
-    TableView.dataSource = self;
-    TableView.contentSize = CGSizeMake(320, 64*[[JD_DataManager shareGoodsDataManager] OrderArray].count);
-    [self.view addSubview:TableView];
-    
-}
-
--(void)NavigationFurbish:(UIBarButtonItem *)sender{
-    [self Furbish];
-}
-
--(void)Furbish{
-    NSString *lBodyString = [NSString stringWithFormat:@"customerid=%@",[[[JD_DataManager shareGoodsDataManager] UserManage] objectAtIndex:0]];
+    NSString *lBodyString = [NSString stringWithFormat:@"customerid=%@",[JD_DataManager shareGoodsDataManager].userID];
     [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:lBodyString WithURLString:@"getorder.php" AndSuccess:^(NSData *data) {
-        [[[JD_DataManager shareGoodsDataManager] OrderArray] removeAllObjects];
-        [[[JD_DataManager shareGoodsDataManager] OrderArray] addObjectsFromArray:[[[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"msg"] objectForKey:@"info"]];
-        [TableView setFrame:CGRectMake(0, 35, 320, 64*[[JD_DataManager shareGoodsDataManager] OrderArray].count)];
-        [TableView reloadData];
+        [[JD_DataManager shareGoodsDataManager].OrderArray removeAllObjects];
+        [[JD_DataManager shareGoodsDataManager].OrderArray addObjectsFromArray:[[[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] objectForKey:@"msg"] objectForKey:@"info"]];
+        if ([JD_DataManager shareGoodsDataManager].OrderArray.count <= 7) {
+            TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35, 320, 64*[JD_DataManager shareGoodsDataManager].OrderArray.count) style:UITableViewStylePlain];
+            TableView.scrollEnabled = NO;
+        }else{
+            TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 35, 320, self.view.frame.size.height-35) style:UITableViewStylePlain];
+            TableView.scrollEnabled = YES;
+        }
+        TableView.backgroundView = nil;
+        TableView.backgroundColor = [UIColor clearColor];
+        TableView.delegate = self;
+        TableView.dataSource = self;
+        [self.view addSubview:TableView];
     } AndFailed:^{
         JD_NetworkPrompt *lNetWorkPrompt = [[[JD_NetworkPrompt alloc]init]autorelease];
         [self.view addSubview:lNetWorkPrompt];
@@ -113,8 +97,18 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    if(editing==YES){
+        self.navigationItem.rightBarButtonItem.title=@"完成";
+    }else {
+        self.navigationItem.rightBarButtonItem.title=@"编辑";
+    }
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[JD_DataManager shareGoodsDataManager] OrderArray].count;
+    return [JD_DataManager shareGoodsDataManager].OrderArray.count;
 }
 
 
@@ -140,22 +134,22 @@
         [lcell addSubview:lStateLable];
     }
     UILabel *lOrderidLable = (UILabel *)[lcell viewWithTag:10001];
-    lOrderidLable.text = [[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:[indexPath row]] objectForKey:@"ordercode"];
+    lOrderidLable.text = [[[JD_DataManager shareGoodsDataManager].OrderArray objectAtIndex:[indexPath row]] objectForKey:@"ordercode"];
     lOrderidLable.textAlignment = NSTextAlignmentCenter;
     lOrderidLable.backgroundColor = [UIColor clearColor];
     lOrderidLable.font = [UIFont boldSystemFontOfSize:15];
     lOrderidLable.textColor = [UIColor purpleColor];
     UILabel *lAmountLable = (UILabel *)[lcell viewWithTag:10002];
-    lAmountLable.text = [[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:[indexPath row]] objectForKey:@"amount"];
+    lAmountLable.text = [[[JD_DataManager shareGoodsDataManager].OrderArray objectAtIndex:[indexPath row]] objectForKey:@"amount"];
     lAmountLable.textAlignment = NSTextAlignmentCenter;
     lAmountLable.backgroundColor = [UIColor clearColor];
     lAmountLable.font = [UIFont boldSystemFontOfSize:15];
     lAmountLable.textColor = [UIColor purpleColor];
     UILabel *lStateLable = (UILabel *)[lcell viewWithTag:10003];
-    if ([[[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:[indexPath row]] objectForKey:@"state"] intValue] == 0) {
-        lStateLable.text = @"未提交";
+    if ([[[[JD_DataManager shareGoodsDataManager].OrderArray objectAtIndex:[indexPath row]] objectForKey:@"state"] intValue] == 0) {
+        lStateLable.text = @"未完成";
     }else{
-        lStateLable.text = @"提交";
+        lStateLable.text = @"已完成";
     }
     lStateLable.textAlignment = NSTextAlignmentCenter;
     lStateLable.backgroundColor = [UIColor clearColor];
@@ -166,8 +160,39 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Orderetail *lOrderetail = [[[Orderetail alloc]init]autorelease];
+    int section = [indexPath row];
     [self.navigationController pushViewController:lOrderetail animated:YES];
-    lOrderetail.Section = [indexPath row];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"lalala" object:[NSNumber numberWithInt:section] userInfo:nil];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSInteger row=[indexPath row];
+        NSString *bodyString = [NSString stringWithFormat:@"ordercode=%@",[[[JD_DataManager shareGoodsDataManager].OrderArray objectAtIndex:row] objectForKey:@"ordercode"]];
+        NSLog(@"%@",bodyString);
+        [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"deleteorder.php" AndSuccess:^(NSData *data){
+            NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            NSString *errorString = [NSString stringWithFormat:@"%@",[lDictionary objectForKey:@"error"]];
+            if ([errorString isEqualToString:@"0"]) {
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+            }
+        }AndFailed:^(){
+            
+        }];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    }
 }
 
 -(void)dealloc{

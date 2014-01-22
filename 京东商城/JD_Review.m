@@ -28,9 +28,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notification:) name:@"post" object:nil];
-    _star = @"1";
-    [self setView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,6 +40,7 @@
 {
     [_detailText release];
     [_customView release];
+    [_persentLabel release];
     [super dealloc];
 }
 
@@ -57,24 +55,29 @@
     self.navigationItem.leftBarButtonItem = leftBarButton;
     [leftBarButton release];
     self.navigationItem.title = @"添加评论";
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notification:) name:@"post" object:nil];
+    [JD_DataManager shareGoodsDataManager].star = @"1";
+    _detail = @"";
+    [self setView];
 }
 
 -(void)notification:(NSNotification *)sender
 {
+    _detail = _detailText.text;
     NSString *starString = [sender.object stringValue];
     float star = [starString floatValue];
-    for (UIView *lView in self.view.subviews) {
-        [lView removeFromSuperview];
-    }
     if (star < 1) {
         star = 1;
     }
-    _star = [NSString stringWithFormat:@"%.2f",star];
+    [JD_DataManager shareGoodsDataManager].star = [NSString stringWithFormat:@"%.2f",star];
     [self setView];
 }
 
 -(void)setView
 {
+    for (UIView *lView in self.view.subviews) {
+        [lView removeFromSuperview];
+    }
     UILabel *reviewLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 100, 50)];
     reviewLabel.backgroundColor = [UIColor whiteColor];
     reviewLabel.text = @"商品评价:";
@@ -84,16 +87,17 @@
     [reviewLabel release];
     _customView = [[CustomView alloc]initWithHeight:20 AndStar:0];
     _customView.frame = CGRectMake(120, 25, 110, 20);
-    [_customView setStarValue:[_star doubleValue]];
+    [_customView setStarValue:[[JD_DataManager shareGoodsDataManager].star doubleValue]];
     [self.view addSubview:_customView];
     _persentLabel = [[UILabel alloc]initWithFrame:CGRectMake(230, 10, 80, 50)];
     _persentLabel.backgroundColor = [UIColor whiteColor];
-    _persentLabel.text = [[NSString stringWithFormat:@"%.2f",[_star doubleValue]*20] stringByAppendingString:@"%"];
+    _persentLabel.text = [[NSString stringWithFormat:@"%.2f",[[JD_DataManager shareGoodsDataManager].star doubleValue]*20] stringByAppendingString:@"%"];
     _persentLabel.textColor = [UIColor blackColor];
     _persentLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:_persentLabel];
     _detailText = [[UITextField alloc]initWithFrame:CGRectMake(10, 70, 300, 150)];
     _detailText.borderStyle = UITextBorderStyleBezel;
+    _detailText.text = _detail;
     [self.view addSubview:_detailText];
     UIButton *addReviewButton = [UIButton buttonWithType:UIButtonTypeCustom];
     addReviewButton.frame = CGRectMake(210, 230, 100, 50);
@@ -109,7 +113,7 @@
 {
     [_detailText resignFirstResponder];
     //请求数据
-    NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@&customerid=%@&star=%@&detail=%@",[JD_DataManager shareGoodsDataManager].goodsID,[JD_DataManager shareGoodsDataManager].userID,_star,_detailText.text];
+    NSString *bodyString = [NSString stringWithFormat:@"goodsid=%@&customerid=%@&star=%@&detail=%@",[JD_DataManager shareGoodsDataManager].goodsID,[JD_DataManager shareGoodsDataManager].userID,[JD_DataManager shareGoodsDataManager].star,_detailText.text];
     [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"addreview.php" AndSuccess:^(NSData *data){
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSString *lString = [NSString stringWithFormat:@"%@",[lDictionary objectForKey:@"error"]];
@@ -117,8 +121,9 @@
             UIAlertView *lAlertview = [[UIAlertView alloc]initWithTitle:@"提醒" message:@"提交成功" delegate:self cancelButtonTitle:@"返回" otherButtonTitles: nil];
             [lAlertview show];
             [lAlertview release];
-            _star = @"1";
+            [JD_DataManager shareGoodsDataManager].star = @"1";
             _detailText.text = @"";
+            [self setView];
         }else{
             UIAlertView *lAlertview = [[UIAlertView alloc]initWithTitle:@"提醒" message:@"提交失败" delegate:self cancelButtonTitle:@"返回" otherButtonTitles: nil];
             [lAlertview show];
@@ -134,7 +139,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)screenExit:(UIControl *)sender {
+- (IBAction)screenExit:(UIControl *)sender
+{
     [_detailText resignFirstResponder];
 }
+
 @end

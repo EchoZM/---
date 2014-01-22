@@ -101,35 +101,12 @@
         [_viewController addObject:[NSNull null]];
     }
     //nstimer的用法
-    _timer=[NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(scrollPages) userInfo:nil repeats:YES];
+    _timer=[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(scrollPages) userInfo:nil repeats:YES];
     [self loadScrollViewPage:0];
     [self loadScrollViewPage:1];
     [self loadScrollViewPage:2];
     [self loadScrollViewPage:3];
     [self loadScrollViewPage:4];
-    //    //4个button
-    //    UIView *lView2=[[UIView alloc]initWithFrame:CGRectMake(0, 150, 320, 120)];
-    //    [lView2 setBackgroundColor:[UIColor blackColor]];
-    //    lView2.alpha=0.7;
-    //    UIImage *image1=[UIImage imageNamed:@"ico_menu07@2x.png"];
-    //    UIImage *image2=[UIImage imageNamed:@"ico_menu09@2x.png"];
-    //    UIImage *image3=[UIImage imageNamed:@"xiang3@2x.png"];
-    //    UIImage *image4=[UIImage imageNamed:@"ico_menu04@2x.png"];
-    //    NSArray *imageArray=[[NSArray alloc]initWithObjects:image1,image2,image3,image4,nil];
-    //    NSArray *textArray=[[NSArray alloc]initWithObjects:@"我的关注",@"喜摇摇",@"充值",@"彩票", nil];
-    //    for (int i=0; i<imageArray.count; i++) {
-    //        UIButton *lButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    //        [lButton setFrame:CGRectMake(10+i%4*75, 10, 70, 70)];
-    //        [lButton setImage:[imageArray objectAtIndex:i] forState:UIControlStateNormal];
-    //        [lButton setBackgroundColor:[UIColor whiteColor]];
-    //        UILabel *lLabel=[[UILabel alloc]initWithFrame:CGRectMake(10+i%4*75, 80, 70, 30)];
-    //        lLabel.text=[textArray objectAtIndex:i];
-    //        [lLabel setTextAlignment:NSTextAlignmentCenter];
-    //        [lLabel setBackgroundColor:[UIColor whiteColor]];
-    //        [lView2 addSubview:lLabel];
-    //        [lView2 addSubview:lButton];
-    //    }
-    //    [lScrollView addSubview:lView2];
     
     UILabel *lLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 115, 300, 50)];
     [lLabel setBackgroundColor:[UIColor clearColor]];
@@ -137,9 +114,8 @@
     [lLabel setTextColor:[UIColor blueColor]];
     [lLabel setFont:[UIFont fontWithName:@"Helvetica" size:20]];
     [lScrollView addSubview:lLabel];
-    justTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 165, 300, self.view.frame.size.height-165)];
-    //    justTableView.showsVerticalScrollIndicator=NO;
-    //    justTableView.scrollEnabled=NO;//固定tableview
+    
+    justTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 165, 320, self.view.frame.size.height-165)];
     justTableView.delegate=self;
     justTableView.dataSource=self;
     justTableView.tag=99;
@@ -166,14 +142,6 @@
     }AndFailed:^(){
         
     }];
-//    //网络请求数据
-//    NSString *lBodyString=[NSString stringWithFormat:@"goodscount=0"];//请求内容
-//    NSURL *lURL=[NSURL URLWithString:[ip stringByAppendingString:@"hotgoods.php"] ];
-//    NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:lURL];
-//    [lRequest setHTTPMethod:@"post"];//发送请求
-//    [lRequest setHTTPBody:[lBodyString dataUsingEncoding:NSUTF8StringEncoding]];
-//    NSURLConnection *lConnection=[NSURLConnection connectionWithRequest:lRequest delegate:self];
-//    [lConnection start];
     
 }
 #pragma scrollView And UIPageControl//自动翻页和手动翻页效果
@@ -229,18 +197,6 @@
         isFromStart=NO;
     }
 }
-//#pragma loadData
-//-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-//    [_data setLength:0];
-//}//开始接收
-//-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-//    [_data appendData:data];
-//}//保存到缓存data里面
-//-(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-//    NSDictionary *lDictionary=[NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments error:nil];
-//    lArray=[[lDictionary objectForKey:@"msg"]retain];
-//    [justTableView reloadData];
-//}
 #pragma TableViewMethod
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView.tag==99) {
@@ -258,9 +214,6 @@
     if (tableView.tag==99) {
         NSInteger row=[indexPath row];
         NSDictionary *dictionary=[lArray objectAtIndex:row];
-//        NSURL *lURL=[NSURL URLWithString:[[ip stringByAppendingString:@"goodsimage/"] stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
-//        NSData *lData=[NSData dataWithContentsOfURL:lURL];
-//        UIImage *lImage=[UIImage imageWithData:lData];
         UIImage *lImage=[[JD_DataManager shareGoodsDataManager] getgoodsImage:[dictionary objectForKey:@"headerimage"]];
         lCell.textLabel.text=[dictionary objectForKey:@"name"];
         lCell.imageView.image=lImage;
@@ -269,9 +222,6 @@
     }else{
         NSInteger row=[indexPath row];
         NSDictionary *dictionary=[searchGoodsArray objectAtIndex:row];
-//        NSURL *lURL=[NSURL URLWithString:[[ip stringByAppendingString:@"goodsimage/"] stringByAppendingString:[dictionary objectForKey:@"headerimage"]]];
-//        NSData *lData=[NSData dataWithContentsOfURL:lURL];
-//        UIImage *lImage=[UIImage imageWithData:lData];
         UIImage *lImage=[[JD_DataManager shareGoodsDataManager] getgoodsImage:[dictionary objectForKey:@"headerimage"]];
         lCell.textLabel.text=[dictionary objectForKey:@"name"];
         lCell.backgroundColor = [UIColor clearColor];
@@ -336,18 +286,6 @@
 }
 #pragma downloadData
 -(void)downloadData:(NSString *)search Type:(NSString *)type Order:(NSString *)order Owncount:(NSString *)owncount{
-//    NSURL *lURL=[NSURL URLWithString:[ip stringByAppendingString:@"searchgoods.php"]];
-//    ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:lURL];
-//    [lRequest setPostValue:search forKey:@"search"];
-//    [lRequest setPostValue:type forKey:@"type"];
-//    [lRequest setPostValue:order forKey:@"order"];
-//    [lRequest setPostValue:owncount forKey:@"owncount"];
-//    [lRequest startSynchronous];
-//    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[lRequest responseData] options:NSJSONReadingAllowFragments error:nil];
-//    NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
-//    NSArray *infoArray = [msgDictionary objectForKey:@"infos"];
-//    searchGoodsArray = [[NSMutableArray alloc]initWithArray:infoArray];
-//    return searchGoodsArray;
     NSString *bodyString = [NSString stringWithFormat:@"search=%@&type=%@&order=%@&owncount=%@",search,type,order,owncount];
     [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"searchgoods.php" AndSuccess:^(NSData *data){
         NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];

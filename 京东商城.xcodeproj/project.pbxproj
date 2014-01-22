@@ -98,8 +98,6 @@
 		10916C93188E0288006E20BA /* TakeDeliveryAddressManage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916C6D188E0288006E20BA /* TakeDeliveryAddressManage.xib */; };
 		10916C9D188E0380006E20BA /* AccountSafety.png in Resources */ = {isa = PBXBuildFile; fileRef = 10916C9C188E0380006E20BA /* AccountSafety.png */; };
 		10916C9F188E039A006E20BA /* user_header_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10916C9E188E039A006E20BA /* user_header_placeholder@2x.png */; };
-		10916CA3188E4A34006E20BA /* Goodsretail.m in Sources */ = {isa = PBXBuildFile; fileRef = 10916CA1188E4A33006E20BA /* Goodsretail.m */; };
-		10916CA4188E4A34006E20BA /* Goodsretail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10916CA2188E4A34006E20BA /* Goodsretail.xib */; };
 		1099C942187F8976005A2B81 /* JD_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1099C940187F8976005A2B81 /* JD_1.png */; };
 		1099C943187F8976005A2B81 /* JD_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1099C941187F8976005A2B81 /* JD_1@2x.png */; };
 		1099C953187F8A7A005A2B81 /* myjd_adress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1099C945187F8A7A005A2B81 /* myjd_adress@2x.png */; };
@@ -296,9 +294,6 @@
 		10916C6D188E0288006E20BA /* TakeDeliveryAddressManage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakeDeliveryAddressManage.xib; sourceTree = "<group>"; };
 		10916C9C188E0380006E20BA /* AccountSafety.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AccountSafety.png; sourceTree = "<group>"; };
 		10916C9E188E039A006E20BA /* user_header_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_header_placeholder@2x.png"; sourceTree = "<group>"; };
-		10916CA0188E4A33006E20BA /* Goodsretail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goodsretail.h; sourceTree = "<group>"; };
-		10916CA1188E4A33006E20BA /* Goodsretail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goodsretail.m; sourceTree = "<group>"; };
-		10916CA2188E4A34006E20BA /* Goodsretail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Goodsretail.xib; sourceTree = "<group>"; };
 		1099C940187F8976005A2B81 /* JD_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = JD_1.png; path = ../JD_1.png; sourceTree = "<group>"; };
 		1099C941187F8976005A2B81 /* JD_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "JD_1@2x.png"; path = "../JD_1@2x.png"; sourceTree = "<group>"; };
 		1099C945187F8A7A005A2B81 /* myjd_adress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myjd_adress@2x.png"; sourceTree = "<group>"; };
@@ -571,9 +566,6 @@
 				105CCB43188F54FC007A9AB0 /* Orderetail.h */,
 				105CCB44188F54FC007A9AB0 /* Orderetail.m */,
 				105CCB45188F54FC007A9AB0 /* Orderetail.xib */,
-				10916CA0188E4A33006E20BA /* Goodsretail.h */,
-				10916CA1188E4A33006E20BA /* Goodsretail.m */,
-				10916CA2188E4A34006E20BA /* Goodsretail.xib */,
 			);
 			path = AllOrderFrom;
 			sourceTree = "<group>";
@@ -988,7 +980,6 @@
 				10916C93188E0288006E20BA /* TakeDeliveryAddressManage.xib in Resources */,
 				10916C9D188E0380006E20BA /* AccountSafety.png in Resources */,
 				10916C9F188E039A006E20BA /* user_header_placeholder@2x.png in Resources */,
-				10916CA4188E4A34006E20BA /* Goodsretail.xib in Resources */,
 				104F9483188E4E66007C021D /* AddressInfoViewController.xib in Resources */,
 				105CCB3F188F54AD007A9AB0 /* AccountSafety.xib in Resources */,
 				105CCB47188F54FC007A9AB0 /* AllOrderFrom.xib in Resources */,
@@ -1046,7 +1037,6 @@
 				10916C7A188E0288006E20BA /* JD_AccountManage.m in Sources */,
 				10916C8C188E0288006E20BA /* AddComment.m in Sources */,
 				10916C92188E0288006E20BA /* TakeDeliveryAddressManage.m in Sources */,
-				10916CA3188E4A34006E20BA /* Goodsretail.m in Sources */,
 				104F9482188E4E66007C021D /* AddressInfoViewController.m in Sources */,
 				105CCB3E188F54AD007A9AB0 /* AccountSafety.m in Sources */,
 				105CCB46188F54FC007A9AB0 /* AllOrderFrom.m in Sources */,

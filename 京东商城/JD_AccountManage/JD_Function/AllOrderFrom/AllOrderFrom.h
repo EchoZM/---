@@ -11,6 +11,7 @@
 @interface AllOrderFrom : UIViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate> {
     UITableView *TableView;
     UIButton *HeardButton;
+    UIBarButtonItem *rightBarButton;
 }
 
 @end;

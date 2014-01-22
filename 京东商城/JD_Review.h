@@ -11,7 +11,8 @@
 
 @interface JD_Review : UIViewController
 {
-    NSString *_star;
+//    NSString *_star;
+    NSString *_detail;
     UITextField *_detailText;
     CustomView *_customView;
     UILabel *_persentLabel;

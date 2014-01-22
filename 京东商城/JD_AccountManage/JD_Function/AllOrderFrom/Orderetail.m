@@ -72,36 +72,32 @@
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = leftBarButton;
     [leftBarButton release];
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(BackButton:)];
-//    self.navigationItem.leftBarButtonItem.tintColor= [UIColor redColor];
-    if ([[JD_DataManager shareGoodsDataManager] OrderArray].count <= 8) {
-        TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 36, 320, 64*[[[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:_Section] objectForKey:@"carts"] count]) style:UITableViewStylePlain];
-    }else{
-        TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 36, 320, 548) style:UITableViewStylePlain];
-    }
-    if ([[JD_DataManager shareGoodsDataManager] OrderArray].count <= 8) {
-        TableView.scrollEnabled = NO;
-    }else{
-        TableView.scrollEnabled = YES;
-    }
-    TableView.backgroundView = nil;
-    TableView.backgroundColor = [UIColor clearColor];
-    TableView.delegate = self;
-    TableView.dataSource = self;
-    TableView.contentSize = CGSizeMake(320, 64*[[[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:_Section] objectForKey:@"carts"] count]);
-    [self.view addSubview:TableView];
-}
-
--(void)Furbish{
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lalala:) name:@"lalala" object:nil];
 }
 
 -(void)BackButton:(UIBarButtonItem *)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)lalala:(NSNotification *)sender
+{
+    _Section = [sender.object intValue];
+    if ([[[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:_Section] objectForKey:@"carts"] count] <= 7) {
+        TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 36, 320, 64*[[[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:_Section] objectForKey:@"carts"] count]) style:UITableViewStylePlain];
+        TableView.scrollEnabled = NO;
+    }else{
+        TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 36, 320, self.view.frame.size.height-36) style:UITableViewStylePlain];
+        TableView.scrollEnabled = YES;
+    }
+    TableView.backgroundView = nil;
+    TableView.backgroundColor = [UIColor clearColor];
+    TableView.delegate = self;
+    TableView.dataSource = self;
+    [self.view addSubview:TableView];
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[[[[JD_DataManager shareGoodsDataManager] OrderArray] objectAtIndex:_Section] objectForKey:@"carts"] count];
+    return [[[[JD_DataManager shareGoodsDataManager].OrderArray objectAtIndex:_Section] objectForKey:@"carts"] count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
