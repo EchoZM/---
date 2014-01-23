@@ -141,7 +141,7 @@
         lCell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID]autorelease];
         lCell.selectionStyle = UITableViewCellSelectionStyleNone;
         lCell.backgroundColor = [UIColor clearColor];
-        UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 110, 30)];
+        UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 160, 30)];
         nameLabel.tag = 11;
         nameLabel.backgroundColor = [UIColor whiteColor];
         nameLabel.textColor = [UIColor blackColor];

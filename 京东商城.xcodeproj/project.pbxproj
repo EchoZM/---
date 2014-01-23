@@ -51,6 +51,8 @@
 		104434CB1890A60C009E823C /* rightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 104434C01890A60C009E823C /* rightArrow@2x.png */; };
 		104434CC1890A60C009E823C /* round_check1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 104434C11890A60C009E823C /* round_check1@2x.png */; };
 		104434CD1890A60C009E823C /* round_check2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 104434C21890A60C009E823C /* round_check2@2x.png */; };
+		104434D71890AAA5009E823C /* JD_ToShopCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 104434D51890AAA5009E823C /* JD_ToShopCar.m */; };
+		104434D81890AAA5009E823C /* JD_ToShopCar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 104434D61890AAA5009E823C /* JD_ToShopCar.xib */; };
 		104F9482188E4E66007C021D /* AddressInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 104F9480188E4E66007C021D /* AddressInfoViewController.m */; };
 		104F9483188E4E66007C021D /* AddressInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 104F9481188E4E66007C021D /* AddressInfoViewController.xib */; };
 		105CCB3E188F54AD007A9AB0 /* AccountSafety.m in Sources */ = {isa = PBXBuildFile; fileRef = 105CCB3C188F54AD007A9AB0 /* AccountSafety.m */; };
@@ -217,6 +219,9 @@
 		104434C01890A60C009E823C /* rightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightArrow@2x.png"; sourceTree = "<group>"; };
 		104434C11890A60C009E823C /* round_check1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_check1@2x.png"; sourceTree = "<group>"; };
 		104434C21890A60C009E823C /* round_check2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_check2@2x.png"; sourceTree = "<group>"; };
+		104434D41890AAA5009E823C /* JD_ToShopCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JD_ToShopCar.h; sourceTree = "<group>"; };
+		104434D51890AAA5009E823C /* JD_ToShopCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JD_ToShopCar.m; sourceTree = "<group>"; };
+		104434D61890AAA5009E823C /* JD_ToShopCar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JD_ToShopCar.xib; sourceTree = "<group>"; };
 		104F947F188E4E66007C021D /* AddressInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressInfoViewController.h; sourceTree = "<group>"; };
 		104F9480188E4E66007C021D /* AddressInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressInfoViewController.m; sourceTree = "<group>"; };
 		104F9481188E4E66007C021D /* AddressInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressInfoViewController.xib; sourceTree = "<group>"; };
@@ -398,6 +403,7 @@
 				100A99E3187CEBEB006487D8 /* JD_Goods.h */,
 				100A99E4187CEBEB006487D8 /* JD_Goods.m */,
 				100A99E5187CEBEB006487D8 /* JD_Goods.xib */,
+				104434CE1890A98F009E823C /* JD_ShopCart */,
 				100A99E8187CEC03006487D8 /* JD_Goods_Info */,
 				100A99E9187CEC10006487D8 /* JD_Goods_Evaluate */,
 			);
@@ -458,6 +464,16 @@
 				104140A1188CA7D1005B3BFB /* select.png */,
 			);
 			name = JD_Image;
+			sourceTree = "<group>";
+		};
+		104434CE1890A98F009E823C /* JD_ShopCart */ = {
+			isa = PBXGroup;
+			children = (
+				104434D41890AAA5009E823C /* JD_ToShopCar.h */,
+				104434D51890AAA5009E823C /* JD_ToShopCar.m */,
+				104434D61890AAA5009E823C /* JD_ToShopCar.xib */,
+			);
+			name = JD_ShopCart;
 			sourceTree = "<group>";
 		};
 		1065D8B9187E30F40068D9B7 /* ASIHttpRequestX */ = {
@@ -1001,6 +1017,7 @@
 				104434CB1890A60C009E823C /* rightArrow@2x.png in Resources */,
 				104434CC1890A60C009E823C /* round_check1@2x.png in Resources */,
 				104434CD1890A60C009E823C /* round_check2@2x.png in Resources */,
+				104434D81890AAA5009E823C /* JD_ToShopCar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1053,6 +1070,7 @@
 				104434C31890A60C009E823C /* JD_AddAdress.m in Sources */,
 				104434C51890A60C009E823C /* JD_Order.m in Sources */,
 				104434C71890A60C009E823C /* JD_ShopCar.m in Sources */,
+				104434D71890AAA5009E823C /* JD_ToShopCar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -72,11 +72,32 @@
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = leftBarButton;
     [leftBarButton release];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc]initWithTitle:@"删除订单" style:UIBarButtonItemStyleBordered target:self action:@selector(deleteOrder:)];
+    self.navigationItem.rightBarButtonItem =rightBarButton;
+    self.navigationItem.rightBarButtonItem.tintColor=[UIColor redColor];
+    [rightBarButton release];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lalala:) name:@"lalala" object:nil];
 }
 
 -(void)BackButton:(UIBarButtonItem *)sender{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)deleteOrder:(UIBarButtonItem *)sender{
+    NSString *bodyString = [NSString stringWithFormat:@"customerid=%@&ordercode=%@",[JD_DataManager shareGoodsDataManager].userID,[JD_DataManager shareGoodsDataManager].orderID];
+    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"deleteorder.php" AndSuccess:^(NSData *data){
+        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSString *errorString = [NSString stringWithFormat:@"%@",[lDictionary objectForKey:@"error"]];
+        if ([errorString isEqualToString:@"0"]) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            UIAlertView *lAlertView = [[UIAlertView alloc]initWithTitle:@"提醒" message:@"删除失败" delegate:nil cancelButtonTitle:@"返回" otherButtonTitles: nil];
+            [lAlertView show];
+            [lAlertView release];
+        }
+    }AndFailed:^(){
+        
+    }];
 }
 
 -(void)lalala:(NSNotification *)sender

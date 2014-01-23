@@ -9,7 +9,7 @@
 #import "JD_Goods.h"
 #import "JD_Goods_Info.h"
 #import "JD_Goods_Evaluate.h"
-#import "JD_ShopCar.h"
+#import "JD_ToShopCar.h"
 #import "JD_Login.h"
 #import "CustomView.h"
 
@@ -122,7 +122,9 @@
 -(void)popToShopCar:(UITapGestureRecognizer *)sender
 {
     if ([JD_DataManager shareGoodsDataManager].UserState) {
-        NSLog(@"ToShopCarYes");
+        JD_ToShopCar *lToShopCar = [[JD_ToShopCar alloc]init];
+        [self.navigationController pushViewController:lToShopCar animated:YES];
+        [lToShopCar release];
     }else{
         JD_Login *lLogin = [[JD_Login alloc]init];
         [self.navigationController pushViewController:lLogin animated:YES];

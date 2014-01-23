@@ -58,7 +58,7 @@
 
 -(void)returnBuycarPage:(UIBarButtonItem *)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
@@ -315,9 +315,9 @@
     [lCreateReceiverView addSubview:lbutton];
     int Count= [[JD_DataManager shareGoodsDataManager].AddressArray  count];
        if (Count>0) {
-          
-           self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStyleBordered target:self action:@selector(EditionCell:)];
-           self.navigationItem.rightBarButtonItem.tintColor=[UIColor redColor];
+          self.navigationItem.rightBarButtonItem=nil;
+//           self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStyleBordered target:self action:@selector(EditionCell:)];
+//           self.navigationItem.rightBarButtonItem.tintColor=[UIColor redColor];
 
           
           
@@ -333,6 +333,7 @@
            //[lTableView.backgroundView removeFromSuperview];
         lTableView.delegate=self;
         lTableView.dataSource=self;
+           [lTableView reloadData];
         [lCreateReceiverView addSubview:lTableView];
     }
     else
@@ -560,38 +561,38 @@
 
 
 
--(void)EditionCell:(UIBarButtonItem *)sender
-{
-   
-   
-        for (int i=0; i<[[JD_DataManager shareGoodsDataManager].AddressArray count]; i++) {
-             NSDictionary  *lDictionary =[[JD_DataManager shareGoodsDataManager].AddressArray objectAtIndex:i];
-             if ([lDictionary objectForKey:@"deleteButton"]==nil) {
-                 deleteButton=[[UIButton alloc]initWithFrame:CGRectMake(240, 30, 20, 20)];
-                 deleteButton.layer.cornerRadius=10;
-                 [deleteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                 [deleteButton setTitle:@"x" forState:UIControlStateNormal];
-                 [deleteButton setBackgroundColor:[UIColor redColor]];
-                 [deleteButton addTarget:self action:@selector(deleteAddress:) forControlEvents:UIControlEventTouchUpInside];
-                 NSDictionary *UpdateDictionary=[NSDictionary dictionaryWithObjectsAndKeys:[lDictionary  objectForKey:@"dictionary"],@"dictionary", [lDictionary  objectForKey:@"button"],@"button",deleteButton,@"deleteButton" ,nil];
-                 [[JD_DataManager shareGoodsDataManager].AddressArray replaceObjectAtIndex:i withObject:UpdateDictionary];
-             }
-            else
-            {
-                UIButton  *Button=[lDictionary objectForKey:@"button"];
-                NSDictionary *Dictionary=[lDictionary objectForKey:@"dictionary"];
-                NSDictionary *newDictionary=[NSDictionary dictionaryWithObjectsAndKeys:Dictionary,@"dictionary",Button,@"button",nil];
-                [[JD_DataManager shareGoodsDataManager].AddressArray replaceObjectAtIndex:i withObject:newDictionary];
-            }
-           
-        }
+//-(void)EditionCell:(UIBarButtonItem *)sender
+//{
+//   
+//   
+//        for (int i=0; i<[[JD_DataManager shareGoodsDataManager].AddressArray count]; i++) {
+//             NSDictionary  *lDictionary =[[JD_DataManager shareGoodsDataManager].AddressArray objectAtIndex:i];
+//             if ([lDictionary objectForKey:@"deleteButton"]==nil) {
+//                 deleteButton=[[UIButton alloc]initWithFrame:CGRectMake(240, 30, 20, 20)];
+//                 deleteButton.layer.cornerRadius=10;
+//                 [deleteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//                 [deleteButton setTitle:@"x" forState:UIControlStateNormal];
+//                 [deleteButton setBackgroundColor:[UIColor redColor]];
+//                 [deleteButton addTarget:self action:@selector(deleteAddress:) forControlEvents:UIControlEventTouchUpInside];
+//                 NSDictionary *UpdateDictionary=[NSDictionary dictionaryWithObjectsAndKeys:[lDictionary  objectForKey:@"dictionary"],@"dictionary", [lDictionary  objectForKey:@"button"],@"button",deleteButton,@"deleteButton" ,nil];
+//                 [[JD_DataManager shareGoodsDataManager].AddressArray replaceObjectAtIndex:i withObject:UpdateDictionary];
+//             }
+//            else
+//            {
+//                UIButton  *Button=[lDictionary objectForKey:@"button"];
+//                NSDictionary *Dictionary=[lDictionary objectForKey:@"dictionary"];
+//                NSDictionary *newDictionary=[NSDictionary dictionaryWithObjectsAndKeys:Dictionary,@"dictionary",Button,@"button",nil];
+//                [[JD_DataManager shareGoodsDataManager].AddressArray replaceObjectAtIndex:i withObject:newDictionary];
+//            }
+//           
+//        }
+//
+//      
+//    
+//    
+//        [lTableView reloadData];
+//}
 
-      
-    
-    
-        [lTableView reloadData];
-}
- 
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

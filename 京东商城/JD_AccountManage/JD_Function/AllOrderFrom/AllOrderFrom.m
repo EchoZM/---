@@ -68,9 +68,10 @@
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = leftBarButton;
     [leftBarButton release];
-    self.navigationItem.rightBarButtonItem=[self editButtonItem];
-    self.navigationItem.rightBarButtonItem.title=@"编辑";
-    self.navigationItem.rightBarButtonItem.tintColor= [UIColor redColor];
+    self.navigationItem.rightBarButtonItem=nil;
+//    self.navigationItem.rightBarButtonItem=[self editButtonItem];
+//    self.navigationItem.rightBarButtonItem.title=@"编辑";
+//    self.navigationItem.rightBarButtonItem.tintColor= [UIColor redColor];
     NSString *lBodyString = [NSString stringWithFormat:@"customerid=%@",[JD_DataManager shareGoodsDataManager].userID];
     [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:lBodyString WithURLString:@"getorder.php" AndSuccess:^(NSData *data) {
         [[JD_DataManager shareGoodsDataManager].OrderArray removeAllObjects];
@@ -97,15 +98,15 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-    [super setEditing:editing animated:animated];
-    if(editing==YES){
-        self.navigationItem.rightBarButtonItem.title=@"完成";
-    }else {
-        self.navigationItem.rightBarButtonItem.title=@"编辑";
-    }
-}
+//- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+//{
+//    [super setEditing:editing animated:animated];
+//    if(editing==YES){
+//        self.navigationItem.rightBarButtonItem.title=@"完成";
+//    }else {
+//        self.navigationItem.rightBarButtonItem.title=@"编辑";
+//    }
+//}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [JD_DataManager shareGoodsDataManager].OrderArray.count;
@@ -122,7 +123,7 @@
     if (lcell == nil) {
         lcell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell]autorelease];
         lcell.accessoryType = UITableViewCellAccessoryNone;
-        lcell.selectionStyle = UITableViewCellEditingStyleNone;
+        lcell.selectionStyle = UITableViewCellSelectionStyleBlue;
         UILabel *lOrderidLable = [[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 140, 64)]autorelease];
         lOrderidLable.tag = 10001;
         [lcell addSubview:lOrderidLable];
@@ -159,41 +160,46 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [JD_DataManager shareGoodsDataManager].orderID = [[[JD_DataManager shareGoodsDataManager].OrderArray objectAtIndex:[indexPath row]] objectForKey:@"ordercode"];
     Orderetail *lOrderetail = [[[Orderetail alloc]init]autorelease];
     int section = [indexPath row];
     [self.navigationController pushViewController:lOrderetail animated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"lalala" object:[NSNumber numberWithInt:section] userInfo:nil];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return @"删除";
-}
-
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return UITableViewCellEditingStyleDelete;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSInteger row=[indexPath row];
-        NSString *bodyString = [NSString stringWithFormat:@"ordercode=%@",[[[JD_DataManager shareGoodsDataManager].OrderArray objectAtIndex:row] objectForKey:@"ordercode"]];
-        NSLog(@"%@",bodyString);
-        [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"deleteorder.php" AndSuccess:^(NSData *data){
-            NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-            NSString *errorString = [NSString stringWithFormat:@"%@",[lDictionary objectForKey:@"error"]];
-            if ([errorString isEqualToString:@"0"]) {
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
-            }
-        }AndFailed:^(){
-            
-        }];
-    }
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-    }
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return @"删除";
+//}
+//
+//-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return UITableViewCellEditingStyleDelete;
+//}
+//
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSInteger row=[indexPath row];
+//    NSString *bodyString = [NSString stringWithFormat:@"ordercode=%@",[[[JD_DataManager shareGoodsDataManager].OrderArray objectAtIndex:row] objectForKey:@"ordercode"]];
+//    NSLog(@"%@",bodyString);
+//    ASIFormDataRequest *lRequest = [[ASIFormDataRequest alloc]initWithURL:[NSURL URLWithString:@"http://192.168.1.120/shop/deleteorder.php"]];
+//    [lRequest setPostValue:[[[JD_DataManager shareGoodsDataManager].OrderArray objectAtIndex:row] objectForKey:@"ordercode"] forKey:@"ordercode"];
+//    [lRequest startSynchronous];
+//    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[lRequest responseData] options:NSJSONReadingAllowFragments error:nil];
+//    NSString *errorString = [NSString stringWithFormat:@"%@",[lDictionary objectForKey:@"error"]];
+//    if ([errorString isEqualToString:@"0"]) {
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+//    }
+////    [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"deleteorder.php" AndSuccess:^(NSData *data){
+////        NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+////        NSString *errorString = [NSString stringWithFormat:@"%@",[lDictionary objectForKey:@"error"]];
+////        if ([errorString isEqualToString:@"0"]) {
+////            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+////        }
+////    }AndFailed:^(){
+////        
+////    }];
+//}
 
 -(void)dealloc{
     [super dealloc];

@@ -12,6 +12,5 @@
 {
     NSDictionary *_dictionary;
 }
-- (IBAction)screenExit:(UIControl *)sender;
 
 @end

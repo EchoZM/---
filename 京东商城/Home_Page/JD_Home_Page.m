@@ -101,7 +101,7 @@
         [_viewController addObject:[NSNull null]];
     }
     //nstimer的用法
-    _timer=[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(scrollPages) userInfo:nil repeats:YES];
+    _timer=[NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(scrollPages) userInfo:nil repeats:YES];
     [self loadScrollViewPage:0];
     [self loadScrollViewPage:1];
     [self loadScrollViewPage:2];

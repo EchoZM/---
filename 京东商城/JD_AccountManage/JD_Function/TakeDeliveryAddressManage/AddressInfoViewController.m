@@ -19,7 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.navigationItem.title = @"修改地址";
+        self.navigationItem.title = @"地址详情";
     }
     return self;
 }
@@ -64,29 +64,12 @@
     if (sender.tag == 101) {
         sender.tag = 102;
         [sender setTitle:@"完成"];
-        UITextField *nameTextField = (UITextField *)[self.view viewWithTag:11];
-        UITextField *addressTextField = (UITextField *)[self.view viewWithTag:22];
-        UITextField *telephoneTextField = (UITextField *)[self.view viewWithTag:33];
-        UITextField *codeTextField = (UITextField *)[self.view viewWithTag:44];
-        nameTextField.userInteractionEnabled = YES;
-        addressTextField.userInteractionEnabled = YES;
-        telephoneTextField.userInteractionEnabled = YES;
-        codeTextField.userInteractionEnabled = YES;
-        [nameTextField becomeFirstResponder];
         UIButton *deleteButton = (UIButton *)[self.view viewWithTag:520];
         deleteButton.backgroundColor = [UIColor redColor];
         deleteButton.tag = 521;
     }else{
         sender.tag = 101;
         [sender setTitle:@"编辑"];
-        UITextField *nameTextField = (UITextField *)[self.view viewWithTag:11];
-        UITextField *addressTextField = (UITextField *)[self.view viewWithTag:22];
-        UITextField *telephoneTextField = (UITextField *)[self.view viewWithTag:33];
-        UITextField *codeTextField = (UITextField *)[self.view viewWithTag:44];
-        nameTextField.userInteractionEnabled = NO;
-        addressTextField.userInteractionEnabled = NO;
-        telephoneTextField.userInteractionEnabled = NO;
-        codeTextField.userInteractionEnabled = NO;
         UIButton *deleteButton = (UIButton *)[self.view viewWithTag:521];
         deleteButton.backgroundColor = [UIColor grayColor];
         deleteButton.tag = 520;
@@ -98,34 +81,34 @@
     _dictionary = sender.userInfo;
     UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     deleteButton.tag = 520;
-    deleteButton.frame = CGRectMake(110, 25, 100, 50);
+    deleteButton.frame = CGRectMake(110, 375, 100, 50);
     deleteButton.backgroundColor = [UIColor grayColor];
     deleteButton.layer.cornerRadius = 8;
     [deleteButton setTitle:@"删除地址" forState:UIControlStateNormal];
     [deleteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [deleteButton addTarget:self action:@selector(deleteButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:deleteButton];
-    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, 100, 50)];
+    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 25, 100, 50)];
     nameLabel.text = @"收货人姓名:";
     nameLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:nameLabel];
     [nameLabel release];
-    UILabel *addressLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 175, 100, 50)];
+    UILabel *addressLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, 100, 50)];
     addressLabel.text = @"详细地址:";
     addressLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:addressLabel];
     [addressLabel release];
-    UILabel *telephoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 310, 100, 50)];
+    UILabel *telephoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 235, 100, 50)];
     telephoneLabel.text = @"手机号码:";
     telephoneLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:telephoneLabel];
     [telephoneLabel release];
-    UILabel *codeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 385, 100, 50)];
+    UILabel *codeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 310, 100, 50)];
     codeLabel.text = @"邮政编码:";
     codeLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:codeLabel];
     [codeLabel release];
-    UITextField *nameTextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 110, 200, 30)];
+    UITextField *nameTextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 35, 200, 30)];
     nameTextField.tag = 11;
     nameTextField.borderStyle = UITextBorderStyleRoundedRect;
     nameTextField.placeholder = @"输入收货人";
@@ -133,7 +116,7 @@
     nameTextField.userInteractionEnabled = NO;
     [self.view addSubview:nameTextField];
     [nameTextField release];
-    UITextField *addressTextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 185, 200, 90)];
+    UITextField *addressTextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 110, 200, 90)];
     addressTextField.tag = 22;
     addressTextField.borderStyle = UITextBorderStyleRoundedRect;
     addressTextField.placeholder = @"输入详细地址";
@@ -141,7 +124,7 @@
     addressTextField.userInteractionEnabled = NO;
     [self.view addSubview:addressTextField];
     [addressTextField release];
-    UITextField *telephoneTextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 320, 200, 30)];
+    UITextField *telephoneTextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 245, 200, 30)];
     telephoneTextField.tag = 33;
     telephoneTextField.borderStyle = UITextBorderStyleRoundedRect;
     telephoneTextField.placeholder = @"输入手机号码";
@@ -149,7 +132,7 @@
     telephoneTextField.userInteractionEnabled = NO;
     [self.view addSubview:telephoneTextField];
     [telephoneTextField release];
-    UITextField *codeTextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 395, 200, 30)];
+    UITextField *codeTextField = [[UITextField alloc]initWithFrame:CGRectMake(105, 320, 200, 30)];
     codeTextField.tag = 44;
     codeTextField.borderStyle = UITextBorderStyleRoundedRect;
     codeTextField.placeholder = @"输入邮政编码";
@@ -181,25 +164,4 @@
     }
 }
 
-- (IBAction)screenExit:(UIControl *)sender
-{
-    UITextField *nameTextField = (UITextField *)[self.view viewWithTag:11];
-    UITextField *addressTextField = (UITextField *)[self.view viewWithTag:22];
-    UITextField *telephoneTextField = (UITextField *)[self.view viewWithTag:33];
-    UITextField *codeTextField = (UITextField *)[self.view viewWithTag:44];
-    [nameTextField resignFirstResponder];
-    [addressTextField resignFirstResponder];
-    [telephoneTextField resignFirstResponder];
-    [codeTextField resignFirstResponder];
-    nameTextField.userInteractionEnabled = NO;
-    addressTextField.userInteractionEnabled = NO;
-    telephoneTextField.userInteractionEnabled = NO;
-    codeTextField.userInteractionEnabled = NO;
-    UIButton *deleteButton = (UIButton *)[self.view viewWithTag:521];
-    deleteButton.backgroundColor = [UIColor grayColor];
-    deleteButton.tag = 520;
-    UIBarButtonItem *rightBarButton = self.navigationItem.rightBarButtonItem;
-    rightBarButton.tag = 101;
-    [rightBarButton setTitle:@"编辑"];
-}
 @end
