@@ -162,7 +162,7 @@
         }
        
         
-    NSURL *URL=[NSURL URLWithString:@"http://192.168.1.121/shop/addaddress.php"];
+    NSURL *URL=[NSURL URLWithString:@"http://192.168.1.120/shop/addaddress.php"];
     NSString *PostData=[NSString stringWithFormat:@"customerid=%@&name=%@&telephone=%@&code=%@&address=%@",@"20",Field.text,Field1.text,Field2.text,Field3.text];
     
     NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:URL];

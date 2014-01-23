@@ -39,7 +39,7 @@
 }
 -(NSMutableArray *)LoadAllGoods:(NSString *)CustomerId
 {
-    NSURL *lURL = [NSURL URLWithString:@"http://192.168.1.121/shop/getcart.php"];
+    NSURL *lURL = [NSURL URLWithString:@"http://192.168.1.120/shop/getcart.php"];
     ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:lURL];
     [lRequest setPostValue:CustomerId forKey:@"customerid"];
     [lRequest startSynchronous];
@@ -121,7 +121,7 @@
         [GoPayButton setBackgroundColor:[UIColor redColor]];
         GoPayButton.alpha=1;
         Sgin=1;
-        NSURL *URL=[NSURL URLWithString:@"http://192.168.1.121/shop/getaddress.php"];
+        NSURL *URL=[NSURL URLWithString:@"http://192.168.1.120/shop/getaddress.php"];
         NSString *PostData=[NSString stringWithFormat:@"customerid=%@",@"20"];
         NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:URL];
         [lRequest setHTTPMethod:@"post"];
@@ -179,7 +179,7 @@
             [mutableItem setObject:lDictionary forKey:@"dictionary"];
             [[JD_DataManager shareGoodsDataManager].BuyCardInfoArray setObject: mutableItem atIndexedSubscript:i];
             
-            NSURL *URL=[NSURL URLWithString:@"http://192.168.1.121/shop/changecart.php"];
+            NSURL *URL=[NSURL URLWithString:@"http://192.168.1.120/shop/changecart.php"];
             NSString *cartid=[lDictionary objectForKey:@"cartid"];
             NSString *goodscount=[lDictionary objectForKey:@"goodscount"];
             NSString *goodsid=[lDictionary objectForKey:@"goodsid"];
@@ -291,7 +291,7 @@
              int count=[[lDictionary objectForKey:@"goodscount"]intValue];
              float price=[[lDictionary objectForKey:@"price"]floatValue];
              subtraction=subtraction+(count*price);
-             NSURL *lURL=[NSURL URLWithString:@"http://192.168.1.121/shop/deletecart.php"];
+             NSURL *lURL=[NSURL URLWithString:@"http://192.168.1.120/shop/deletecart.php"];
              NSString *userInfo=[NSString stringWithFormat:@"cartid=%@&customerid=%@",CartId,UserId];
              NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:lURL];
              [lRequest setHTTPMethod:@"post"];
@@ -421,7 +421,7 @@
         UIImageView *lImageView=[[UIImageView alloc]initWithFrame:CGRectMake(40, 10, 60, 60)];
         lImage=[[UIImage alloc]init];
         Request=[[ASIHTTPRequest alloc]init];
-        NSString  *UrlPathCreat=[NSString stringWithFormat:@"%@%@",@"http://192.168.1.121/shop/goodsimage/",[lDictionary objectForKey:@"headerimage"]];
+        NSString  *UrlPathCreat=[NSString stringWithFormat:@"%@%@",@"http://192.168.1.120/shop/goodsimage/",[lDictionary objectForKey:@"headerimage"]];
         NSURL *url=[NSURL URLWithString:UrlPathCreat];
         Request=[ASIHTTPRequest requestWithURL:url];
         [Request startSynchronous];

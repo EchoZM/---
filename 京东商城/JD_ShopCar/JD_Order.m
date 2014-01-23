@@ -537,7 +537,7 @@
         UIButton *lButton=[Dicitonary objectForKey:@"deleteButton"];
       
         if (lButton==(UIButton *)sender) {
-            NSURL *lUrl=[NSURL URLWithString:@"http://192.168.1.121/shop/deleteaddress.php"];
+            NSURL *lUrl=[NSURL URLWithString:@"http://192.168.1.120/shop/deleteaddress.php"];
             NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:lUrl];
             lRequest.HTTPMethod=@"post";
             NSString *PostData=[NSString stringWithFormat:@"addressid=%@",[AdressDictionary  objectForKey:@"addressid"]];
@@ -671,7 +671,7 @@
 if (Adressx.length>0) {
     
   postOrderButton.backgroundColor=[UIColor redColor];
- NSURL *URL=[NSURL URLWithString:@"http://192.168.1.121/shop/addorder.php"];
+ NSURL *URL=[NSURL URLWithString:@"http://192.168.1.120/shop/addorder.php"];
  NSString *PostData=[NSString stringWithFormat:@"customerid=%@&addressid=%@&cartids=%@",@"20",Adressx,[self CreateOrderId]];
  NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:URL];
  [lRequest setHTTPMethod:@"post"];
