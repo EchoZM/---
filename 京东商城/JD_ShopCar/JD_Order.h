@@ -24,6 +24,8 @@
     // NSMutableArray *lSigleAdressArray;
     UIButton *deleteButton;
    int Sgin; UIButton *byOptionAdress;
+    UILabel *PayTitleTotal;
+ 
 }
 
 @end

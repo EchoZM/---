@@ -42,7 +42,6 @@
   
     
     lData=[[NSMutableData alloc]init];
-    //[self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"self"]]];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStyleBordered target:self action:@selector(returnBuycarPage:)];
     self.navigationItem.leftBarButtonItem.tintColor=[UIColor whiteColor];
     
@@ -56,7 +55,7 @@
     [label setBackgroundColor:[UIColor clearColor]];
      Field=[[UITextField alloc]initWithFrame:CGRectMake(98, 15, 180, 30)];
     Field.placeholder=@"请输入收货人姓名";
-    [Field setBorderStyle:UITextBorderStyleLine];
+    [Field setBorderStyle:UITextBorderStyleRoundedRect];
     
     [self.view addSubview:label];
      [self.view addSubview:Field];
@@ -69,7 +68,7 @@
     [label1 setBackgroundColor:[UIColor clearColor]];
       Field1=[[UITextField alloc]initWithFrame:CGRectMake(98, 60, 180, 30)];
     Field1.placeholder=@"请输入收货人电话";
-    [Field1 setBorderStyle:UITextBorderStyleLine];
+    [Field1 setBorderStyle:UITextBorderStyleRoundedRect];
     [self.view addSubview:label1];
     [self.view addSubview:Field1];
     [label1 release];   
@@ -83,7 +82,7 @@
     [label2 setBackgroundColor:[UIColor clearColor]];
     Field2=[[UITextField alloc]initWithFrame:CGRectMake(98, 105, 180, 30)];
     Field2.placeholder=@"请输入收货人邮编";
-    [Field2 setBorderStyle:UITextBorderStyleLine];
+    [Field2 setBorderStyle:UITextBorderStyleRoundedRect];
     [self.view addSubview:label2];
     [self.view addSubview:Field2];
     [label2 release];   
@@ -95,7 +94,7 @@
     [label3 setBackgroundColor:[UIColor clearColor]];
      Field3=[[UITextField alloc]initWithFrame:CGRectMake(98, 150, 200, 200)];
     Field3.placeholder=@"请输入收货人地址";
-    [Field3 setBorderStyle:UITextBorderStyleLine];
+    [Field3 setBorderStyle:UITextBorderStyleRoundedRect];
     [self.view addSubview:label3];
     [self.view addSubview:Field3];
     [label3 release];
@@ -163,7 +162,7 @@
        
         
     NSURL *URL=[NSURL URLWithString:@"http://192.168.1.120/shop/addaddress.php"];
-    NSString *PostData=[NSString stringWithFormat:@"customerid=%@&name=%@&telephone=%@&code=%@&address=%@",@"20",Field.text,Field1.text,Field2.text,Field3.text];
+    NSString *PostData=[NSString stringWithFormat:@"customerid=%@&name=%@&telephone=%@&code=%@&address=%@",[JD_DataManager shareGoodsDataManager].userID ,Field.text,Field1.text,Field2.text,Field3.text];
     
     NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:URL];
     [lRequest setHTTPMethod:@"post"];

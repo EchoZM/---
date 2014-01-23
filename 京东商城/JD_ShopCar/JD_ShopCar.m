@@ -10,6 +10,10 @@
 #import  "JD_Login.h"
 #import "JD_Home_Page.h"
 #import "JD_Order.h"
+#import "JD_Search.h"
+#import "JD_ShopCar.h"
+#import "JD_AccountManage.h"
+#import "JD_Goods.h"
 @interface JD_ShopCar ()
 
 @end
@@ -23,6 +27,7 @@
         // Custom initialization
         self.tabBarItem.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tabBar_item2_1@2x" ofType:@"png"]];
 //        lData=[[NSMutableData alloc]init];
+        
     }
     return self;
 }
@@ -37,71 +42,21 @@
     [super viewDidAppear:animated];
     
 }
--(NSMutableArray *)LoadAllGoods:(NSString *)CustomerId
+/*(-(NSMutableArray *)LoadAllGoods:(NSString *)CustomerId
 {
-    NSURL *lURL = [NSURL URLWithString:@"http://192.168.1.120/shop/getcart.php"];
-    ASIFormDataRequest *lRequest = [ASIFormDataRequest requestWithURL:lURL];
-    [lRequest setPostValue:CustomerId forKey:@"customerid"];
-    [lRequest startSynchronous];
+    ShareDictionary=[[NSDictionary alloc]init];
+         return ReturnArray;
+    [ReturnArray release];
+   
     
-    NSMutableArray *ReturnArray=[[NSMutableArray alloc]init];
-    
-    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:[lRequest responseData] options:NSJSONReadingAllowFragments error:nil];
-    int ErrorJudge= [[lDictionary objectForKey:@"error"]intValue];
-    
-    if (ErrorJudge==1) {
-        lAlertView=[[UIAlertView alloc]initWithTitle:@"错误" message:@"请求数据不完整!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
-        [lAlertView show];
-        return  nil;
-    }
-    else if(ErrorJudge==2)
-    {
-        lAlertView=[[UIAlertView alloc]initWithTitle:@"错误" message:@"请求数据格式错误!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
-        [lAlertView show];
-        return  nil;
-    }
-    else if(ErrorJudge==3)
-    {
-        
-        return  nil;
-    }
-    else if(ErrorJudge==98)
-    {
-        lAlertView=[[UIAlertView alloc]initWithTitle:@"错误" message:@"数据库查找数据不存在!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
-        [lAlertView show];
-        return  nil;
-    }
-    else if(ErrorJudge==99)
-    {
-        lAlertView=[[UIAlertView alloc]initWithTitle:@"错误" message:@"数据库操作失败!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
-        [lAlertView show];
-        return  nil;
-    }
-    else
-    {
-        NSDictionary *msgDictionary = [lDictionary objectForKey:@"msg"];
-        int Count= [[msgDictionary objectForKey:@"count"]intValue];
-        if (Count>0) {
-            NSMutableArray *BuyCarAllGoodsArrayx= [msgDictionary objectForKey:@"info"];
-            if ([BuyCarAllGoodsArrayx  count]>0) {
-                for (int i=0; i<[BuyCarAllGoodsArrayx count]; i++) {
-                    NSDictionary *lDictionary=[BuyCarAllGoodsArrayx objectAtIndex:i];
-                    lOptionButton=[[UIButton alloc]initWithFrame:CGRectMake(5, 80/2-13, 30, 26)];
-                    [lOptionButton addTarget:self action:@selector(updateGoodsOptionState:) forControlEvents:UIControlEventTouchUpInside];
-                    
-                    lCountText=[[UITextField alloc]initWithFrame:CGRectMake(138, 60, 70, 18)];
-                    lCountText.delegate=self;
-                    NSString *selectState=@"1";
-                    NSDictionary *GroupDictionary=[NSDictionary dictionaryWithObjectsAndKeys:lDictionary,@"dictionary",selectState,@"sgin",lOptionButton,@"button",lCountText,@"text",nil];
-                    [ReturnArray addObject:GroupDictionary];
-                } 
-            }
-       }            
-        return ReturnArray;
-        [ReturnArray release];
-    }
-    
-}
+         
+}*/
+
+
+
+
+
+
  
 -(void)ChangeButtonBackColor:(UIButton *)sender
 {
@@ -122,7 +77,7 @@
         GoPayButton.alpha=1;
         Sgin=1;
         NSURL *URL=[NSURL URLWithString:@"http://192.168.1.120/shop/getaddress.php"];
-        NSString *PostData=[NSString stringWithFormat:@"customerid=%@",@"20"];
+        NSString *PostData=[NSString stringWithFormat:@"customerid=%@",[JD_DataManager shareGoodsDataManager].userID];
         NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:URL];
         [lRequest setHTTPMethod:@"post"];
         [lRequest setHTTPBody:
@@ -134,7 +89,10 @@
         UIAlertView *AlertView=[[UIAlertView alloc]initWithTitle:@"错误" message:@"请选中需要提交的商品" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
         [AlertView show];
         [AlertView release];
-    } 
+    }
+   
+   
+    
 }
 
 -(void)KipLogin:(UIButton *)sender
@@ -150,6 +108,9 @@
     [self.navigationController pushViewController:loginView animated:YES];
     [loginView release];
 }
+
+
+ 
 //修改对应商品Count
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
@@ -183,9 +144,9 @@
             NSString *cartid=[lDictionary objectForKey:@"cartid"];
             NSString *goodscount=[lDictionary objectForKey:@"goodscount"];
             NSString *goodsid=[lDictionary objectForKey:@"goodsid"];
-            //NSString *customerid=@"20"
            
-            NSString *lPostData=[NSString stringWithFormat:@"cartid=%@&goodscount=%@&goodsid=%@&customerid=%@",cartid,goodscount,goodsid,@"20"];
+           
+            NSString *lPostData=[NSString stringWithFormat:@"cartid=%@&goodscount=%@&goodsid=%@&customerid=%@",cartid,goodscount,goodsid,[JD_DataManager shareGoodsDataManager].userID];
           //  NSLog(@"%@",lPostData);
             NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:URL];
              [lRequest setHTTPMethod:@"post"];
@@ -194,8 +155,10 @@
             [lConnection start];
             break;
         }
-    }  
-    [lTableView reloadData];
+    }
+         
+        [lTableView reloadData];
+ 
 }
 
 -(void)subtractionCount:(UIButton *)sender
@@ -212,6 +175,7 @@
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
+     
     if (textField.tag!=10010) {
         bySelectKeyBoard=[[UITextField alloc]init];
         bySelectKeyBoard=textField;
@@ -241,6 +205,8 @@
                     action:@selector(hiddenView:) forControlEvents:UIControlEventTouchUpInside];
         [FunctionLayer addSubview:lButton];
         
+        
+        
         UIButton *lsubtractionButton=[[UIButton alloc]initWithFrame:CGRectMake(80, 70, 20, 20)];
         [lsubtractionButton setTitle:@"-" forState:UIControlStateNormal];
         [lsubtractionButton addTarget:self action:@selector(subtractionCount:) forControlEvents:UIControlEventTouchUpInside];
@@ -249,6 +215,7 @@
         [lsubtractionButton setTintColor:[UIColor whiteColor]];
         [lsubtractionButton setBackgroundColor:[UIColor blackColor]];
         [FunctionLayer addSubview:lsubtractionButton];
+        
  
         [UpdateBySelectKeyBoard  setFrame:CGRectMake(105, 66, 90, 30)];
         [UpdateBySelectKeyBoard setFont:[UIFont systemFontOfSize:20]];
@@ -267,14 +234,25 @@
         [laddButton setTintColor:[UIColor whiteColor]];
         [laddButton setBackgroundColor:[UIColor blackColor]];
         [FunctionLayer addSubview:laddButton];
+        
+        
+        
         [self.view addSubview:SkipLayer];
         [self.view addSubview:FunctionLayer];
+    
         [laddButton release];
         [lsubtractionButton release];
         [lButton release];
         [lable release];
     }
+       
+     
+   
+   
+
 }
+
+ 
 
 //删除购物车
 -(void)deleteByOptionGoods:(UIButton *)sender
@@ -286,11 +264,19 @@
          NSDictionary *lDictionary=[FirstDictionary objectForKey:@"dictionary"];
          NSString *byOptionState=[FirstDictionary objectForKey:@"sgin"];
          NSString *CartId=[lDictionary objectForKey:@"cartid"];
-         NSString *UserId=@"20";//[lDictionary objectForKey:@"customerid"];
+        
+        
+        
+        
+        
+        
+        
+        NSString *UserId=[JD_DataManager shareGoodsDataManager].userID;
          if ([byOptionState intValue]==1) {
              int count=[[lDictionary objectForKey:@"goodscount"]intValue];
              float price=[[lDictionary objectForKey:@"price"]floatValue];
              subtraction=subtraction+(count*price);
+             
              NSURL *lURL=[NSURL URLWithString:@"http://192.168.1.120/shop/deletecart.php"];
              NSString *userInfo=[NSString stringWithFormat:@"cartid=%@&customerid=%@",CartId,UserId];
              NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:lURL];
@@ -307,20 +293,22 @@
     [DeletelTempArray release];
    
 }
+
  
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     [lData setLength:0];
 }
+
  
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [lData appendData:data];
 }
-
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if (Sgin==1) {
+       
        NSDictionary *lDictionary=[[NSJSONSerialization JSONObjectWithData: lData options:NSJSONReadingAllowFragments error:nil] objectForKey:@"msg"];
         int Count= [[lDictionary objectForKey:@"count"]intValue];
         if (Count>0) {
@@ -333,6 +321,8 @@
                  [[JD_DataManager shareGoodsDataManager].AddressArray replaceObjectAtIndex:i withObject:lUpdateDictionary];
             }
         Sgin=0;
+       
+         
         }
         JD_Order *order=[[JD_Order alloc]init];
         [self.navigationController pushViewController:order animated:YES];
@@ -342,9 +332,16 @@
 
 -(void)SkipBuyGoodsPageClick:(UIButton *)sender
 {
-    JD_Home_Page *lHomeView=[[JD_Home_Page alloc]init];
-    [self.navigationController pushViewController:lHomeView animated:YES];
-    [lHomeView release];
+    JD_Home_Page *lHome_Page = [[[JD_Home_Page alloc]init]autorelease];
+    JD_Search *lJD_Search = [[[JD_Search alloc]init]autorelease];
+    JD_ShopCar *lJD_ShopCar = [[[JD_ShopCar alloc]init]autorelease];
+    JD_AccountManage *lJD_AccountManage = [[[JD_AccountManage alloc]init]autorelease];
+    UITabBarController *lTabBarController = [[[UITabBarController alloc]init]autorelease];
+    lTabBarController.viewControllers = @[lHome_Page,lJD_Search,lJD_ShopCar,lJD_AccountManage];
+    UINavigationController *lNavigation = [[[UINavigationController alloc]initWithRootViewController:lTabBarController]autorelease];
+    [self presentViewController:lNavigation animated:YES completion:nil];
+
+    
 }
 
 -(CGColorRef) getColorFromRed:(int)red Green:(int)green Blue:(int)blue Alpha:(int)alpha
@@ -365,6 +362,7 @@
 
 -(void )updateGoodsOptionState:(UIButton *)sender
 {
+    
     for (int i=0; i<[[JD_DataManager shareGoodsDataManager].BuyCardInfoArray count]; i++) {
         NSDictionary *FirstDictionary=[[JD_DataManager shareGoodsDataManager].BuyCardInfoArray objectAtIndex:i];
          NSDictionary *item=[FirstDictionary objectForKey:@"dictionary"];
@@ -372,6 +370,7 @@
         int  Sgin1=[[FirstDictionary objectForKey:@"sgin"]intValue];
         if (lButton ==(UIButton *)sender) {
             if (Sgin1==1) {
+                
                 [lButton setImage:[UIImage imageNamed:@"round_check1@2x"] forState:UIControlStateNormal];
                 NSMutableDictionary *mutableItem = [NSMutableDictionary dictionaryWithDictionary:FirstDictionary];
                 [mutableItem setObject:@"0" forKey:@"sgin"];
@@ -379,7 +378,8 @@
                 int count=[[item objectForKey:@"goodscount"]intValue];
                 int price=[[item objectForKey:@"price"]floatValue];
                 PayTotal=PayTotal-(count*price);
-                TotalLabel.text=[NSString stringWithFormat:@"%@%f",@"总额:¥",PayTotal]; 
+                TotalLabel.text=[NSString stringWithFormat:@"%@%.2f",@"总额:¥",PayTotal];
+                
             }
             else
             {
@@ -390,23 +390,42 @@
                 int count=[[item objectForKey:@"goodscount"]intValue];
                 int price=[[item objectForKey:@"price"]floatValue];
                 PayTotal=PayTotal+(count*price);
-                TotalLabel.text=[NSString stringWithFormat:@"%@%f",@"总额:¥",PayTotal];
+                TotalLabel.text=[NSString stringWithFormat:@"%@%.2f",@"总额:¥",PayTotal];
+                
             }
-        } 
+        }
+        
     }
-}
+ 
 
+ 
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger row=[indexPath row];
+    NSDictionary *dictionary=[[JD_DataManager shareGoodsDataManager].BuyCardInfoArray objectAtIndex:row];
+    [JD_DataManager shareGoodsDataManager].goodsID =[[dictionary objectForKey:@"dictionary"] objectForKey:@"goodsid"];
+    JD_Goods *lGoods=[[JD_Goods alloc]init];
+    [self.navigationController pushViewController:lGoods animated:YES];
+    [lGoods release]; 
+          
+
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString *CellID=@"Cell";
     UITableViewCell *Cell = [tableView cellForRowAtIndexPath:indexPath];
     if (Cell==nil) {
         Cell=[[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellID] autorelease];
     }
+    
     NSInteger Row=[indexPath row];
     if ([[JD_DataManager shareGoodsDataManager].BuyCardInfoArray count]>0) {
         NSDictionary *lFirstDictionary=[[JD_DataManager shareGoodsDataManager].BuyCardInfoArray objectAtIndex:Row];
         NSDictionary *lDictionary=[lFirstDictionary objectForKey:@"dictionary"];
+        
+        
         
         UIButton *lButton=(UIButton *)[lFirstDictionary objectForKey:@"button"];
         if ([[lFirstDictionary objectForKey:@"sgin"]intValue]==1) {
@@ -416,6 +435,7 @@
         {
             [lButton setImage:[UIImage imageNamed:@"round_check1@2x"] forState:UIControlStateNormal];
         }
+        
         [Cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [Cell addSubview:lButton];
         UIImageView *lImageView=[[UIImageView alloc]initWithFrame:CGRectMake(40, 10, 60, 60)];
@@ -435,8 +455,8 @@
         UILabel *patternLabel = [[UILabel alloc] initWithFrame:CGRectMake(105, 5, labelSize.width, labelSize.height)];
         patternLabel.text = str;
         patternLabel.font = [UIFont systemFontOfSize:10];
-        patternLabel.numberOfLines = 0;     // 不可少Label属性之一
-        patternLabel.lineBreakMode = NSLineBreakByWordWrapping;    // 不可少Label属性之二
+        patternLabel.numberOfLines = 0;      
+        patternLabel.lineBreakMode = NSLineBreakByWordWrapping;   
         [Cell addSubview:patternLabel];
         UILabel *lSerialCode=[[UILabel alloc]initWithFrame:CGRectMake(105, 45, 100, 13)];
         NSString *Strt= [NSString stringWithFormat:@"%@%@",@"编号:",[lDictionary objectForKey:@"cartid"]];
@@ -450,13 +470,19 @@
         [lCount setFont:[UIFont systemFontOfSize:13]];
         [Cell addSubview:lCount];
         
+        
+        
+        
         UITextField *TextField=(UITextField *)[lFirstDictionary objectForKey:@"text"];
         [TextField setKeyboardType:UIKeyboardTypeNumberPad];
         [TextField setBorderStyle:UITextBorderStyleLine];
         [TextField setFont:[UIFont systemFontOfSize:10]];
         [TextField   setTextColor:[UIColor blackColor]];
         [TextField setText:[lDictionary objectForKey:@"goodscount"]];
-        [Cell addSubview:TextField]; 
+        [Cell addSubview:TextField];
+        
+        
+        
         
         NSString *Price=[NSString stringWithFormat:@"%@%@",@"¥",[lDictionary objectForKey:@"price"]];
         UILabel *SingleGoodsTotal=[[UILabel alloc]initWithFrame:CGRectMake(215,62,100,15)];
@@ -465,13 +491,18 @@
         [SingleGoodsTotal setText:Price];
         [Cell addSubview:SingleGoodsTotal];
         [SingleGoodsTotal release];
+        
         [lCount release];
         [patternLabel release];
         [lImageView release];
         [lSerialCode release];
     }
+    
+    
     return Cell;
 }
+
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -479,11 +510,15 @@
     return 80;
 }
 
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
    return  [[JD_DataManager shareGoodsDataManager].BuyCardInfoArray count];
 
 }
+
+
 //应付总额
 -(NSString *)initAllPayTotal
 {
@@ -499,82 +534,175 @@
     }
     
     PayTotal=total;
-    NSString *TotalStr=[NSString stringWithFormat:@"%@%f",@"总额:¥",total];
+    NSString *TotalStr=[NSString stringWithFormat:@"%@%.2f",@"总额:¥",total];
     return TotalStr;
 }
 
 
 -(void)viewWillAppear:(BOOL)animated{
+    [[JD_DataManager shareGoodsDataManager].BuyCardInfoArray removeAllObjects];
     [super viewWillAppear:animated];
+  lImage=[[UIImage alloc]init];
     TotalLabel=[[UILabel alloc]init];
     lTablViewCellImageButton=[[NSMutableArray alloc]init];
     lData=[[NSMutableData alloc]init];
      UpdateBySelectKeyBoard=[[UITextField alloc]init];
      UpdateBySelectKeyBoard.tag=10010;
-    [JD_DataManager shareGoodsDataManager].BuyCardInfoArray=[self  LoadAllGoods:@"20"];
+    
+    
     self.tabBarController.navigationItem.title = @"购物车";
     for (UIView *subView in self.view.subviews ) {
         [subView removeFromSuperview];
     }
-    [JD_DataManager shareGoodsDataManager].userID=@"71";
-    if ([JD_DataManager shareGoodsDataManager].userID.length>0) {
-        if ([[JD_DataManager shareGoodsDataManager].BuyCardInfoArray count]>0) {
-            self.tabBarController.navigationItem.leftBarButtonItems=nil;
-            self.tabBarController.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithTitle:@"删除" style:UIBarButtonItemStyleBordered target:self action:@selector(deleteByOptionGoods:)];
-            self.tabBarController.navigationItem.rightBarButtonItem.tintColor=[UIColor redColor];
-            lTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 5, 320, self.view.frame.size.height-90)];
-            lTableView.layer.cornerRadius=5;
-            lTableView.dataSource=self;
-            lTableView.delegate=self;
-            [self.view addSubview:lTableView];
-            UIView *GotoPayView=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-80, 320, 80)];
-            GotoPayView.layer.borderColor=[self getColorFromRed:0 Green:0 Blue:0 Alpha:50];
-            GotoPayView.layer.borderWidth=3;
-            [GotoPayView setBackgroundColor:[UIColor whiteColor]];
-            TotalLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, GotoPayView.frame.size.height/2-10, 200, 20)];
-            TotalLabel.backgroundColor=[UIColor clearColor];
-            TotalLabel.text=[self initAllPayTotal];
-            GoPayButton=[[UIButton alloc]initWithFrame:CGRectMake(200, 15, 100, 50)];
-            [GoPayButton addTarget:self action:@selector(PayClick:) forControlEvents:UIControlEventTouchUpInside];
-            [GoPayButton addTarget:self action:@selector(ChangeButtonBackColor:) forControlEvents:UIControlEventTouchDown];
-            [GoPayButton setTitle:@"去结算" forState:UIControlStateNormal];
-            [GoPayButton setBackgroundColor:[UIColor redColor]];
-            GoPayButton.layer.cornerRadius=5;
-            [GotoPayView addSubview:GoPayButton];
-            [GotoPayView addSubview:TotalLabel];
-            [self.view addSubview:GotoPayView];
-            [GotoPayView release];
-            [GoPayButton release]; 
+   
+    
+    if ([JD_DataManager shareGoodsDataManager].UserState==YES) {
+        
+      
+        NSString *bodyString=[NSString stringWithFormat:@"customerid=%@",[JD_DataManager shareGoodsDataManager].userID];
+        [[JD_DataManager shareGoodsDataManager] downloadDataWithHTTPMethod:@"post" WithBodyString:bodyString WithURLString:@"getcart.php" AndSuccess:^(NSData *data){
             
-        }
-        else
-        {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"self"]]];
-            UIImageView *lImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-29,80, 58, 58)];
-            [lImageView setImage:[UIImage imageNamed:@"ico_menu_shopcart@2x"]];
-            UILabel *lLabel=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-70, 150, 200, 15)];
-            [lLabel setText:@"购物车还是空的,去逛逛吧!"];
-            [lLabel setTextColor:[UIColor grayColor]];
-            [lLabel  setBackgroundColor:[UIColor clearColor]];
-            [lLabel setFont:[UIFont systemFontOfSize:13]];
-            UIButton *lButton=[[UIButton alloc]init];
-            [lButton  setFrame:CGRectMake(self.view.frame.size.width/2-40, 185, 90, 25)];
-            [lButton setTitle:@"现在去逛逛" forState:UIControlStateNormal];
-            [lButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-            [lButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            lButton.layer.cornerRadius=3;
-            [lButton setBackgroundColor:[UIColor lightGrayColor]];
-            [lButton addTarget:self action:@selector(SkipBuyGoodsPageClick:) forControlEvents:UIControlEventTouchUpInside];
-            [self.view addSubview:lImageView];
-            [self.view  addSubview:lLabel];
-            [self.view addSubview:lButton];
-            [lImageView release];
-            [lLabel release];
-            [lButton release];
-        } 
+            NSDictionary *ShareDictionary= [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            
+            
+            int ErrorJudge= [[ShareDictionary objectForKey:@"error"]intValue];
+            
+            if (ErrorJudge==1) {
+                lAlertView=[[UIAlertView alloc]initWithTitle:@"错误" message:@"请求数据不完整!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
+                [lAlertView show];
+                
+            }
+            else if(ErrorJudge==2)
+            {
+                lAlertView=[[UIAlertView alloc]initWithTitle:@"错误" message:@"请求数据格式错误!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
+                [lAlertView show];
+                
+            }
+            else if(ErrorJudge==3)
+            {
+                
+                
+            }
+            else if(ErrorJudge==98)
+            {
+                lAlertView=[[UIAlertView alloc]initWithTitle:@"错误" message:@"数据库查找数据不存在!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
+                [lAlertView show];
+                
+            }
+            else if(ErrorJudge==99)
+            {
+                lAlertView=[[UIAlertView alloc]initWithTitle:@"错误" message:@"数据库操作失败!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
+                [lAlertView show];
+                
+            }
+            else
+                
+            {
+            
+               
+                NSDictionary *msgDictionary = [ShareDictionary objectForKey:@"msg"];
+                int Count= [[msgDictionary objectForKey:@"count"]intValue];
+            
+                if (Count>0) {
+                    NSMutableArray *BuyCarAllGoodsArrayx= [msgDictionary objectForKey:@"info"];
+                        for (int i=0; i<[BuyCarAllGoodsArrayx count]; i++) {
+                            NSDictionary *lDictionary=[BuyCarAllGoodsArrayx objectAtIndex:i];
+                            lOptionButton=[[UIButton alloc]initWithFrame:CGRectMake(5, 80/2-13, 30, 26)];
+                            [lOptionButton addTarget:self action:@selector(updateGoodsOptionState:) forControlEvents:UIControlEventTouchUpInside];
+                            
+                            lCountText=[[UITextField alloc]initWithFrame:CGRectMake(138, 60, 70, 18)];
+                            lCountText.delegate=self;
+                            NSString *selectState=@"1";
+                            
+                          
+                            NSDictionary *GroupDictionary=[NSDictionary dictionaryWithObjectsAndKeys:lDictionary,@"dictionary",selectState,@"sgin",lOptionButton,@"button",lCountText,@"text",nil];
+                            
+                              
+                                 [[JD_DataManager shareGoodsDataManager].BuyCardInfoArray addObject:GroupDictionary];
+                         
+                           
+                      }
+                       self.tabBarController.navigationItem.leftBarButtonItems=nil;
+                       self.tabBarController.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithTitle:@"删除" style:UIBarButtonItemStyleBordered target:self action:@selector(deleteByOptionGoods:)];
+                       self.tabBarController.navigationItem.rightBarButtonItem.tintColor=[UIColor redColor];
+                       lTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 5, 320, self.view.frame.size.height-90)];
+                       lTableView.layer.cornerRadius=5;
+                       lTableView.dataSource=self;
+                       lTableView.delegate=self;
+                       [self.view addSubview:lTableView];
+                       UIView *GotoPayView=[[UIView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-80, 320, 80)];
+                       GotoPayView.layer.borderColor=[self getColorFromRed:0 Green:0 Blue:0 Alpha:50];
+                       GotoPayView.layer.borderWidth=3;
+                       [GotoPayView setBackgroundColor:[UIColor whiteColor]];
+                       TotalLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, GotoPayView.frame.size.height/2-10, 200, 20)];
+                       TotalLabel.backgroundColor=[UIColor clearColor];
+                       TotalLabel.text=[self initAllPayTotal];
+                       GoPayButton=[[UIButton alloc]initWithFrame:CGRectMake(200, 15, 100, 50)];
+                       [GoPayButton addTarget:self action:@selector(PayClick:) forControlEvents:UIControlEventTouchUpInside];
+                       [GoPayButton addTarget:self action:@selector(ChangeButtonBackColor:) forControlEvents:UIControlEventTouchDown];
+                       [GoPayButton setTitle:@"去结算" forState:UIControlStateNormal];
+                       [GoPayButton setBackgroundColor:[UIColor redColor]];
+                       GoPayButton.layer.cornerRadius=5;
+                       [GotoPayView addSubview:GoPayButton];
+                       [GotoPayView addSubview:TotalLabel];
+                       
+                       
+                       [self.view addSubview:GotoPayView];
+                       [GotoPayView release];
+                       [GoPayButton release];
+                 
+         
+                    
+                }
+            else
+            {
+                self.tabBarController.navigationItem.leftBarButtonItems=nil;
+                self.tabBarController.navigationItem.leftBarButtonItem=nil;
+                [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"self"]]];
+                UIImageView *lImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-29,80, 58, 58)];
+                [lImageView setImage:[UIImage imageNamed:@"ico_menu_shopcart@2x"]];
+                UILabel *lLabel=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-70, 150, 200, 15)];
+                [lLabel setText:@"购物车还是空的,去逛逛吧!"];
+                [lLabel setTextColor:[UIColor grayColor]];
+                [lLabel  setBackgroundColor:[UIColor clearColor]];
+                [lLabel setFont:[UIFont systemFontOfSize:13]];
+                UIButton *lButton=[[UIButton alloc]init];
+                [lButton  setFrame:CGRectMake(self.view.frame.size.width/2-40, 185, 90, 25)];
+                [lButton setTitle:@"现在去逛逛" forState:UIControlStateNormal];
+                [lButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+                [lButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                lButton.layer.cornerRadius=3;
+                [lButton setBackgroundColor:[UIColor lightGrayColor]];
+                [lButton addTarget:self
+                            action:@selector(SkipBuyGoodsPageClick:) forControlEvents:UIControlEventTouchUpInside];
+                [self.view addSubview:lImageView];
+                [self.view  addSubview:lLabel];
+                [self.view addSubview:lButton];
+                [lImageView release];
+                [lLabel release];
+                [lButton release];
+            }
+            
+            
+
+            
+            
+            }
+         
+         
+         
+        }AndFailed:^(){
+            
+        }];
+        
     }
+    
+    
     else
     {
+      
+        self.tabBarController.navigationItem.leftBarButtonItems=nil;
+        self.tabBarController.navigationItem.leftBarButtonItem=nil;
         UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 320,50)];
         [label setBackgroundColor:[UIColor clearColor]];
         [label setFont:[UIFont systemFontOfSize:19]];
@@ -600,6 +728,8 @@
         [self.view addSubview:lView];
         [lView release];
     }
+ 
+    
 }
 
 
@@ -607,10 +737,12 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    
 }
 
 -(void)dealloc
 {
+    
    [byOptionAdress release];
     [SkipLayer release];
     [FunctionLayer release];
@@ -621,12 +753,14 @@
     [lData release];
     [lOptionButton release];
     [TotalLabel release];
-    [Request  release];
+    
     [lImage release];
     [lTablViewCellImageButton release];
     [loginButton release];
+    // [_BuyCarAllGoodsArray release];
     [lAlertView release];
     [GoPayButton release];
+    
     [super dealloc];
 }
 

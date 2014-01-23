@@ -8,6 +8,7 @@
 
 #import "JD_Order.h"
 #import "JD_AddAdress.h"
+#import "AllOrderFrom.h"
 @interface JD_Order ()
 
 @end
@@ -275,6 +276,7 @@
 //1创建收货人  2:支付方式 3:配送方式
 -(void)viewWillAppear:(BOOL)animated
 {
+    orderPayTotal=0;
      [lScrollView removeFromSuperview];
     for(int i=0;i<[[JD_DataManager shareGoodsDataManager].AddressArray count];i++)
     {
@@ -467,7 +469,7 @@
     [PostOrderView addSubview:PayTitle];
     
     
-    UILabel *PayTitleTotal=[[UILabel alloc]initWithFrame:CGRectMake(75, PostOrderView.frame.size.height/2-10, 170, 20)];
+     PayTitleTotal=[[UILabel alloc]initWithFrame:CGRectMake(75, PostOrderView.frame.size.height/2-10, 170, 20)];
     [PayTitleTotal setFont:[UIFont systemFontOfSize:15]];
     for (int i=0;i<[[JD_DataManager shareGoodsDataManager].BuyCardInfoArray count] ; i++) {
         NSDictionary *FirstDictionary=[[JD_DataManager shareGoodsDataManager].BuyCardInfoArray objectAtIndex:i];
@@ -503,7 +505,7 @@
     
    
     [lCreateReceiverView release];
-    [PayTitleTotal release];
+    
     [PayTitle release];
     [PostOrderView release];
     [lLabel release];
@@ -545,8 +547,6 @@
             
             NSURLConnection *Connection=[NSURLConnection connectionWithRequest:lRequest delegate:self];
             [Connection start]; 
-            
-       
              [[JD_DataManager shareGoodsDataManager].AddressArray removeObject:Dicitonary];
             break;
         }
@@ -618,13 +618,13 @@
 {
      
     //NSString *lstring  =[[NSString alloc]initWithData:lData encoding:NSUTF8StringEncoding];
-    
-    
-    NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:lData options:NSJSONReadingAllowFragments error:nil];
+    if (Sgin==1) {
+
+   NSDictionary *lDictionary = [NSJSONSerialization JSONObjectWithData:lData options:NSJSONReadingAllowFragments error:nil];
     if ([[lDictionary objectForKey:@"error"]intValue]==0) {
-        UIAlertView *lAlertView=[[UIAlertView alloc]initWithTitle:@"成功" message:@"提交成功!" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
-        [lAlertView show];
-        [lAlertView release];
+        AllOrderFrom *AllOrder=[[AllOrderFrom alloc]init];
+        [self.navigationController pushViewController:AllOrder animated:YES];
+        [AllOrder release];
     }
     else
     {
@@ -632,6 +632,8 @@
         [lAlertView show];
         [lAlertView release];
     }
+        Sgin=0;
+ }
 }
 
 
@@ -646,16 +648,25 @@
         if ([optionSgin intValue]==1) {
             NSMutableString *Str=[lDictioanry objectForKey:@"cartid"];
             OrderIdArrray=[OrderIdArrray stringByAppendingFormat:@"&cartids[%d]=%@",i,Str];
+            [[JD_DataManager shareGoodsDataManager].BuyCardInfoArray removeObjectAtIndex:i];
+        
             }
       }
     return OrderIdArrray;
  
     [OrderIdArrray release];
 }
-//订单提交方法
+
 -(void)addOrderClick:(UIButton *)sender
 {
-     
+      Sgin=1;
+    if (PayTitleTotal.text.length<1) {
+        UIAlertView *lAlertView =[[UIAlertView alloc]initWithTitle:@"错误" message:@"请返回选中提交商品" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
+        [lAlertView show];
+        [lAlertView release];
+    }
+    else
+    {
     NSString *Adressx=@"";
     for (int i=0; i<[JD_DataManager shareGoodsDataManager].AddressArray.count; i++) {
         NSDictionary *dictionary=[[JD_DataManager shareGoodsDataManager].AddressArray objectAtIndex:i];
@@ -663,7 +674,7 @@
         if (lbutton.backgroundColor==[UIColor redColor]) {
             NSDictionary *adressDictionary=[dictionary objectForKey:@"dictionary"];
            Adressx=[adressDictionary objectForKey:@"addressid"];
-            break;
+             
         }
        
     }
@@ -672,12 +683,13 @@ if (Adressx.length>0) {
     
   postOrderButton.backgroundColor=[UIColor redColor];
  NSURL *URL=[NSURL URLWithString:@"http://192.168.1.120/shop/addorder.php"];
- NSString *PostData=[NSString stringWithFormat:@"customerid=%@&addressid=%@&cartids=%@",@"20",Adressx,[self CreateOrderId]];
+ NSString *PostData=[NSString stringWithFormat:@"customerid=%@&addressid=%@&cartids=%@",[JD_DataManager shareGoodsDataManager].userID,Adressx,[self CreateOrderId]];
  NSMutableURLRequest *lRequest=[NSMutableURLRequest requestWithURL:URL];
  [lRequest setHTTPMethod:@"post"];
  [lRequest setHTTPBody: [PostData dataUsingEncoding:NSUTF8StringEncoding]];
  NSURLConnection *connection=[NSURLConnection connectionWithRequest:lRequest delegate:self];
  [connection start];
+   
  }
 else
 {
@@ -685,7 +697,7 @@ else
     [lAlertView show];
     [lAlertView release];
 }
-
+    }
 
 }
 
@@ -697,7 +709,7 @@ else
 }
 -(void)dealloc
 {
-    
+    [PayTitleTotal release];
     [deleteButton release];
     [lSelectPlaceImageArray release];
     [lSelectPlaceImage release];
